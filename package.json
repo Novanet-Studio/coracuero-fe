@@ -1,0 +1,18 @@
+{
+  "name": "coracuero-fe",
+  "private": true,
+  "scripts": {
+    "develop": "gridsome develop",
+    "explore": "gridsome explore",
+    "build": "gridsome build"
+  },
+  "dependencies": {
+    "@gridsome/source-filesystem": "^0.6.2",
+    "gridsome": "^0.7.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0"
+  },
+  "devDependencies": {
+    "@gridsome/transformer-remark": "^0.6.4"
+  }
+}
