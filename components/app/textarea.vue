@@ -1,18 +1,18 @@
 <template>
   <div class="input-group" :class="class">
     <div
-      class="flex items-center bg-white p-2 rounded-xl lg:p-4"
-      :class="[error && 'input--error', focus && 'ring-2 ring-color-1']"
+      class="flex items-center border p-2 rounded-lg bg-white"
+      :class="[error && 'input--error', focus && 'border-color-1']"
     >
       <div class="flex-0 mr-3" v-if="$slots.left">
         <slot name="left" />
       </div>
-      <input
-        class="flex-1 outline-none text-xs lg:text-sm"
-        :type="type"
+      <textarea
         v-model="value"
+        class="flex-1 text-xs outline-transparent lg:text-sm"
         @focus="focus = true"
         @blur="focus = false"
+        rows="10"
         :placeholder="placeholder"
         height="50"
       />
@@ -20,10 +20,8 @@
         <slot name="right" />
       </div>
     </div>
-    <div class="">
-      <div class="text-xs pt-1 text-red-500" v-if="error && errorMessage">
-        {{ errorMessage }}
-      </div>
+    <div class="text-xs pt-1 text-red-500" v-if="error && errorMessage">
+      {{ errorMessage }}
     </div>
   </div>
 </template>
@@ -55,3 +53,5 @@ const value = computed({
   set: (val: string) => emits('update:modelValue', val),
 });
 </script>
+
+<style scoped></style>

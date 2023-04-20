@@ -1,9 +1,9 @@
 <template>
   <section class="edit-address" v-if="type">
     <div class="edit-address__wrapper">
-      <header class="edit-address__header">
+      <!-- <header class="edit-address__header">
         <h3 class="edit-address__title">Direcciones</h3>
-      </header>
+      </header> -->
       <div class="edit-address__content">
         <edit-address-form :type="type" />
       </div>

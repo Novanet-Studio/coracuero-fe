@@ -3,6 +3,7 @@ import gql from '@rollup/plugin-graphql';
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
+
   app: {
     head: {
       script: [
@@ -64,21 +65,21 @@ export default defineNuxtConfig({
 
   pwa: {
     meta: {
-      title: 'Tienda en mano',
-      name: 'Tienda en mano Aplicación web',
+      title: 'Coracuero',
+      name: 'Coracuero Aplicación web',
       author: 'Novanet Studio <info@novanet.studio>',
       description: 'Tienda en online para vender tus productos online',
-      theme_color: '#fcd34d',
+      theme_color: '#31150C',
       lang: 'es',
     },
     manifest: {
-      name: 'Tienda en mano Aplicación web',
-      short_name: 'Tienda en mano',
+      name: 'Coracuero Aplicación web',
+      short_name: 'Coracuero',
       description: 'Tienda en online para vender tus productos online',
       start_url: '/',
       display: 'standalone',
       background_color: '#ffffff',
-      theme_color: '#fcd34d',
+      theme_color: '#31150C',
     },
     icon: { source: 'static/favicon.png' },
     /*workbox: {
@@ -99,4 +100,5 @@ export default defineNuxtConfig({
       '2xl': 1536,
     },
   },
+  devtools: true,
 });

@@ -3,7 +3,7 @@
     <div class="relative mt-2" ref="target">
       <button
         type="button"
-        class="relative w-full cursor-default rounded-md bg-white py-5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 sm:text-sm sm:leading-6"
+        class="relative w-full cursor-default rounded-md bg-[#F7F4F4] py-5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-color-1 sm:text-sm sm:leading-6"
         :class="[error && 'ring-red-600']"
         aria-haspopup="listbox"
         aria-expanded="true"
@@ -58,7 +58,7 @@
         leave-to-class="opacity-0"
       >
         <ul
-          class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-[#F7F4F4] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
           :class="open ? '' : 'hidden'"
           tabindex="-1"
           role="listbox"
@@ -73,10 +73,10 @@
           -->
 
             <li
-              class="relative cursor-default select-none py-2 pl-3 pr-9 transition ease hover:bg-yellow-600 hover:text-white"
+              class="relative cursor-default select-none py-2 pl-3 pr-9 transition ease hover:bg-color-1 hover:text-white"
               :class="
                 compareOptions(option)
-                  ? 'bg-yellow-600 text-white'
+                  ? 'bg-color-1 text-white'
                   : 'text-gray-900'
               "
               @click="

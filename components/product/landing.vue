@@ -10,8 +10,8 @@
         <swiper
           navigation
           :modules="modules"
-          :slides-per-view="5"
-          :space-between="0"
+          :slides-per-view="2"
+          :space-between="1"
         >
           <swiper-slide
             v-for="product in products"
@@ -50,3 +50,29 @@ onMounted(async () => {
   products.value = result;
 });
 </script>
+
+<style scoped>
+.landing {
+  @apply pb-20 pt-10;
+}
+
+.landing__wrapper {
+  @apply max-w-[1650px] mx-auto px-9 lg:px-0;
+}
+
+.landing__header {
+  @apply flex flex-nowrap justify-between items-center px-5 py-4 rounded-full bg-color-2 shadow-md shadow-gray-400;
+}
+
+.landing__title {
+  @apply mb-0 inline-block text-sm font-semibold text-color-1 md:text-lg lg:text-xl first-letter:uppercase;
+}
+
+.landing__content {
+  @apply relative pt-6 lg:pt-14;
+}
+
+.landing__slide {
+  @apply flex md:(block !w-[260px]) lg:!w-[297px];
+}
+</style>

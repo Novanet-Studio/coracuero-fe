@@ -6,7 +6,7 @@
     >
       <!-- <i class="header-actions__icon icon-heart"></i> -->
       <ph-heart weight="light" class="header-actions__icon" />
-      <span class="header-actions__indicator-wrapper" v-if="total">
+      <span class="header-actions__indicator-wrapper bottom-1" v-if="total">
         <i class="header-actions__indicator">{{ total }}</i>
       </span>
     </nuxt-link>

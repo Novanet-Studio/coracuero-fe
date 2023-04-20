@@ -32,10 +32,10 @@ const wrapper = computed(() => {
 }
 
 .message {
-  @apply text-color-1 text-[10px] text-center whitespace-pre-wrap leading-3;
+  @apply text-color-1 text-[10px] text-center whitespace-pre-wrap leading-3 md:(text-xl whitespace-normal);
 }
 
 .message-wrapper-alt {
-  @apply bg-color-8 p-6 rounded-md shadow w-[85%] mx-auto;
+  @apply bg-color-8 p-6 rounded-md shadow w-[90%] mt-12 mx-auto shadow shadow-xl;
 }
 </style>

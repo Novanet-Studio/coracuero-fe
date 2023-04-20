@@ -1,26 +1,31 @@
 <template>
-  <div class="product h-full">
-    <div class="product__thumbnail h-2/3">
-      <product-thumbnail-image :product="product" />
+  <div class="product">
+    <product-title :product="product" />
+    <div class="product__thumbnail">
+      <product-thumbnail-image
+        class="!h-[200px] rounded-xl shadow shadow-md p-2"
+        :product="product"
+      />
       <product-actions :product="product" @quick-view="handleQuickView" />
     </div>
     <div class="product__container">
       <div class="product__content">
-        <product-title :product="product" />
-        <product-price class="!my-1" :product="product" />
+        <product-price :product="product" />
       </div>
     </div>
     <modal v-model="state.quickView">
       <div class="product-modal">
         <a class="product-modal__icon" @click="state.quickView = false">
-          <i class="icon icon-cross"></i
-        ></a>
+          <ph-x weight="light" />
+        </a>
         <product-quick-view :product="product" />
       </div>
     </modal>
   </div>
 </template>
 <script lang="ts" setup>
+import { PhX } from '@phosphor-icons/vue';
+
 defineProps<{ product: ProductsMapped }>();
 
 const state = reactive({

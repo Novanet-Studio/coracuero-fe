@@ -1,5 +1,5 @@
 <template>
-  <div class="quantity">
+  <div class="quantity" :class="class">
     <button class="quantity__btn" @click.prevent="handleIncreaseQuantity">
       <ph-plus weight="light" />
     </button>
@@ -15,6 +15,7 @@ import { PhPlus, PhMinus } from '@phosphor-icons/vue';
 
 type Props = {
   product: ProductsMapped;
+  class?: string;
 };
 
 const props = defineProps<Props>();
@@ -39,3 +40,16 @@ const handleDescreaseQuantity = () => {
   cart.decreaseCartItemQuantity(props.product);
 };
 </script>
+
+<style scoped>
+.quantity {
+  @apply w-20 flex items-center justify-evenly rounded-full bg-color-8 p-2 transition ease-in transition-colors lg:(w-28 p-4);
+}
+
+.quantity__btn {
+}
+
+.quantity__input {
+  @apply h-auto w-6 text-center bg-transparent text-xs;
+}
+</style>

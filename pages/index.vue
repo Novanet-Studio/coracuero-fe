@@ -1,6 +1,11 @@
 <template>
   <div>
     <home-banner />
+    <app-message
+      message="¿Quieres conocer nuestra colección de cueros? 
+Tenemos artículos"
+      class="py-12 font-bold !text-2xl"
+    />
     <template v-if="isLoading">
       <product-loader />
     </template>
@@ -9,15 +14,13 @@
         <product-landing :category="category" />
       </div>
     </template>
+    <app-message
+      class="py-2 !text-2xl"
+      message="Productos únicos y verdaderos!"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  pageTransition: {
-    name: 'page',
-  },
-});
-
 const { categories, isLoading } = useCategory({ ordered: true });
 </script>

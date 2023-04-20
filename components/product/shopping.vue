@@ -1,47 +1,59 @@
 <template>
-  <div class="ps-product__shopping">
+  <div class="p-shopping">
+    <app-button
+      class="rounded-full !bg-color-7 !w-10 opacity-70 text-xs !p-2 flex items-center justify-center shadow-md lg:text-sm lg:!w-14 lg:!h-14"
+    >
+      <span class="text-color-1 !p-0">$ {{ product?.price }}</span>
+    </app-button>
     <figure>
-      <figcaption>Cantidad</figcaption>
-      <div class="form-group--number">
+      <div
+        class="bg-color-1 rounded-full opacity-70 text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
+      >
         <button class="up" @click.prevent="handleIncreaseQuantity">
-          <i class="fa fa-plus">+</i>
+          <ph-plus class="lg:text-sm" />
         </button>
+        <input
+          v-model="quantity"
+          class="bg-color-1 opacity-70 font-bold w-8 text-center"
+          type="text"
+          disabled
+        />
         <button class="down" @click.prevent="handleDescreaseQuantity">
-          <i class="fa fa-minus">-</i>
+          <ph-minus class="lg:text-sm" />
         </button>
-        <input v-model="quantity" class="form-control" type="text" disabled />
       </div>
     </figure>
-    <a
-      class="ps-btn ps-btn--black"
-      href="#"
-      @click.prevent="handleAddToCart(false)"
+    <app-button
+      class="rounded-full !bg-color-1 !w-36 opacity-70 text-xs lg:text-sm lg:!w-44"
+      @click="handleAddToCart"
     >
       Agregar al carrito
-    </a>
-    <a class="ps-btn" href="#" @click.prevent="handleAddToCart(true)">
-      Comprar
-    </a>
-    <div class="ps-product__actions">
-      <a
-        href="#"
-        title="Add to wishlist"
-        @click.prevent="handleAddItemToWishlist()"
+    </app-button>
+    <app-button
+      class="rounded-full !bg-color-7 !w-10 opacity-70 text-xs !p-2 flex items-center justify-center shadow-md lg:!w-14 lg:!h-14"
+      @click="handleAddItemToWishlist"
+    >
+      <ph-heart class="text-color-1 lg:text-2xl" />
+    </app-button>
+    <!-- <div class="py-3 mb-4 mt-2 flex justify-center">
+      <app-button
+        class="absolute -bottom-5 rounded-full !w-[70%] !bg-color-1 text-xs"
+        >Comprar</app-button
       >
-        <i class="icon-heart"></i>
-      </a>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-type Props = {
+import { PhPlus, PhMinus, PhHeart } from '@phosphor-icons/vue';
+
+interface Props {
   product: ProductsMapped;
-};
+}
 
 const { $notify, $store } = useNuxtApp();
 const cart = $store.cart();
-const product = $store.product();
+// const productStore = $store.product();
 const wishlist = $store.wishlist();
 const router = useRouter();
 const props = defineProps<Props>();
@@ -57,9 +69,9 @@ const addItemToCart = async (payload: any) => {
 
   if (!cart.cartItems.length) return;
 
-  const itemsId = cart.cartItems.map((item) => item.id);
+  // const itemsId = cart.cartItems.map((item) => item.id);
 
-  await product.getCartProducts(itemsId);
+  // await product.getCartProducts(itemsId);
 
   $notify({
     group: 'all',
@@ -82,6 +94,8 @@ const addItemToCart = async (payload: any) => {
 //   const itemsId = cart.cartItems.map((item) => item.id);
 //   await product.getCartProducts(itemsId);
 // }
+
+console.log(props.product);
 
 const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
@@ -128,3 +142,9 @@ const handleAddToCart = (isBuyNow = false) => {
   });
 };
 </script>
+
+<style scoped>
+.p-shopping {
+  @apply mt-4 mb-14 flex gap-1 justify-between lg:mb-2;
+}
+</style>

@@ -23,7 +23,7 @@
         </svg>
       </button>
       <div
-        class="navigation__content lg:flex"
+        class="navigation__content lg:(flex)"
         :class="[isOpen ? 'flex' : 'hidden']"
       >
         <app-menu />
@@ -35,3 +35,17 @@
 <script lang="ts" setup>
 const isOpen = ref(false);
 </script>
+
+<style scoped>
+.navigation {
+  @apply relative flex flex-wrap items-center justify-between px-4 py-2 bg-color-2;
+}
+
+.navigation__wrapper {
+  @apply flex flex-col items-center justify-between w-full lg:px-12;
+}
+
+.navigation__content {
+  @apply w-full text-center justify-center mt-4 flex-[1_0_100%] lg:(flex justify-start flex-1 mt-0);
+}
+</style>

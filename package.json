@@ -9,14 +9,15 @@
     "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^0.4.2",
     "@nuxt/image-edge": "1.0.0-28020728.5df24eb",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@rollup/plugin-graphql": "^2.0.3",
     "@sidebase/nuxt-pdf": "^0.1.1",
-    "@unocss/nuxt": "^0.51.4",
-    "@vueuse/core": "^10.0.2",
-    "@vueuse/nuxt": "^10.0.2",
+    "@unocss/nuxt": "^0.51.8",
+    "@vueuse/core": "^10.1.0",
+    "@vueuse/nuxt": "^10.1.0",
     "graphql": "^16.6.0",
     "nuxt": "^3.4.2",
     "nuxt-lodash": "^2.4.1",
@@ -28,12 +29,12 @@
     "@paypal/paypal-js": "^5.1.5",
     "@phosphor-icons/vue": "^2.0.1",
     "@pinia/nuxt": "^0.4.7",
-    "@unocss/reset": "^0.51.4",
+    "@unocss/reset": "^0.51.8",
     "firebase": "^9.18.0",
     "gitart-vue-dialog": "^3.0.2",
     "slimeform": "^0.9.1",
     "square": "^26.0.0",
-    "swiper": "^9.1.1",
+    "swiper": "^9.2.4",
     "vue3-tabs-component": "^1.2.1",
     "yup": "^1.0.2"
   }

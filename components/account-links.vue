@@ -1,27 +1,32 @@
 <template>
-  <ul class="border border-gray-300">
+  <ul class="rounded-2xl bg-color-8">
     <li
-      class="border-b-2 border-b-gray-300"
       v-for="link in links"
       :key="link.text"
-      :class="$route.path.includes(link?.name) ? 'text-yellow-500' : ''"
+      :class="
+        $route.path.includes(link?.name)
+          ? 'bg-color-6 text-white first:rounded-t-2xl'
+          : ''
+      "
     >
       <nuxt-link
         :to="link.url"
-        class="flex items-center px-5 py-4 font-medium uppercase"
+        class="flex mx-8 items-center py-5 text-sm font-semibold lg:text-base"
       >
-        <span class="mr-3"><component :is="getIcon(link.name)" /></span>
+        <span class="mr-3"
+          ><component :is="getIcon(link.name)" v-bind="objectConfig"
+        /></span>
         {{ link.text }}
       </nuxt-link>
     </li>
     <li>
       <a
-        class="flex px-5 py-4 items-center font-medium uppercase"
+        class="flex mx-8 py-5 text-sm items-center font-semibold lg:text-base"
         href="#"
         @click.prevent="handleLogout"
       >
         <!-- <i class="mr-3 icon-power-switch"></i> -->
-        <ph-power weight="light" class="mr-3" />
+        <ph-power weight="light" class="mr-3 lg:text-2xl" />
         Cerrar Sesión
       </a>
     </li>
@@ -64,5 +69,9 @@ const getIcon = (icon: string) => {
   };
 
   return icons[icon];
+};
+
+const objectConfig = {
+  class: 'lg:text-2xl',
 };
 </script>

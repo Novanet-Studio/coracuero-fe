@@ -1,5 +1,5 @@
 <template>
-  <form class="auth-form">
+  <form class="auth-form" @submit.prevent="submit" @keyup.enter="submit">
     <div class="auth-form__wrapper">
       <h5 class="auth-form__title">Crear una cuenta</h5>
       <app-input2
@@ -7,16 +7,22 @@
         placeholder="John Doe"
         :error="status.username.isError"
         :error-message="status.username.message"
-        icon-left="fa fa-user"
-      />
+      >
+        <template #left>
+          <ph-user :size="20" weight="light" class="text-gray-400" />
+        </template>
+      </app-input2>
 
       <app-input2
         v-model="form.email"
         placeholder="john@doe.com"
         :error="status.email.isError"
         :error-message="status.email.message"
-        icon-left="fa fa-envelope"
-      />
+      >
+        <template #left>
+          <ph-envelope :size="20" weight="light" class="text-gray-400" />
+        </template>
+      </app-input2>
 
       <app-input2
         v-model="form.password"
@@ -24,8 +30,11 @@
         :type="showPasswords ? 'text' : 'password'"
         :error="status.password.isError"
         :error-message="status.password.message"
-        icon-left="fa fa-lock"
-      />
+      >
+        <template #left>
+          <ph-lock :size="20" weight="light" class="text-gray-400" />
+        </template>
+      </app-input2>
 
       <app-input2
         v-model="form.confirmPassword"
@@ -33,8 +42,11 @@
         :type="showPasswords ? 'text' : 'password'"
         :error="status.confirmPassword.isError"
         :error-message="status.confirmPassword.message"
-        icon-left="fa fa-lock"
-      />
+      >
+        <template #left>
+          <ph-lock :size="20" weight="light" class="text-gray-400" />
+        </template>
+      </app-input2>
 
       <app-checkbox label="Show passwords" v-model="showPasswords" />
 
@@ -42,13 +54,19 @@
         <template v-if="state.isLoading">
           <loading />
         </template>
-        <app-button v-else text="Registrar cuenta" @click="submit" />
+        <app-button
+          class="absolute -bottom-5 rounded-full !w-[70%] !bg-color-1 text-sm lg:!w-[50%]"
+          text="Registrar cuenta"
+          @click="submit"
+          v-else
+        />
       </div>
     </div>
   </form>
 </template>
 
 <script lang="ts" setup>
+import { PhUser, PhEnvelope, PhLock } from '@phosphor-icons/vue';
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';

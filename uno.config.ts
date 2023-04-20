@@ -3,14 +3,16 @@ import { defineConfig, presetUno, transformerDirectives } from 'unocss';
 export default defineConfig({
   theme: {
     colors: {
-      'color-1': '#31150C',
-      'color-2': '#F6DEB7',
-      'color-3': '#C1C1C1',
-      'color-4': '#707070',
-      'color-5': '#292929',
-      'color-6': '#6C513F',
-      'color-7': '#F6F5F4',
-      'color-8': '#EFE5D4',
+      color: {
+        1: '#31150C',
+        2: '#F6DEB7',
+        3: '#C1C1C1',
+        4: '#707070',
+        5: '#292929',
+        6: '#6C513F',
+        7: '#F6F5F4',
+        8: '#EFE5D4',
+      },
     },
     breakpoints: {
       sm: '640px',

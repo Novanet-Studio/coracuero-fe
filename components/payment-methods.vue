@@ -33,22 +33,22 @@ import { Tabs, Tab } from 'vue3-tabs-component';
 }
 
 :deep(.tabs-component-tabs) {
-  @apply flex gap-4;
+  @apply flex items-center bg-color-2 rounded-full shadow-xl;
 }
 
 :deep(.tabs-component-tab) {
-  @apply px-4 py-3 rounded-md border text-gray-400;
+  @apply p-3 px-6 border text-color-1 text-xs font-bold lg:text-base lg:p-4 lg:px-8;
 }
 
 :deep(.is-active:not(a)) {
-  @apply px-4 py-3 rounded-md border border-yellow-500 text-yellow-500;
+  @apply p-3 px-6 border bg-color-6 text-color-7 first:rounded-l-full lg:p-4 lg:px-8;
 }
 
 :deep(.is-disabled:not(a)) {
-  @apply px-4 py-3 rounded-md border border-yellow-500 text-yellow-500;
+  @apply p-4 text-color-4;
 }
 
 :deep(.tabs-component-panels) {
-  @apply py-6;
+  @apply py-6 lg:py-8;
 }
 </style>

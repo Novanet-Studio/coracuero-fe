@@ -5,7 +5,7 @@
         {{ title }}
       </h3>
     </header>
-    <div>
+    <div class="bg-color-8 rounded-2xl lg:p-12 lg:px-20 relative">
       <div class="address-form__group">
         <label class="address-form__label"
           >País<sup class="address-form__required">*</sup></label
@@ -54,7 +54,12 @@
         />
       </div>
       <div class="address-form__group-btn">
-        <app-button btn-type="submit" text="Guardar" @click="submit" />
+        <app-button
+          class="absolute -bottom-5 !w-[20%]"
+          btn-type="submit"
+          text="Guardar"
+          @click="submit"
+        />
       </div>
     </div>
   </form>
@@ -152,3 +157,41 @@ onMounted(() => {
   getLastAddress();
 });
 </script>
+
+<style scoped>
+.address-form {
+  @apply;
+}
+
+.address-form__wrapper {
+  @apply bg-color-2 p-4 rounded-xl relative;
+}
+
+.address-form__header {
+  @apply mb-8 pb-3;
+}
+
+.address-form__title {
+  @apply text-sm font-semibold text-color-4 lg:text-xl;
+}
+
+.address-form__group {
+  @apply mb-4;
+}
+
+.address-form__label {
+  @apply mb-6 text-dark-800 text-xs font-bold text-color-1 lg:text-sm;
+}
+
+.address-form__required {
+  @apply ml-1 text-red-500;
+}
+
+.address-form__group-btn {
+  @apply flex justify-center w-full;
+}
+
+.address-btn {
+  @apply absolute !w-42;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div class="product-mini-cart">
     <div class="product-mini-cart__image-wrapper">
-      <product-thumbnail-image :product="product" />
+      <product-thumbnail-image class="!h-16" :product="product" />
     </div>
     <div class="product-mini-cart__body">
       <a
@@ -9,10 +9,10 @@
         href="#"
         @click.prevent="handleRemoveProductFromCart(product)"
       >
-        <i class="icon-cross"></i>
+        <ph-x weight="light" class="text-color-1" />
       </a>
       <product-title :product="product" />
-      <small v-if="quantity !== null">
+      <small class="text-color-1" v-if="quantity !== null">
         {{ quantity }} x {{ currency }} {{ product.price }}
       </small>
     </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PhX } from '@phosphor-icons/vue';
 // import { getProductById as GetProductById } from '~/graphql';
 
 const { $store } = useNuxtApp();
@@ -78,3 +79,27 @@ const handleRemoveProductFromCart = (product: any) => {
   cartStore.removeProductFromCart(cartItem as CartItem);
 };
 </script>
+
+<style scoped>
+.ps-product__remove {
+  padding: 1rem;
+  border: 1px solid rgb(176, 62, 62);
+  border-radius: 4px;
+}
+
+.product-mini-cart {
+  @apply mb-4 flex flex-nowrap;
+}
+
+.product-mini-cart__image-wrapper {
+  @apply max-w-12 w-full flex-auto;
+}
+
+.product-mini-cart__body {
+  @apply relative pr-8 pl-5 flex-1 flex flex-col items-center;
+}
+
+.product-mini-cart__icon-wrapper {
+  @apply absolute top-0 right-0;
+}
+</style>

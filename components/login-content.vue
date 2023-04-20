@@ -1,5 +1,5 @@
 <template>
-  <form class="auth-form">
+  <form class="auth-form" @submit.prevent="submit" @keyup.enter="submit">
     <div class="auth-form__wrapper">
       <h5 class="auth-form__title">Inicia sesión en tu cuenta</h5>
       <app-input2
@@ -48,6 +48,7 @@
           text="Entrar"
           @click="submit"
           :disabled="state.isDisabled"
+          class="absolute -bottom-5 rounded-full !w-[70%] !bg-color-1 text-sm lg:!w-[40%]"
         />
       </div>
     </div>
@@ -137,3 +138,21 @@ const { submit } = submitter(async () => {
   }
 });
 </script>
+
+<style scoped>
+.auth-form {
+  @apply;
+}
+
+.auth-form__wrapper {
+  @apply relative bg-color-8 rounded-xl !pb-1 p-6 mx-auto md:max-w-[26rem] lg:p-10 lg:max-w-md;
+}
+
+.auth-form__title {
+  @apply text-sm mb-4 text-color-1 font-bold;
+}
+
+.auth-form__footer {
+  @apply py-3 mb-4 mt-2 flex justify-center;
+}
+</style>

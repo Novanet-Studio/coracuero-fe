@@ -25,3 +25,9 @@ const totalQuantity = computed(() =>
   ((quantity.value as number) * props.product.price).toFixed(2)
 );
 </script>
+
+<style scoped>
+.total-quantity {
+  @apply px-[10px] py-[20px] align-middle text-xs md:text-center;
+}
+</style>

@@ -7,7 +7,7 @@
       v-model="value"
       @change="onChange"
     />
-    <label for="check">{{ label }}</label>
+    <label for="check" class="lg:text-base">{{ label }}</label>
   </div>
 </template>
 

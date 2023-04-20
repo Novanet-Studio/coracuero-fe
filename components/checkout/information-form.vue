@@ -2,116 +2,124 @@
   <div>
     <h3 class="information-form-title">Información de contacto</h3>
     <form>
-      <div class="form__group">
-        <label class="form__label"
-          >Email<sup class="form__required">*</sup></label
-        >
-        <app-input
-          v-model="form.email"
-          placeholder="correo@mail.com"
-          :is-error="status.email.isError"
-          :error-message="status.email.message"
-        />
-      </div>
-
-      <div class="form__container">
-        <div class="form__left">
-          <div class="form__group">
-            <label class="form__label">Nombre</label>
-            <app-input
-              v-model="form.name"
-              placeholder="Juan"
-              :is-error="status.name.isError"
-              :error-message="status.name.message"
-            />
-          </div>
-        </div>
-        <div class="form__right">
-          <div class="form__group">
-            <label class="form__label">Apellido</label>
-            <app-input
-              v-model="form.lastName"
-              placeholder="Pérez"
-              :is-error="status.lastName.isError"
-              :error-message="status.lastName.message"
-            />
-          </div>
-        </div>
-      </div>
-
-      <h3 class="form__title">Informacion de envio</h3>
-
-      <div class="form__group">
-        <label class="form__label">Dirección</label>
-        <app-input
-          v-model="form.address"
-          placeholder="Av. Principal con calle Secundaria"
-          :is-error="status.address.isError"
-          :error-message="status.address.message"
-        />
-      </div>
-      <div class="form__group">
-        <label class="form__label">Apartamento</label>
-        <app-input
-          v-model="form.home"
-          placeholder="11E"
-          :is-error="status.home.isError"
-          :error-message="status.home.message"
-        />
-      </div>
-
-      <div class="form__group">
-        <label class="form__label">Pais</label>
-        <app-custom-select
-          v-model="form.country"
-          label="name"
-          value-key="code"
-          :options="countries"
-          placeholder="Selecciona una opcion"
-          :error="status.country.isError"
-          :error-message="status.country.message"
-        />
-      </div>
-
-      <div class="form__grid">
-        <div class="form__group-alt">
-          <label class="form__label">Ciudad</label>
+      <div class="wrapper">
+        <div class="form__group">
+          <label class="form__label"
+            >Email<sup class="form__required">*</sup></label
+          >
           <app-input
-            v-model="form.city"
-            placeholder="Caracas"
-            :is-error="status.city.isError"
-            :error-message="status.city.message"
+            v-model="form.email"
+            placeholder="correo@mail.com"
+            :is-error="status.email.isError"
+            :error-message="status.email.message"
           />
         </div>
-        <div class="form__group-alt">
-          <label class="form__label">Código Postal</label>
+
+        <div class="form__container">
+          <div class="form__left">
+            <div class="form__group">
+              <label class="form__label">Nombre</label>
+              <app-input
+                v-model="form.name"
+                placeholder="Juan"
+                :is-error="status.name.isError"
+                :error-message="status.name.message"
+              />
+            </div>
+          </div>
+          <div class="form__right">
+            <div class="form__group">
+              <label class="form__label">Apellido</label>
+              <app-input
+                v-model="form.lastName"
+                placeholder="Pérez"
+                :is-error="status.lastName.isError"
+                :error-message="status.lastName.message"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="information-form-title mt-12">Informacion de envio</h3>
+
+      <div class="wrapper">
+        <div class="form__group">
+          <label class="form__label">Dirección</label>
           <app-input
-            v-model="form.zipCode"
-            placeholder="1050"
-            :is-error="status.zipCode.isError"
-            :error-message="status.zipCode.message"
+            v-model="form.address"
+            placeholder="Av. Principal con calle Secundaria"
+            :is-error="status.address.isError"
+            :error-message="status.address.message"
           />
         </div>
         <div class="form__group">
-          <label class="form__label">Numero de contacto</label>
+          <label class="form__label">Apartamento</label>
           <app-input
-            v-model="form.phone"
-            placeholder="04120000102"
-            :is-error="status.phone.isError"
-            :error-message="status.phone.message"
+            v-model="form.home"
+            placeholder="11E"
+            :is-error="status.home.isError"
+            :error-message="status.home.message"
           />
         </div>
-      </div>
 
-      <div class="form__group">
-        <app-checkbox
-          label="Guardar informacion"
-          v-model="checkout.saveInformation"
-        />
-      </div>
+        <div class="form__group">
+          <label class="form__label">Pais</label>
+          <app-custom-select
+            v-model="form.country"
+            label="name"
+            value-key="code"
+            :options="countries"
+            placeholder="Selecciona una opcion"
+            :error="status.country.isError"
+            :error-message="status.country.message"
+          />
+        </div>
 
-      <div class="form__btn-group">
-        <app-button btn-type="submit" text="Continuar" @click="submit" />
+        <div class="form__grid">
+          <div class="form__group-alt">
+            <label class="form__label">Ciudad</label>
+            <app-input
+              v-model="form.city"
+              placeholder="Caracas"
+              :is-error="status.city.isError"
+              :error-message="status.city.message"
+            />
+          </div>
+          <div class="form__group-alt">
+            <label class="form__label">Código Postal</label>
+            <app-input
+              v-model="form.zipCode"
+              placeholder="1050"
+              :is-error="status.zipCode.isError"
+              :error-message="status.zipCode.message"
+            />
+          </div>
+          <div class="form__group">
+            <label class="form__label">Numero de contacto</label>
+            <app-input
+              v-model="form.phone"
+              placeholder="04120000102"
+              :is-error="status.phone.isError"
+              :error-message="status.phone.message"
+            />
+          </div>
+        </div>
+
+        <div class="form__group">
+          <app-checkbox
+            label="Guardar informacion"
+            v-model="checkout.saveInformation"
+          />
+        </div>
+        <div class="form__btn-group w-full flex justify-center">
+          <app-button
+            class="custom-btn"
+            btn-type="submit"
+            text="Continuar"
+            @click="submit"
+          />
+        </div>
       </div>
     </form>
   </div>
@@ -223,3 +231,21 @@ onMounted(() => {
   fillFormFromStorage();
 });
 </script>
+
+<style scoped>
+.information-form-title {
+  @apply font-semibold mb-3 text-color-4 text-sm md:text-lg lg:text-xl lg:mb-8;
+}
+
+.wrapper {
+  @apply bg-color-8 p-4 rounded-xl relative shadow-xl lg:p-8;
+}
+
+.form__label {
+  @apply text-xs text-color-1 font-semibold lg:text-sm;
+}
+
+.custom-btn {
+  @apply absolute -bottom-5 rounded-full !w-[40%] !bg-color-1 text-sm !py-2 lg:!w-[20%] lg:text-base lg:!p-3;
+}
+</style>

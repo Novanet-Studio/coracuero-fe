@@ -1,7 +1,7 @@
 <template>
   <div class="input-group" :class="class">
     <input
-      class="input"
+      class="input bg-[#F7F4F4]"
       :class="isError && 'input--error'"
       :type="type"
       v-model="value"

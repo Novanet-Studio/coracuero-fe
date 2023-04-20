@@ -1,53 +1,162 @@
 <template>
-  <section>
-    <home-banner />
-    <header>
-      <h2 class="text-4xl mb-8 text-yellow-400">Contacto</h2>
-    </header>
-    <div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, amet!
-        Dolore quisquam nam veniam reprehenderit natus consectetur voluptatum,
-        cum modi voluptas maiores unde vitae aliquid. Iure voluptates
-        accusantium deleniti minus nesciunt distinctio molestiae nam aliquam rem
-        dolorum ipsum quibusdam quas autem, nihil officiis aut dignissimos sequi
-        neque non commodi rerum.
-      </p>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quod
-        sapiente cumque nam explicabo rerum a ratione tempore alias provident
-        dolorum eum, fuga ut amet nesciunt quos minima nulla commodi, quibusdam
-        magnam dolorem nobis! Vero qui quibusdam voluptates quos. Deserunt ab
-        distinctio tenetur facere beatae nulla, et dolorem unde quo sit quasi
-        nemo ullam porro cum libero aspernatur ex aliquam! Sequi rerum totam
-        quibusdam soluta, perspiciatis omnis animi? Cupiditate, assumenda!
-      </p>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quod
-        sapiente cumque nam explicabo rerum a ratione tempore alias provident
-        dolorum eum, fuga ut amet nesciunt quos minima nulla commodi, quibusdam
-        magnam dolorem nobis! Vero qui quibusdam voluptates quos. Deserunt ab
-        distinctio tenetur facere beatae nulla, et dolorem unde quo sit quasi
-        nemo ullam porro cum libero aspernatur ex aliquam! Sequi rerum totam
-        quibusdam soluta, perspiciatis omnis animi? Cupiditate, assumenda!
-      </p>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quod
-        sapiente cumque nam explicabo rerum a ratione tempore alias provident
-        dolorum eum, fuga ut amet nesciunt quos minima nulla commodi, quibusdam
-        magnam dolorem nobis! Vero qui quibusdam voluptates quos. Deserunt ab
-        distinctio tenetur facere beatae nulla, et dolorem unde quo sit quasi
-        nemo ullam porro cum libero aspernatur ex aliquam! Sequi rerum totam
-        quibusdam soluta, perspiciatis omnis animi? Cupiditate, assumenda!
-      </p>
+  <section class="wrapper">
+    <app-message
+      class="py-10 !text-2xl"
+      message="Contáctanos si tienes cualquier pregunta"
+    />
+    <div class="wrapper__content">
+      <p class="message">Para pedidos, por favor llene el formulario</p>
+      <form class="form" @submit.prevent="submit">
+        <div>
+          <label class="form__label" for="fullname">Nombre y apellido</label>
+          <app-input2
+            v-model="data.fullname"
+            placeholder="john doe"
+            :error="status.fullname.isError"
+            :error-message="status.fullname.message"
+            id="fullname"
+          />
+        </div>
+        <div>
+          <label class="form__label" for="email">Email</label>
+          <app-input2
+            v-model="data.email"
+            placeholder="john@doe.com"
+            :error="status.email.isError"
+            :error-message="status.email.message"
+            id="email"
+          />
+        </div>
+        <div>
+          <label class="form__label" for="subject">Asunto</label>
+          <app-input2
+            v-model="data.subject"
+            placeholder="Cueros"
+            :error="status.subject.isError"
+            :error-message="status.subject.message"
+            id="subject"
+          />
+        </div>
+        <div>
+          <label class="form__label" for="message">Mensaje</label>
+          <app-textarea
+            v-model="data.message"
+            placeholder="Quisiera comprar..."
+            :error="status.message.isError"
+            :error-message="status.message.message"
+            id="message"
+          />
+        </div>
+        <div class="form__footer">
+          <app-button class="custom-btn" @click="submit" :disabled="isDisabled">
+            <template v-if="isLoading">
+              <simple-loader class="!w-8 !h-8" />
+            </template>
+            <p class="m-1" v-else>Enviar</p>
+          </app-button>
+        </div>
+      </form>
+      <p class="message mt-16">Mapa</p>
+      <!-- TODO: change to bem when implement real map -->
+      <div class="w-full h-80 rounded-md bg-gray-300 shadow-md" />
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  pageTransition: {
-    name: 'page',
+import { useForm } from 'slimeform';
+import * as yup from 'yup';
+import { yupFieldRule } from 'slimeform/resolvers';
+
+const { $notify, $store } = useNuxtApp();
+
+const router = useRouter();
+const isDisabled = ref(true);
+const isLoading = ref(false);
+
+const {
+  form: data,
+  status,
+  submitter,
+  verify,
+} = useForm({
+  form: () => ({
+    fullname: '',
+    email: '',
+    subject: '',
+    message: '',
+  }),
+  rule: {
+    fullname: yupFieldRule(
+      yup.string().required('Por favor ingrese su usuario')
+    ),
+    email: yupFieldRule(
+      yup
+        .string()
+        .email('Formato de email inválido')
+        .required('Por favor ingrese su contraseña')
+    ),
+    subject: yupFieldRule(yup.string().required('Por favor ingrese su asunto')),
+    message: yupFieldRule(
+      yup.string().required('Por favor ingrese su mensaje')
+    ),
   },
+  defaultMessage: '',
+});
+
+const { submit } = submitter(async () => {
+  try {
+    if (!verify()) {
+      $notify({
+        group: 'all',
+        title: 'Error!',
+        text: 'Por favor, rellene los campos obligatorios',
+      });
+      return;
+    }
+
+    setTimeout(() => {
+      router.push('/');
+    }, 1000);
+  } catch (error: any) {
+    console.log(error.toString());
+    $notify({
+      group: 'all',
+      title: 'Error!',
+      text: 'Hubo un problema al iniciar sesión',
+    });
+  } finally {
+    isDisabled.value = true;
+  }
 });
 </script>
+
+<style scoped>
+.wrapper {
+  @apply mt-8;
+}
+
+.wrapper__content {
+  @apply mx-10 mt-10 lg:(max-w-6xl mx-auto);
+}
+
+.message {
+  @apply text-xs text-color-4 font-semibold mb-4 md:text-lg lg:text-xl;
+}
+
+.form {
+  @apply relative bg-color-8 rounded-xl shadow-md !pb-1 p-6 mx-auto md:p-12;
+}
+
+.form__label {
+  @apply text-xs text-color-1 font-semibold md:text-sm;
+}
+
+.form__footer {
+  @apply py-3 mb-4 mt-2 flex justify-center;
+}
+
+.custom-btn {
+  @apply absolute -bottom-5 rounded-full !w-[20%] !bg-color-1 text-sm !py-2;
+}
+</style>
