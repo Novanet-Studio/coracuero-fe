@@ -3,8 +3,8 @@
 </div>
 
 <div align="center">
-  <h1 align="center">Fast Ecommerce</h1>
-   <p>Base ecommerce site :computer:</p>
+  <h1 align="center">Coracuero Ecommerce</h1>
+   <p>Coracuero ecommerce site :computer:</p>
 </div>
 
 <div align="center">
