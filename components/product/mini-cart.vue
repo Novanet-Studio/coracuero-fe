@@ -11,7 +11,7 @@
       >
         <ph-x weight="light" class="text-color-1" />
       </a>
-      <product-title :product="product" />
+      <product-title class="truncate !whitespace-pre w-40" :product="product" />
       <small class="text-color-1" v-if="quantity !== null">
         {{ quantity }} x {{ currency }} {{ product.price }}
       </small>
@@ -44,6 +44,8 @@ const quantity = computed(() => {
 
   return item.quantity;
 });
+
+console.log(props.product);
 
 // const loadCartProducts = async () => {
 //   try {

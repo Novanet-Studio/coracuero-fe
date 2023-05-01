@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/product/${product.id}`" class="title">
+  <nuxt-link :to="`/product/${product.id}`" class="title" :class="class">
     {{ product.name && product.name }}
   </nuxt-link>
 </template>
@@ -7,6 +7,7 @@
 <script lang="ts" setup>
 type Props = {
   product: ProductsMapped;
+  class?: string;
 };
 
 defineProps<Props>();
@@ -14,6 +15,6 @@ defineProps<Props>();
 
 <style scoped>
 .title {
-  @apply m-0 block text-color-5 text-center font-semibold text-xs pb-1 pl-0 lg:(max-h-[calc(1.2em*2)] text-sm pb-3) overflow-hidden;
+  @apply m-0 block whitespace-pre-wrap truncate text-color-5 text-center font-semibold text-xs pb-1 pl-0 lg:(text-sm pb-3) overflow-hidden;
 }
 </style>

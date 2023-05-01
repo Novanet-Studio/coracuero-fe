@@ -14,7 +14,7 @@
             >
               <swiper-slide
                 class="rounded-2xl"
-                v-for="image in product.image"
+                v-for="image in product.images"
                 :key="image.id"
               >
                 <img

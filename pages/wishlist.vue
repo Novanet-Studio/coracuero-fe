@@ -47,7 +47,7 @@
                     :key="item.id"
                   >
                     <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg:text-base"
+                      class="px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base"
                     >
                       <product-shopping-cart
                         image-class="!h-auto"

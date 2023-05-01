@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
-import { getProductsByCategoryId } from '~/graphql';
+import {
+  getProductsByCategoryId as GetProductsByCategoryId,
+  getProductsBySubCategoryId as GetProductsBySubCategoryId,
+} from '~/graphql';
 
 interface ProductStore {
   product: unknown | null;
@@ -35,8 +38,26 @@ export const useProduct = defineStore('product', {
       try {
         this.loading = true;
         const gql = useStrapiGraphQL();
-        const { data } = await gql<ProductsResponse>(getProductsByCategoryId, {
+        const { data } = await gql<ProductsResponse>(GetProductsByCategoryId, {
           id: categoryId,
+        });
+        const mapped = mapperData<ProductsMapped[]>(data.products.data);
+
+        return mapped;
+      } catch (error) {
+        return null;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async getProductsBySubCategory(
+      id: string
+    ): Promise<ProductsMapped[] | null> {
+      try {
+        this.loading = true;
+        const gql = useStrapiGraphQL();
+        const { data } = await gql<ProductRequest>(GetProductsBySubCategoryId, {
+          id,
         });
         const mapped = mapperData<ProductsMapped[]>(data.products.data);
 

@@ -47,4 +47,10 @@ onMounted(() => {
   transform: translateX(-20px);
   opacity: 0;
 }
+
+.slide-fade-leave-active {
+  opacity: 0;
+  display: none;
+  visibility: hidden;
+}
 </style>

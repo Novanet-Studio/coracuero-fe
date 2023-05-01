@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <product-title :product="product" />
+    <product-title class="truncate !whitespace-pre" :product="product" />
     <div class="product__thumbnail">
       <product-thumbnail-image
         class="!h-[200px] rounded-xl shadow shadow-md p-2"

@@ -28,6 +28,6 @@ defineProps<Props>();
 }
 
 .shopping-cart-table__title {
-  @apply text-left w-full pl-8;
+  @apply text-left w-md pl-8;
 }
 </style>

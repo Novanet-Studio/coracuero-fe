@@ -21,6 +21,10 @@ interface InvoicesRequest {
   data: InvoicesRequestData;
 }
 
+interface ProductRequest {
+  data: ProductRequestData;
+}
+
 // API Request Data
 interface CategoriesRequestData {
   categories: Categories;
@@ -30,9 +34,17 @@ interface InvoicesRequestData {
   invoices: Invoices;
 }
 
+interface ProductRequestData {
+  products: Products;
+}
+
 // API Content
 interface Categories {
   data: CategoriesData[];
+}
+
+interface SubCategories {
+  data: SubCategoriesData[];
 }
 
 interface Invoices {
@@ -46,7 +58,12 @@ interface Products {
 // API Data
 interface CategoriesData {
   id?: string;
-  attributes: string;
+  attributes: CategoryAttributes;
+}
+
+interface SubCategoriesData {
+  id?: string;
+  attributes: SubCategoryAttributes;
 }
 
 interface InvoicesData {
@@ -62,10 +79,23 @@ interface ProductsData {
 // Data attributes
 interface CategoryAttributes {
   name: string;
-  products: [];
+  subcategories: SubCategories[];
 }
 
-interface ProductAttributes {}
+interface SubCategoryAttributes {
+  name: string;
+  products: Products[];
+}
+
+interface ProductAttributes {
+  name: string;
+  description: string;
+  images: any;
+  size: string;
+  materials: string;
+  price: number;
+  subcategory: SubCategoryAttributes;
+}
 
 interface InvoiceAtributes {
   paid: boolean;
@@ -89,17 +119,17 @@ interface InvoiceAtributes {
 interface CategoriesMapped {
   id: string;
   name: string;
+  subcategories: SubCategoriesMapped[];
+}
+
+interface SubCategoriesMapped {
+  id?: string;
+  name: string;
   products: ProductsMapped[];
 }
 
-interface ProductsMapped {
+interface ProductsMapped extends ProductAttributes {
   id: string;
-  category: Category;
-  description: string;
-  name: string;
-  image: Image[];
-  price: number;
-  sale_price: number;
 }
 
 interface InvoicesMapped extends InvoiceAtributes {

@@ -4,9 +4,34 @@ query getCategories {
       id
       attributes {
         name
-        products {
+        subcategories {
           data {
             id
+            attributes {
+              name
+              products {
+                data {
+                  id
+                  attributes {
+                    name
+                    description
+                    images {
+                      data {
+                        id
+                        attributes {
+                          name
+                          formats
+                          alternativeText
+                        }
+                      }
+                    }
+                    size
+                    materials
+                    price
+                  }
+                }
+              }
+            }
           }
         }
       }

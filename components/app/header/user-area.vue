@@ -1,7 +1,7 @@
 <template>
   <div v-if="!auth.authenticated" class="user-area">
     <div class="user-area__icon-wrapper">
-      <nuxt-link to="/login">
+      <nuxt-link to="/auth/login">
         <!-- <i class="user-area__icon icon-user"></i> -->
         <ph-user class="header-actions__icon" weight="light" />
       </nuxt-link>
@@ -77,7 +77,7 @@ const handleLogout = () => {
 }
 
 .user-area__link {
-  @apply block font-bold text-[10px];
+  @apply block font-bold text-[10px] lg:text-xs;
 }
 
 .user-area__menu {

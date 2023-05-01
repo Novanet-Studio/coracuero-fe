@@ -39,6 +39,7 @@
 <script lang="ts" setup>
 import { PhArrowLeft } from '@phosphor-icons/vue';
 definePageMeta({
+  middleware: 'authentication',
   layout: false,
 });
 </script>

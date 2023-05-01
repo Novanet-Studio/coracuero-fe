@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 interface Props {
-  showWidgets: boolean;
+  showWidgets?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {

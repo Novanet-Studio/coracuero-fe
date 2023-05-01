@@ -11,7 +11,10 @@
           {{ product.name }}
         </h4>
         <h5 class="text-xs font-bold mt-4 lg:text-lg">Descripción</h5>
-        <p class="text-xs lg:text-sm">{{ product.description }}</p>
+        <div
+          class="text-xs lg:text-sm list-circle children:list-disc"
+          v-html="markdown.render(product.description)"
+        ></div>
         <h5 class="text-xs font-bold mt-4 lg:text-lg">Tamaños</h5>
         <p class="text-xs lg:text-sm">Lorem ipsum dolor sit amet.</p>
         <h5 class="text-xs font-bold mt-4 lg:text-lg">Material</h5>
@@ -31,13 +34,17 @@
 </template>
 
 <script lang="ts" setup>
-type Props = {
+// @ts-ignore
+import MarkdownIt from 'markdown-it';
+
+interface Props {
   product: ProductsMapped;
-};
+}
 
 defineProps<Props>();
 
 const thumbsSwiper = ref(null);
+const markdown = new MarkdownIt();
 
 provide('thumbs', thumbsSwiper);
 </script>

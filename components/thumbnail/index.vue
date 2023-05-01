@@ -11,11 +11,11 @@
     >
       <swiper-slide
         class="rounded-2xl"
-        v-for="image in product.image"
+        v-for="image in product.images"
         :key="image.id"
       >
         <img
-          class="object-fill rounded-2xl h-full"
+          class="object-fill rounded-2xl h-full w-full"
           :src="image.url"
           :alt="image.alternativeText"
         />
@@ -49,8 +49,8 @@ const setThumbsSwiper = (swiper: any) => {
 <style scoped>
 .swiper-thumbs {
   /* height: 20%; */
-  height: 200px;
-  width: 700px;
+  height: 10rem;
+  width: 35rem;
   box-sizing: border-box;
   padding: 10px 0;
 }

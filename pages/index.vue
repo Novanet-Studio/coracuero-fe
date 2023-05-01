@@ -7,7 +7,9 @@ Tenemos artículos"
       class="py-12 font-bold !text-2xl"
     />
     <template v-if="isLoading">
-      <product-loader />
+      <div class="px-18">
+        <product-loader />
+      </div>
     </template>
     <template v-if="!isLoading && categories.length">
       <div v-for="category in categories" :key="category.id">

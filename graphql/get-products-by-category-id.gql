@@ -6,8 +6,8 @@ query GetProductsByCategoryId($id: ID!) {
         name
         description
         price
-        sale_price
-        image {
+        # sale_price
+        images {
           data {
             attributes {
               name
@@ -16,14 +16,14 @@ query GetProductsByCategoryId($id: ID!) {
             }
           }
         }
-        category {
-          data {
-            id
-            attributes {
-              name
-            }
-          }
-        }
+        # category {
+        #   data {
+        #     id
+        #     attributes {
+        #       name
+        #     }
+        #   }
+        # }
       }
     }
   }

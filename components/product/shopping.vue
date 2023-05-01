@@ -7,7 +7,7 @@
     </app-button>
     <figure>
       <div
-        class="bg-color-1 rounded-full opacity-70 text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
+        class="bg-color-1 !shadow-md rounded-full opacity-70 text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
       >
         <button class="up" @click.prevent="handleIncreaseQuantity">
           <ph-plus class="lg:text-sm" />
@@ -24,13 +24,13 @@
       </div>
     </figure>
     <app-button
-      class="rounded-full !bg-color-1 !w-36 opacity-70 text-xs lg:text-sm lg:!w-44"
+      class="rounded-full shadow-md !bg-color-1 !w-36 opacity-70 text-xs lg:text-sm lg:!w-44"
       @click="handleAddToCart"
     >
       Agregar al carrito
     </app-button>
     <app-button
-      class="rounded-full !bg-color-7 !w-10 opacity-70 text-xs !p-2 flex items-center justify-center shadow-md lg:!w-14 lg:!h-14"
+      class="rounded-full !bg-color-7 !w-10 opacity-70 text-xs !p-2 flex items-center justify-center !shadow-md lg:!w-14 lg:!h-14"
       @click="handleAddItemToWishlist"
     >
       <ph-heart class="text-color-1 lg:text-2xl" />
@@ -145,6 +145,6 @@ const handleAddToCart = (isBuyNow = false) => {
 
 <style scoped>
 .p-shopping {
-  @apply mt-4 mb-14 flex gap-1 justify-between lg:mb-2;
+  @apply mt-4 mb-14 flex gap-4 lg:mb-2;
 }
 </style>
