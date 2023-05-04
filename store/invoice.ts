@@ -101,7 +101,7 @@ export const useInvoice = defineStore('invoice', {
         payment_method: 'paypal',
       };
 
-      const { data } = await graphql<InvoiceResponse>(CreateInvoice, {
+      const { data } = await graphql<Invoice>(CreateInvoice, {
         invoice: body,
       });
 
@@ -119,7 +119,7 @@ export const useInvoice = defineStore('invoice', {
           (product) => product.id_product
         );
         const productPromises = itemsId.map((id) =>
-          graphql<ProductsResponse>(GetProductById, { id })
+          graphql<ProductRequest>(GetProductById, { id })
         );
 
         const response = await Promise.all(productPromises);

@@ -117,11 +117,6 @@ const { submit } = submitter(async () => {
     if (!success) return;
 
     setTimeout(() => {
-      // if (product.cartProducts?.length) {
-      //   router.push('/checkout');
-      //   return;
-      // }
-
       router.push('/');
     }, 1000);
   } catch (error: any) {

@@ -215,7 +215,7 @@ async function createInvoice(payment: any, products: any[]) {
     payment_method: 'pago_movil',
   };
 
-  const result = await graphql<CreateInvoiceResponse>(CreateInvoice, {
+  const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
     invoice: data,
   });
 
@@ -380,7 +380,7 @@ const getProducts = async () => {
   productsCart.value = product.cartProducts as ProductsMapped[];
 
   // const productPromises = itemsId.map((id: string) =>
-  //   graphql<ProductsResponse>(GetProductById, { id })
+  //   graphql<ProductRequest>(GetProductById, { id })
   // );
 
   // const response = await Promise.all(productPromises);

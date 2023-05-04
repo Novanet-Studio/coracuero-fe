@@ -71,7 +71,7 @@ const loadCartProducts = async () => {
     cartStore.loading = true;
 
     const itemsList = cartStore.cartItems.map((item) =>
-      graphql<ProductsResponse>(GetProductById, { id: item.id })
+      graphql<ProductRequest>(GetProductById, { id: item.id })
     );
 
     if (!cartItems.value.length) {

@@ -41,7 +41,7 @@ const loadProductById = async () => {
   try {
     state.pageLoading = true;
 
-    const { data } = await graphql<ProductsResponse>(GetProductById, {
+    const { data } = await graphql<ProductRequest>(GetProductById, {
       id: state.productId,
     });
 

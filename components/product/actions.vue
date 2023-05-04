@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PhBag, PhEye, PhHeart } from '@phosphor-icons/vue';
+// import { PhBag, PhEye, PhHeart } from '@phosphor-icons/vue';
 import { getProductById } from '~/graphql';
 
 type Props = {
@@ -56,7 +56,7 @@ const product = $store.product();
 const wishList = $store.wishlist();
 
 const handleAddToCart = async () => {
-  const newProduct: Partial<Product> & Record<string, unknown> = {
+  const newProduct: Partial<ProductAttributes> & Record<string, unknown> = {
     id: props.product.id,
     quantity: 1,
     price: props.product.price,
@@ -64,7 +64,7 @@ const handleAddToCart = async () => {
 
   cart.addProductToCart(newProduct as any);
   const itemsList = cart.cartItems.map((item) =>
-    graphql<ProductsResponse>(getProductById, { id: item.id })
+    graphql<ProductRequest>(getProductById, { id: item.id })
   );
 
   const itemsResult = await Promise.all(itemsList);

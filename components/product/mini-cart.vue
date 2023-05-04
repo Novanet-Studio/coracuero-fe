@@ -54,7 +54,7 @@ console.log(props.product);
 //     if (productStore.cartProducts?.length) return;
 
 //     const itemsList = cartStore.cartItems.map((item) =>
-//       graphql<ProductsResponse>(GetProductById, { id: item.id })
+//       graphql<ProductRequest>(GetProductById, { id: item.id })
 //     );
 
 //     const items = await Promise.all(itemsList);

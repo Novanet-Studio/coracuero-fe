@@ -38,7 +38,7 @@ export const useProduct = defineStore('product', {
       try {
         this.loading = true;
         const gql = useStrapiGraphQL();
-        const { data } = await gql<ProductsResponse>(GetProductsByCategoryId, {
+        const { data } = await gql<ProductRequest>(GetProductsByCategoryId, {
           id: categoryId,
         });
         const mapped = mapperData<ProductsMapped[]>(data.products.data);

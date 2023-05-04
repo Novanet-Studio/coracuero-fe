@@ -111,7 +111,7 @@ const handleAddToCart = async (product: any) => {
   cart.addProductToCart(item);
 
   const itemsList = cart.cartItems.map((item) =>
-    graphql<ProductsResponse>(GetProductById, { id: item.id })
+    graphql<ProductRequest>(GetProductById, { id: item.id })
   );
 
   const itemsResult = await Promise.all(itemsList);
@@ -156,7 +156,7 @@ const loadWishlist = async () => {
 
   const itemsId = wishlist.items.map((item) => item.id);
   const wishlistPromises = itemsId.map((id: string) =>
-    graphql<ProductsResponse>(GetProductById, { id })
+    graphql<ProductRequest>(GetProductById, { id })
   );
 
   const response = await Promise.all(wishlistPromises);

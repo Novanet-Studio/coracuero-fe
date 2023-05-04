@@ -12,18 +12,24 @@ declare module 'vue3-tabs-component' {
   export { Tabs, Tab };
 }
 
+// Helper interfaces generics to reduce typings code
+interface DataWrapper<T> {
+  data: T;
+}
+
+interface StrapiDataWrapper<T> {
+  id?: string;
+  attributes?: T;
+}
+
 // API Request
-interface CategoriesRequest {
-  data: CategoriesRequestData;
-}
 
-interface InvoicesRequest {
-  data: InvoicesRequestData;
-}
-
-interface ProductRequest {
-  data: ProductRequestData;
-}
+type CategoriesRequest = DataWrapper<CategoriesRequestData>;
+type InvoicesRequest = DataWrapper<InvoicesRequestData>;
+type ProductRequest = DataWrapper<ProductRequestData>;
+type LoginRequest = DataWrapper<LoginRequestData>;
+type RegisterRequest = DataWrapper<RegisterRequestData>;
+type CreateInvoiceRequest = DataWrapper<CreateInvoiceRequestData>;
 
 // API Request Data
 interface CategoriesRequestData {
@@ -38,43 +44,37 @@ interface ProductRequestData {
   products: Products;
 }
 
+interface LoginRequestData {
+  login: UserData;
+}
+
+interface RegisterRequestData {
+  register: UserData;
+}
+
+interface CreateInvoiceRequestData {
+  createInvoice: CreateInvoice;
+}
+
 // API Content
-interface Categories {
-  data: CategoriesData[];
+interface UserData {
+  jwt: string;
+  user: User;
 }
 
-interface SubCategories {
-  data: SubCategoriesData[];
-}
-
-interface Invoices {
-  data: InvoicesData[];
-}
-
-interface Products {
-  data: ProductsData[];
-}
+type Categories = DataWrapper<CategoriesData[]>;
+type SubCategories = DataWrapper<SubCategoriesData[]>;
+type Invoices = DataWrapper<InvoicesData[]>;
+type Invoice = DataWrapper<InvoicesData>;
+type Products = DataWrapper<ProductsData[]>;
+type ProductsList = DataWrapper<ProductsData[]>;
+type CreateInvoice = DataWrapper<Invoice>;
 
 // API Data
-interface CategoriesData {
-  id?: string;
-  attributes: CategoryAttributes;
-}
-
-interface SubCategoriesData {
-  id?: string;
-  attributes: SubCategoryAttributes;
-}
-
-interface InvoicesData {
-  id?: string;
-  attributes: InvoiceAtributes;
-}
-
-interface ProductsData {
-  id?: string;
-  attributes: ProductAttributes;
-}
+type CategoriesData = StrapiDataWrapper<CategoryAttributes>;
+type SubCategoriesData = StrapiDataWrapper<SubCategoryAttributes>;
+type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
+type ProductsData = StrapiDataWrapper<ProductAttributes>;
 
 // Data attributes
 interface CategoryAttributes {
@@ -136,6 +136,7 @@ interface InvoicesMapped extends InvoiceAtributes {
   id: string;
 }
 
+// Others ...
 interface InvoicePaymentInfo {
   name: string;
   email: string;
@@ -143,14 +144,6 @@ interface InvoicePaymentInfo {
   lastname: string;
   confirmation: string;
   payment_date: string;
-}
-
-interface CreateInvoiceResponse {
-  data: {
-    createInvoice: {
-      data: Invoice;
-    };
-  };
 }
 
 interface BCVSource {
@@ -214,72 +207,23 @@ interface InvoiceTableDetail extends InvoiceAtributes {
   status: string;
 }
 
-// ------------------------------------------------------------
-
-type CartItem = {
-  id: string;
-  quantity: number;
-  price: number;
-};
-
-type User = {
+interface User {
   id: string;
   email: string;
   username: string;
   customerId: string;
+  // TODO: add address field
   blocked: boolean;
   confirmed: boolean;
   provider: string;
   createdAt: Date;
   updatedAt: Date;
-};
-
-type LoginResponse = {
-  data: {
-    login: {
-      jwt: string;
-      user: User;
-    };
-  };
-};
-
-type RegisterResponse = {
-  data: {
-    register: {
-      jwt: string;
-      user: User;
-    };
-  };
-};
-// type AddressType = 'billing' | 'shipping';
-
-interface ImageFormat {
-  ext: string;
-  url: string;
-  hash: string;
-  mime: string;
-  name: string;
-  path?: string | null;
-  size: number;
-  width: number;
-  height: number;
 }
 
-interface Format {
-  small: ImageFormat;
-  thumbnail: ImageFormat;
-}
-
-interface Image {
+interface CartItem {
   id: string;
-  attributes: {
-    name: string;
-    url: string;
-    alternativeText: string;
-    caption: string;
-    previewUrl: string;
-    formats: Format;
-  };
+  quantity: number;
+  price: number;
 }
 
 interface ProductBuyed {
@@ -298,90 +242,13 @@ interface AddressDetail {
   zipCode: string;
 }
 
-// interface InvoiceDetail {
-//   paid: boolean;
-//   amount: number;
-//   products: ProductBuyed[];
-//   payment_id: string;
-//   order_id: string;
-//   user_id: string;
-//   shippingAddress: AddressDetail;
-//   fullName: string;
-//   cardType: string;
-//   cardKind: string;
-//   cardLast: string;
-//   createdAt?: Date;
-//   updatedAt?: Date;
-// }
-
-// interface InvoiceTableDetail extends InvoiceDetail {
-//   id: string;
-//   id_invoice_user: number;
-//   date: string;
-//   status: string;
-// }
-
-interface Product {
-  id: string;
-  attributes: {
-    name: string;
-    description: string;
-    price: number;
-    sale_price: number;
-    is_sale: boolean;
-    image: {
-      data: Image[];
-    };
-    category: {
-      data: Category;
-    };
-  };
-}
-
-interface Category {
-  id: string;
-  attributes: {
-    name: string;
-    products?: {
-      data: Product[];
-    };
-  };
-}
-
+// TODO!: Address response was joined with User entity
 interface Address {
   id: string;
   attributes: {
     type: AddressType;
     user_id: string;
     address: AddressDetail;
-  };
-}
-
-interface InvoiceResponse {
-  data: {
-    id: string;
-    attributes: InvoiceDetail;
-  };
-}
-
-interface Invoice {
-  id: string;
-  attributes: InvoiceDetail;
-}
-
-interface ProductsResponse {
-  data: {
-    products: {
-      data: Product[];
-    };
-  };
-}
-
-interface CategoriesResponse {
-  data: {
-    categories: {
-      data: Category[];
-    };
   };
 }
 
@@ -397,14 +264,6 @@ interface UpdateAddressResponse {
   data: {
     updateAddress: {
       data: Address;
-    };
-  };
-}
-
-interface InvoicesResponse {
-  data: {
-    invoices: {
-      data: Invoice[];
     };
   };
 }

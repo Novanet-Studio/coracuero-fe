@@ -359,7 +359,7 @@ const getProducts = async () => {
   state.productsCart = product.cartProducts as ProductsMapped[];
 
   // const productPromises = itemsId.map((id: string) =>
-  //   graphql<ProductsResponse>(GetProductById, { id })
+  //   graphql<ProductRequest>(GetProductById, { id })
   // );
 
   // const response = await Promise.all(productPromises);

@@ -118,7 +118,7 @@ const sendInvoiceEmail = async (
 //   if (!itemsId.length || !cart.cartItems.length) return;
 
 //   const productPromises = itemsId.map((id: string) =>
-//     graphql<ProductsResponse>(GetProductById, { id })
+//     graphql<ProductRequest>(GetProductById, { id })
 //   );
 
 //   const response = await Promise.all(productPromises);
@@ -141,7 +141,7 @@ const getProducts = async () => {
   if (hasCartProducts) {
     // TODO! fetch products from server
     // const productPromises = itemsId.map((id: string) =>
-    //   graphql<ProductsResponse>(GetProductById, { id })
+    //   graphql<ProductRequest>(GetProductById, { id })
     // );
     // const response = await Promise.all(productPromises);
     // let products: Product[] = [];
