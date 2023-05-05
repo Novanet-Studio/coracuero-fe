@@ -129,13 +129,10 @@
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
-import { getAddressByIdAndType as GetAddressByIdAndType } from '~/graphql';
-import { AddressType } from '~/types';
 import countries from '~/data/countries.json';
 
 const { $store } = useNuxtApp();
 const router = useRouter();
-const graphql = useStrapiGraphQL();
 const auth = $store.auth();
 const checkout = $store.checkout();
 
@@ -189,32 +186,10 @@ const fillFormFromStorage = () => {
 
   form.address = checkout.address || '';
   form.home = checkout.home || '';
+  form.country = checkout.country || '';
   form.city = checkout.city || '';
   form.zipCode = checkout.zipCode || '';
   form.phone = checkout.phone || '';
-};
-
-// TODO! Check this database request
-const fillFormFromStrapiShippingData = async () => {
-  try {
-    const body = {
-      id: +auth.user.id,
-      type: AddressType.Shipping,
-    };
-
-    const { data } = (await graphql<AddressResponse>(
-      GetAddressByIdAndType,
-      body
-    )) as any;
-
-    if (!data?.addresses?.data.length) return;
-
-    const response = data?.addresses?.data[0]?.attributes.address;
-
-    Object.assign(form, response);
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 const { submit } = submitter(async () => {
@@ -227,7 +202,6 @@ const { submit } = submitter(async () => {
 });
 
 onMounted(() => {
-  fillFormFromStrapiShippingData();
   fillFormFromStorage();
 });
 </script>

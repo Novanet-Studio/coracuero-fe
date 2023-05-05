@@ -12,6 +12,8 @@ declare module 'vue3-tabs-component' {
   export { Tabs, Tab };
 }
 
+type HttpsCallableHelper = <T, U>(data: T) => U;
+
 // Helper interfaces generics to reduce typings code
 interface DataWrapper<T> {
   data: T;
@@ -68,7 +70,7 @@ type Invoices = DataWrapper<InvoicesData[]>;
 type Invoice = DataWrapper<InvoicesData>;
 type Products = DataWrapper<ProductsData[]>;
 type ProductsList = DataWrapper<ProductsData[]>;
-type CreateInvoice = DataWrapper<Invoice>;
+type CreateInvoice = DataWrapper<InvoicesData>;
 
 // API Data
 type CategoriesData = StrapiDataWrapper<CategoryAttributes>;
@@ -211,8 +213,11 @@ interface User {
   id: string;
   email: string;
   username: string;
-  customerId: string;
-  // TODO: add address field
+  customerId: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  shipping_address: AddressDetail | null;
+  billing_address: AddressDetail | null;
   blocked: boolean;
   confirmed: boolean;
   provider: string;
@@ -240,30 +245,4 @@ interface AddressDetail {
   address: string;
   country: string;
   zipCode: string;
-}
-
-// TODO!: Address response was joined with User entity
-interface Address {
-  id: string;
-  attributes: {
-    type: AddressType;
-    user_id: string;
-    address: AddressDetail;
-  };
-}
-
-interface AddressResponse {
-  data: {
-    addresses: {
-      data: Address[];
-    };
-  };
-}
-
-interface UpdateAddressResponse {
-  data: {
-    updateAddress: {
-      data: Address;
-    };
-  };
 }

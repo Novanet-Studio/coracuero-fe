@@ -25,10 +25,9 @@
 import {
   createInvoice as CreateInvoice,
   getProductById as GetProductById,
-  getAddressByIdAndType as GetAddressByIdAndType,
 } from '~/graphql';
 import type { Payment } from 'square';
-import { AddressType } from '~/types';
+// import { AddressType } from '~/types';
 
 interface State {
   card: Square.Card | null;
@@ -78,36 +77,17 @@ const checkBilling = async (): Promise<CheckBillingResponse> => {
     country: 'VE',
   };
 
-  try {
-    const body = {
-      id: +auth.user.id,
-      type: AddressType.Billing,
-    };
-
-    const { data } = await graphql<AddressResponse>(
-      GetAddressByIdAndType,
-      body
-    );
-    const isDataAnArray =
-      data?.addresses && Array.isArray(data.addresses?.data);
-    const isDataValid = data?.addresses?.data.length;
-
-    if (!data.addresses || (isDataAnArray && !isDataValid)) {
-      return defaultResponse;
-    }
-
-    const { address } = data?.addresses?.data[0]?.attributes;
-
-    return {
-      addressLine1: address.address || defaultResponse.addressLine1,
-      locality: address.city || defaultResponse.locality,
-      postalCode: address.zipCode || defaultResponse.postalCode,
-      country: address.country || defaultResponse.country,
-    };
-  } catch (error) {
-    console.log('error checking billing: ', error);
+  if (!auth.user.billing_address) {
     return defaultResponse;
   }
+
+  return {
+    addressLine1:
+      auth.user.billing_address.address || defaultResponse.addressLine1,
+    locality: auth.user.billing_address.city || defaultResponse.locality,
+    postalCode: auth.user.billing_address.zipCode || defaultResponse.postalCode,
+    country: auth.user.billing_address.country || defaultResponse.country,
+  };
 };
 
 const sendInvoiceEmail = async (products: any[], payment: any) => {
@@ -237,7 +217,7 @@ const createInvoice = async (payment: any, products: any[]) => {
     paid: true,
     payment_id: payment.id,
     products: filterProducts,
-    user_id: +auth.user.id,
+    user_id: Number(auth.user.id),
     shippingAddress: payment.shippingAddress,
     fullName: payment.note,
     cardType: payment.cardDetails.card.cardBrand,
@@ -247,7 +227,7 @@ const createInvoice = async (payment: any, products: any[]) => {
     payment_method: 'squareup',
   };
 
-  const data = await graphql<CreateInvoiceResponse>(CreateInvoice, {
+  const data = await graphql<CreateInvoiceRequest>(CreateInvoice, {
     invoice: body,
   });
 

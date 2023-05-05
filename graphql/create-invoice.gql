@@ -8,17 +8,12 @@ mutation createNewInvoice($invoice: InvoiceInput!) {
         products {
           id
           quantity
-          id_product
-          name_product
+          product_id
+          product_name
         }
         payment_id
         order_id
-        user_id
-        shippingAddress
-        fullName
-        cardType
-        cardKind
-        cardLast
+        shipment_address
         createdAt
       }
     }

@@ -3,23 +3,16 @@ import { register as registerQuery } from '~/graphql';
 import { HttpsCallable } from '~/types';
 import { login as loginQuery } from '~/graphql';
 
-type RegisterPaylod = {
+type RegisterPayload = {
   email: string;
   username: string;
   password: string;
   customerId: string;
 };
 
-interface User {
-  id: string;
-  email: string;
-  username: string;
-  customerId: string;
-}
-
 interface AuthState {
   token: string;
-  user: User;
+  user: Partial<User>;
   authenticated: boolean;
 }
 
@@ -30,19 +23,23 @@ const initialState = {
     email: '',
     username: '',
     customerId: '',
+    first_name: '',
+    last_name: '',
+    shipping_address: null,
+    billing_address: null,
   },
   authenticated: false,
 };
 
 export const useAuth = defineStore('auth', {
-  state: () => initialState as AuthState,
+  state: () => initialState as unknown as AuthState,
   actions: {
     async login(user: string, password: string): Promise<boolean> {
       const { $notify } = useNuxtApp();
       const { setToken } = useStrapiAuth();
       const graphql = useStrapiGraphQL();
 
-      const { data } = await graphql<LoginResponse>(loginQuery, {
+      const { data } = await graphql<LoginRequest>(loginQuery, {
         identifier: user,
         password,
       });
@@ -69,12 +66,12 @@ export const useAuth = defineStore('auth', {
 
       return true;
     },
-    async register(body: RegisterPaylod): Promise<boolean> {
+    async register(body: RegisterPayload): Promise<boolean> {
       const { $notify } = useNuxtApp();
       const { setToken } = useStrapiAuth();
       const graphql = useStrapiGraphQL();
 
-      const { data } = await graphql<RegisterResponse>(registerQuery, body);
+      const { data } = await graphql<RegisterRequest>(registerQuery, body);
 
       if (!data) {
         $notify({
@@ -99,7 +96,10 @@ export const useAuth = defineStore('auth', {
     },
     async createCustomer(user: string, email: string) {
       const { $httpsCallable } = useNuxtApp();
-      const customerId = $httpsCallable(HttpsCallable.CreateCustomer);
+      const httpsCallable = $httpsCallable as HttpsCallableHelper;
+      const customerId = httpsCallable<HttpsCallable.CreateCustomer, any>(
+        HttpsCallable.CreateCustomer
+      );
       const idempotencyKey = crypto.randomUUID();
       const data = {
         idempotencyKey,

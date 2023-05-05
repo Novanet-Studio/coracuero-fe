@@ -28,7 +28,7 @@ const paypalRef = ref();
 // const paypal = ref();
 const productsMail = ref<ProductsMapped[]>();
 
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
+const httpsCallable = $httpsCallable as HttpsCallableHelper;
 
 const sendInvoiceEmail = async (
   order: OrderResponseBody,

@@ -1,9 +1,4 @@
 import { defineStore } from 'pinia';
-import {
-  createAdress as CreateAddress,
-  updateAddress as UpdateAddress,
-  getAddressByIdAndType as GetAddressByIdAndType,
-} from '~/graphql';
 import { AddressType } from '~/types';
 
 interface ShippingInfo {
@@ -25,10 +20,7 @@ interface CheckoutStore extends ShippingInfo {
 interface Result {
   hasBilling: Ref<boolean>;
   hasShipping: Ref<boolean>;
-  isLoading: Ref<boolean>;
 }
-
-type Data = Record<string, string>;
 
 const defaultState = {
   email: '',
@@ -70,177 +62,57 @@ export const useCheckout = defineStore('checkout', {
       this.zipCode = info.zipCode;
       this.phone = info.phone;
     },
-    async createAddress(data: Data) {
-      const { $notify } = useNuxtApp();
+    async updateAddress(data: AddressDetail, type: AddressType) {
+      const { $notify, $store } = useNuxtApp();
       const router = useRouter();
-      const graphql = useStrapiGraphQL();
-      await graphql<AddressResponse>(CreateAddress, data);
+      const user = $store.user();
+
+      if (type === AddressType.Shipping) {
+        await user.update({ shipping_address: data });
+      } else if (type === AddressType.Billing) {
+        await user.update({ billing_address: data });
+      } else {
+        throw new Error('Invalid address type');
+      }
 
       $notify({
         group: 'all',
         title: 'Éxito',
-        text: 'Dirección creada con éxito',
+        text: 'Dirección actualizada con éxito',
       });
 
       router.push('/addresses');
     },
-    async updateAddress(existId: string, data: Data) {
-      const { $notify } = useNuxtApp();
-      const graphql = useStrapiGraphQL();
-      const router = useRouter();
-
-      if (!existId) {
-        $notify({
-          group: 'all',
-          title: 'Error',
-          text: 'Hubo un error',
-        });
-        return;
-      }
-
-      const body = {
-        id: existId,
-        data: {
-          user_id: data.userId,
-          address: data.address,
-          type: data.type,
-        },
-      };
-
-      const {
-        data: {
-          updateAddress: { data: result },
-        },
-      } = await graphql<UpdateAddressResponse>(UpdateAddress, body);
-
-      if (!result) {
-        $notify({
-          group: 'all',
-          title: 'Error',
-          text: 'Hubo un error',
-        });
-        return;
-      }
-
-      $notify({
-        group: 'all',
-        title: 'Éxito!',
-        text: 'La dirección se ha actualizado!',
-      });
-
-      router.push('/addresses');
-
-      // const addId = payload.addId;
-      // const data = payload.data;
-      // const response = await Repository.put(
-      //   `${baseUrl}/addresses/${addId}`,
-      //   data
-      // )
-      //   .then((response) => {
-      //     return response;
-      //   })
-      //   .catch((error) => ({ error: JSON.stringify(error) }));
-
-      // return response;
-    },
-    async getAddress({
-      userId,
-      type,
-    }: {
-      userId: number;
-      type: AddressType;
-    }): Promise<Address | null> {
-      const graphql = useStrapiGraphQL();
-      if (type === AddressType.None) return null;
-
-      const id = userId;
-      const body = {
-        id,
-        type,
-      };
-
-      const { data } = await graphql<AddressResponse>(
-        GetAddressByIdAndType,
-        body
-      );
-
-      if (!data?.addresses?.data?.length) return null;
-
-      const [address] = data.addresses.data;
-
-      return address;
-    },
-    checkAddressType(): Result {
-      const hasBilling = ref(false);
-      const hasShipping = ref(false);
-      const isLoading = ref(false);
-
-      const graphql = useStrapiGraphQL();
+    getAddress(type: AddressType): AddressDetail | null {
+      if (![AddressType.Billing, AddressType.Shipping].includes(type))
+        return null;
 
       const { $store } = useNuxtApp();
       const auth = $store.auth();
 
-      const id = Number(auth.user.id);
+      if (type === AddressType.Billing)
+        return auth.user.billing_address as AddressDetail;
 
-      const checkBilling = async () => {
-        try {
-          const data = {
-            id,
-            type: AddressType.Billing,
-          };
+      return auth.user.shipping_address as AddressDetail;
+    },
+    checkAddressType(): Result {
+      const { $store } = useNuxtApp();
+      const auth = $store.auth();
 
-          const response = await graphql<AddressResponse>(
-            GetAddressByIdAndType,
-            data
-          );
+      const hasBilling = ref(false);
+      const hasShipping = ref(false);
 
-          if (!response?.data?.addresses?.data?.length) {
-            hasBilling.value = false;
-            return;
-          }
+      if (auth.user?.billing_address?.home) {
+        hasBilling.value = true;
+      }
 
-          hasBilling.value = true;
-        } catch (error) {
-          hasBilling.value = false;
-          console.log('An error occurred while checkBilling: ', error);
-        }
-      };
-
-      const checkShipping = async () => {
-        try {
-          const data = {
-            id,
-            type: AddressType.Shipping,
-          };
-
-          const response = await graphql<AddressResponse>(
-            GetAddressByIdAndType,
-            data
-          );
-
-          if (!response?.data?.addresses?.data?.length) {
-            hasShipping.value = false;
-            return;
-          }
-
-          hasShipping.value = true;
-        } catch (error) {
-          hasShipping.value = false;
-          console.log('An error occurred while checkShipping: ', error);
-        }
-      };
-
-      onMounted(async () => {
-        if (!id) return;
-
-        await checkBilling();
-        await checkShipping();
-      });
+      if (auth.user?.shipping_address?.home) {
+        hasBilling.value = true;
+      }
 
       return {
         hasBilling,
         hasShipping,
-        isLoading,
       };
     },
     reset() {
