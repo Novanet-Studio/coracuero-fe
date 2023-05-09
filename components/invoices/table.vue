@@ -206,7 +206,7 @@ const goToInvoice = (invoiceId: string, invoiceItem: any) => {
 };
 
 const getPayments = async () => {
-  const invoices = await invoice.fetchInvoices(auth.user.id);
+  const invoices = await invoice.fetchInvoices(auth.user.id!.toString());
 
   if (!invoices.length) {
     state.invoiceExist = false;

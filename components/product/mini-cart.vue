@@ -45,8 +45,6 @@ const quantity = computed(() => {
   return item.quantity;
 });
 
-console.log(props.product);
-
 // const loadCartProducts = async () => {
 //   try {
 //     const temp: ProductsMapped[] = [];

@@ -95,8 +95,6 @@ const addItemToCart = async (payload: any) => {
 //   await product.getCartProducts(itemsId);
 // }
 
-console.log(props.product);
-
 const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
 const handleAddItemToWishlist = () => {

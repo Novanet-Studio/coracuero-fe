@@ -105,12 +105,7 @@ interface InvoiceAtributes {
   products: ProductBuyed[];
   payment_id: string;
   order_id: string;
-  user_id: string;
-  shippingAddress: AddressDetail;
-  fullName: string;
-  cardType: string;
-  cardKind: string;
-  cardLast: string;
+  shipment_address: AddressDetail;
   payment_method: string;
   payment_info: InvoicePaymentInfo[];
   createdAt?: Date;
@@ -140,11 +135,11 @@ interface InvoicesMapped extends InvoiceAtributes {
 
 // Others ...
 interface InvoicePaymentInfo {
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   amount: string;
-  lastname: string;
-  confirmation: string;
+  confirmation_id: string;
   payment_date: string;
 }
 
@@ -234,8 +229,8 @@ interface CartItem {
 interface ProductBuyed {
   id: string;
   quantity: number;
-  id_product: number;
-  name_product: string;
+  product_id: number;
+  product_name: string;
 }
 
 interface AddressDetail {
@@ -243,6 +238,7 @@ interface AddressDetail {
   city: string;
   phone: string;
   address: string;
+  addressLine1?: string;
   country: string;
   zipCode: string;
 }

@@ -1,5 +1,5 @@
-query GetInvoicesByUserId($id: Int!) {
-  invoices(filters: { user_id: { eq: $id } }) {
+query GetInvoicesByUserId($id: ID) {
+  invoices(filters: { users_permissions_user: { id: { eq: $id } } }) {
     data {
       id
       attributes {
@@ -8,25 +8,20 @@ query GetInvoicesByUserId($id: Int!) {
         products {
           id
           quantity
-          id_product
-          name_product
+          product_id
+          product_name
         }
         payment_id
         order_id
-        user_id
-        shippingAddress
-        fullName
-        cardType
-        cardKind
-        cardLast
+        shipment_address
         createdAt
         payment_method
         payment_info {
-          name
+          first_name
+          last_name
           email
           amount
-          lastname
-          confirmation
+          confirmation_id
           payment_date
         }
       }

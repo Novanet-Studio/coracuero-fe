@@ -192,20 +192,18 @@ async function createInvoice(payment: any, products: any[]) {
 
   const paymentInfo = {
     ...payment,
-    confirmation_id: payment.confirmation,
+    confirmation_id: payment.confirmation_id,
     email: checkout.email,
   };
 
   delete paymentInfo.orderId;
-
-  console.log(filterProducts);
 
   const data = {
     // Amount in USD
     amount: cart.amount,
     order_id: payment.orderId,
     paid: false,
-    payment_id: payment.confirmation,
+    payment_id: payment.confirmation_id,
     products: filterProducts,
     users_permissions_user: Number(auth.user.id),
     shipment_address: addressData,

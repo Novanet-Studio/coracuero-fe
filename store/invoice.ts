@@ -46,13 +46,11 @@ export const useInvoice = defineStore('invoice', {
   actions: {
     async fetchInvoices(userId: string): Promise<InvoicesMapped[]> {
       const graphql = useStrapiGraphQL();
-      const id = +userId;
+      const id = Number(userId);
 
       const response = await graphql<InvoicesRequest>(GetInvoicesByUserId, {
         id,
       });
-
-      console.log('from fetchInvoices: ', response.data.invoices.data);
 
       if (!response.data.invoices?.data?.length) return [];
 
@@ -77,10 +75,10 @@ export const useInvoice = defineStore('invoice', {
       };
 
       const paymentInfo = {
-        name: order.payer.name?.given_name,
-        lastname: order.payer.name?.surname,
+        first_name: order.payer.name?.given_name,
+        last_name: order.payer.name?.surname,
         email: order.payer.email_address,
-        confirmation: order.id,
+        confirmation_id: order.id,
         amount: order.purchase_units[0].amount.value,
         payment_date: order.create_time,
       };
@@ -91,12 +89,8 @@ export const useInvoice = defineStore('invoice', {
         paid: true,
         payment_id: order.id,
         products: items,
-        user_id: +auth.user.id,
+        users_permissions_user: Number(auth.user.id),
         shippingAddress: address,
-        fullName: checkout.fullName,
-        cardType: 'no aplica',
-        cardKind: 'no aplica',
-        cardLast: 'no aplica',
         payment_info: [paymentInfo],
         payment_method: 'paypal',
       };
@@ -116,7 +110,7 @@ export const useInvoice = defineStore('invoice', {
         if (!this.invoice?.products.length) return [];
 
         const itemsId = this.invoice.products.map(
-          (product) => product.id_product
+          (product) => product.product_id
         );
         const productPromises = itemsId.map((id) =>
           graphql<ProductRequest>(GetProductById, { id })

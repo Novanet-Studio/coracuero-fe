@@ -3,7 +3,7 @@
     <div class="ps-section--account-setting">
       <div ref="pdfSection" class="p-4 text-sm">
         <div class="ps-section__header py-3 border-b">
-          <h3 class="text-xl flex items-center gap-2 text-yellow-400">
+          <h3 class="text-xl flex items-center gap-2 text-color-1">
             Factura #{{ invoiceStore.invoice?.id_invoice_user }} -
             <!-- <strong>Successful delivery PPU</strong> -->
             <strong class="text-sm">Entrega exitosa PPU</strong>
@@ -13,34 +13,35 @@
           <div class="row flex gap-6 w-full">
             <div class="col-md-4 col-12">
               <figure class="ps-block--invoice">
-                <figcaption class="border-b pb-2 font-bold text-yellow-400">
+                <figcaption class="border-b pb-2 font-bold text-color-1">
                   Dirección
                 </figcaption>
                 <div class="ps-block__content mt-3">
                   <strong class="text-sm">
-                    {{ invoiceStore.invoice?.fullName }}
+                    {{ invoiceStore.invoice?.payment_info[0].first_name }}
+                    {{ invoiceStore.invoice?.payment_info[0].last_name }}
                   </strong>
                   <p
                     class="text-sm"
-                    v-if="invoiceStore.invoice?.shippingAddress"
+                    v-if="invoiceStore.invoice?.shipment_address"
                   >
                     Dirección:
-                    {{ invoiceStore.invoice.shippingAddress.addressLine1 }},
-                    <!-- {{ invoiceStore.invoice.attributes.shippingAddress.addressLine1 }}, -->
-                    <!-- {{ invoiceStore.invoice.shippingAddress.locality }}, ??? -->
-                    {{ invoiceStore.invoice.shippingAddress.locality }},
-                    {{ invoiceStore.invoice.shippingAddress.country }}
+                    {{ invoiceStore.invoice.shipment_address.addressLine1 }},
+                    <!-- {{ invoiceStore.invoice.attributes.shipment_address.addressLine1 }}, -->
+                    <!-- {{ invoiceStore.invoice.shipment_address.locality }}, ??? -->
+                    {{ invoiceStore.invoice.shipment_address.country }},
+                    {{ invoiceStore.invoice.shipment_address.country }}
                     <br />
-                    {{ invoiceStore.invoice.shippingAddress.zipCode }}
+                    {{ invoiceStore.invoice.shipment_address.zipCode }}
                     <b>Apt, casa: </b>
-                    {{ invoiceStore.invoice.shippingAddress.home }}
+                    {{ invoiceStore.invoice.shipment_address.home }}
                   </p>
                 </div>
               </figure>
             </div>
             <div class="col-md-4 col-12">
               <figure class="ps-block--invoice">
-                <figcaption class="border-b pb-2 font-bold text-yellow-400">
+                <figcaption class="border-b pb-2 font-bold text-color-1">
                   Estado
                 </figcaption>
                 <div class="ps-block__content flex flex-col">
@@ -54,10 +55,10 @@
             </div>
             <div class="col-md-4 col-12">
               <figure class="ps-block--invoice">
-                <figcaption class="border-b pb-2 font-bold text-yellow-400">
+                <figcaption class="border-b pb-2 font-bold text-color-1">
                   Pago
                 </figcaption>
-                <div
+                <!-- <div
                   class="ps-block__content"
                   v-if="invoiceStore.invoice?.cardKind !== 'no aplica'"
                 >
@@ -68,15 +69,15 @@
                   <p class="text-sm">
                     Ultimos Cuatro digitos: {{ invoiceStore.invoice?.cardLast }}
                   </p>
-                </div>
-                <div class="ps-block__content" v-else>
+                </div> -->
+                <div class="ps-block__content">
                   <p class="text-sm">
                     Pago: {{ invoiceStore.invoice?.payment_method || '---' }}
                   </p>
                   <p class="text-sm">
                     Confirmacion de pago:
                     {{
-                      invoiceStore.invoice?.payment_info[0]?.confirmation ||
+                      invoiceStore.invoice?.payment_info[0]?.confirmation_id ||
                       '---'
                     }}
                   </p>
@@ -96,25 +97,25 @@
                       <tr>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
                         >
                           Productos
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
                         >
                           Precio
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
                         >
                           Cantidad
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
                         >
                           Monto
                         </th>

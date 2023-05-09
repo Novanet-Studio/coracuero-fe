@@ -1,9 +1,9 @@
 <template>
   <div class="payment-methods">
     <Tabs :options="{ useUrlFragmet: false }">
-      <tab name="Square up">
+      <!-- <tab name="Square up">
         <visa-method />
-      </tab>
+      </tab> -->
       <tab name="Paypal">
         <paypal-method />
       </tab>

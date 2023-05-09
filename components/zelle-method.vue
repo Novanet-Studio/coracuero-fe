@@ -164,9 +164,9 @@ async function createInvoice(payment: any, products: any[]) {
 
     if (found) {
       filterProducts.push({
-        id_product: +product.id,
+        product_id: product.id.toString(),
         quantity: Number(product.quantity),
-        name_product: found.name,
+        product_name: found.name,
       });
     }
   });
@@ -182,7 +182,7 @@ async function createInvoice(payment: any, products: any[]) {
 
   const paymentInfo = {
     ...payment,
-    confirmation: payment.confirmation,
+    confirmation_id: payment.confirmation_id,
     email: checkout.email,
   };
 
@@ -192,19 +192,15 @@ async function createInvoice(payment: any, products: any[]) {
     amount: payment.amount,
     order_id: payment.orderId,
     paid: false,
-    payment_id: payment.confirmation,
+    payment_id: payment.confirmation_id,
     products: filterProducts,
-    user_id: +auth.user.id,
-    shippingAddress: addressData,
-    fullName: checkout.fullName,
-    cardType: 'no aplica',
-    cardKind: 'no aplica',
-    cardLast: 'no aplica',
+    users_permissions_user: Number(auth.user.id),
+    shipment_address: addressData,
     payment_info: [paymentInfo],
     payment_method: 'zelle',
   };
 
-  const result = await graphql<CreateInvoiceResponse>(CreateInvoice, {
+  const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
     invoice: data,
   });
 
@@ -228,9 +224,9 @@ const { submit } = submitter(async () => {
 
     const paymentData = {
       orderId: crypto.randomUUID(),
-      name: formData.name,
-      lastname: formData.lastName,
-      confirmation: formData.confirmation.toString(),
+      first_name: formData.name,
+      last_name: formData.lastName,
+      confirmation_id: formData.confirmation.toString(),
       amount: formData.amountPayed,
       payment_date: formData.date,
     };
