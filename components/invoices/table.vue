@@ -4,10 +4,17 @@
     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div
-          class="overflow-hidden rounded-2xl shadow shadow-md shadow-gray-300"
+          class="overflow-hidden rounded-2xl shadow shadow-md shadow-gray-300 relative"
         >
+          <div
+            class="absolute flex w-full justify-center h-full items-center filter-drop-shadow z-10"
+            v-if="isLoading"
+          >
+            <loading />
+          </div>
           <table
             class="min-w-full"
+            :class="[isLoading && 'filter-blur-[1px]']"
             v-if="state.invoiceExist && state.tableInvoices?.length"
           >
             <thead class="bg-color-6 border-b">
@@ -87,72 +94,17 @@
       </div>
     </div>
   </div>
-  <!-- <div class="table-responsive w-full">
-    <table v-if="state.invoiceExist" class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Nº</th>
-          <th>Factura</th>
-          <th>Fecha</th>
-          <th>Monto</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody v-if="!state.page">
-        <tr
-          v-for="item in state.tableInvoices"
-          :key="item.id"
-          @click="goToInvoice(item.id_invoice_user.toString(), item)"
-        >
-          <td class="invoice-hover">{{ item.id_invoice_user }}</td>
-          <td>{{ item.payment_id }}</td>
-          <td>{{ item.date }}</td>
-          <td>${{ item.amount }}</td>
-          <td v-if="item.paid === true" class="status-color">
-            {{ item.status }}
-          </td>
-          <td v-else>{{ item.status }}</td>
-        </tr>
-      </tbody>
-      <tbody v-else>
-        <tr
-          v-for="item in state.tableInvoices"
-          :key="item.id"
-          @click="goToInvoice(item.id_invoice_user.toString(), item)"
-        >
-          <td class="invoice-hover">{{ item.id_invoice_user }}</td>
-          <td>{{ item.payment_id }}</td>
-          <td>{{ item.date }}</td>
-          <td>${{ item.amount }}</td>
-          <td v-if="item.paid === true" class="status-color">
-            {{ item.status }}
-          </td>
-          <td v-else>{{ item.status }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <h4 class="text-lg text-yellow-400 font-bold mb-3" v-else>
-      No posees ninguna factura aun!
-    </h4>
-    <div class="ps-pagination" v-if="state.page">
-      hola
-      <ul class="pagination">
-        <li
-          class="active"
-          v-for="link in state.pages"
-          @click="setPageInvoice(link)"
-        >
-          <a href="#">{{ link }}</a>
-        </li>
-        <li>
-          <a href="#">
-            Next Page
-            <i class="icon-chevron-right"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div> -->
+
+  <div class="flex w-full justify-center pt-12">
+    <app-pagination
+      :current-page="state.page"
+      :per-page="state.perPage"
+      :total="state.total"
+      @change="setPageInvoice"
+      :disabled="isLoading"
+      v-if="state.total"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -161,66 +113,67 @@ const router = useRouter();
 const auth = $store.auth();
 const invoice = $store.invoice();
 
-const TABLE_LIMIT = 10;
+const pageCount = ref(0);
+const isLoading = ref(false);
 
 type State = {
   invoiceExist: boolean;
   tableInvoices: InvoiceTableDetail[] | null;
-  page: boolean;
-  pages: any[];
-  number: string | null;
-  invoicesList: InvoicesData[] | null;
+  total: number;
+  perPage: number;
+  page: number;
 };
 
 const state = reactive<State>({
   invoiceExist: false,
   tableInvoices: null,
-  page: false,
-  pages: [],
-  number: null,
-  invoicesList: null,
+  total: 0,
+  perPage: 5,
+  page: 1,
 });
 
-const pagination = () => {
-  if (!state.tableInvoices?.length || !state.invoiceExist) return;
-
-  if (state.tableInvoices.length > TABLE_LIMIT) {
-    state.page = true;
-    state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
-    // TODO: refactor this
-    let pages = [];
-    for (let i = 1; i <= Number(state.number); i++) {
-      pages.push(i);
-    }
-    state.pages = pages;
-  }
-};
-
-// 📝: Why this?
-const setPageInvoice = (number: any) => console.log(number);
+const setPageInvoice = (page: number) => (state.page = page);
 
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
-  // invoice.invoice = invoiceItem;
   invoice.invoice = invoiceItem;
   router.push(`/invoices/${invoiceId}`);
 };
 
-const getPayments = async () => {
-  const invoices = await invoice.fetchInvoices(auth.user.id!.toString());
+const getInvoices = async () => {
+  isLoading.value = true;
+  try {
+    const result = await invoice.fetchInvoices(auth.user.id!.toString(), {
+      page: state.page,
+      pageSize: state.perPage,
+    });
 
-  if (!invoices.length) {
-    state.invoiceExist = false;
-    return;
+    if (!result?.data?.length) {
+      state.invoiceExist = false;
+      return;
+    }
+
+    state.invoiceExist = true;
+    state.tableInvoices = invoice.mapped;
+    state.total = result.meta?.pagination.total as number;
+    pageCount.value = result.meta?.pagination.pageCount as number;
+  } catch (error) {
+    console.log('An error occurred while fetching invoices');
+  } finally {
+    isLoading.value = false;
   }
-
-  state.invoiceExist = true;
-  state.tableInvoices = invoice.getMappedInvoices;
-
-  pagination();
 };
 
+watch(
+  () => state.page,
+  (page) => {
+    if (Number(page) > pageCount.value) return;
+
+    getInvoices();
+  }
+);
+
 onMounted(() => {
-  getPayments();
+  getInvoices();
 });
 </script>
 

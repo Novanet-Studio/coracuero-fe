@@ -14,6 +14,15 @@ declare module 'vue3-tabs-component' {
 
 type HttpsCallableHelper = <T, U>(data: T) => U;
 
+interface Pagination {
+  total: number;
+  pageCount: number;
+}
+
+interface Meta {
+  pagination: Pagination;
+}
+
 // Helper interfaces generics to reduce typings code
 interface DataWrapper<T> {
   data: T;
@@ -23,6 +32,8 @@ interface StrapiDataWrapper<T> {
   id?: string;
   attributes?: T;
 }
+
+type MetaInfo = { meta: Meta };
 
 // API Request
 
@@ -66,7 +77,7 @@ interface UserData {
 
 type Categories = DataWrapper<CategoriesData[]>;
 type SubCategories = DataWrapper<SubCategoriesData[]>;
-type Invoices = DataWrapper<InvoicesData[]>;
+type Invoices = DataWrapper<InvoicesData[]> & MetaInfo;
 type Invoice = DataWrapper<InvoicesData>;
 type Products = DataWrapper<ProductsData[]>;
 type ProductsList = DataWrapper<ProductsData[]>;
