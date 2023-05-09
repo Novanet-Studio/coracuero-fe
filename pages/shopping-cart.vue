@@ -26,11 +26,8 @@
         </div>
       </div>
       <div v-else class="shopping-cart__container">
-        <header class="shopping-cart__header">
-          <h1 class="shopping-cart__title">Carrito de compras</h1>
-        </header>
         <div>
-          <h3 class="empy-cart">
+          <h3 class="empty">
             No tiene elementos agregado al carrito actualmente
           </h3>
         </div>
@@ -159,5 +156,9 @@ onMounted(() => {
 
 .custom-btn {
   @apply rounded-full !bg-color-1 text-sm !py-2;
+}
+
+.empty {
+  @apply text-sm text-color-4 mb-2 font-bold lg:text-2xl;
 }
 </style>
