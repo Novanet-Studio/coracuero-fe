@@ -87,6 +87,8 @@
       </div>
     </div>
   </div>
+
+  <app-pagination />
   <!-- <div class="table-responsive w-full">
     <table v-if="state.invoiceExist" class="table table-bordered">
       <thead>
