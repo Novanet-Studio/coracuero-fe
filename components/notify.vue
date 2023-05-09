@@ -59,8 +59,9 @@ import { PhX } from '@phosphor-icons/vue';
 .ps-notify__close:hover {
   box-shadow: 0 0 10px rgba(#ccc, 1);
   background-color: #fff;
-  transform-origin: 50% 50%;
-  transform: translateY(-50%) rotate(180deg);
+  @apply text-color-1;
+  /* transform-origin: 50% 50%;
+  transform: translateY(-50%) rotate(180deg); */
 }
 
 .ps-notify__close:hover .ps-icon--cross::before,
