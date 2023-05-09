@@ -55,8 +55,8 @@ defineProps<Props>();
 
 const links = global.getLinks;
 const handleLogout = () => {
-  auth.authenticated = false;
   cart.clearCart();
+  auth.reset();
   router.push('/');
 };
 

@@ -110,6 +110,7 @@ export const useAuth = defineStore('auth', {
       return customerId(data);
     },
     reset() {
+      const { logout } = useStrapiAuth();
       this.token = '';
       this.user.id = '';
       this.user.email = '';
@@ -117,6 +118,7 @@ export const useAuth = defineStore('auth', {
       this.user.customerId = '';
       Object.assign(this.user, initialState.user);
       this.authenticated = false;
+      logout();
     },
   },
   persist: true,
