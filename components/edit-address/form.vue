@@ -138,8 +138,6 @@ const getLastAddress = () => {
   form.state = address.city;
   form.streetAddress = address.address;
   form.postcode = address.zipCode;
-
-  console.log(form);
 };
 
 onMounted(() => {
