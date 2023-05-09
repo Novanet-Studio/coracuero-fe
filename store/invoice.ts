@@ -38,7 +38,7 @@ export const useInvoice = defineStore('invoice', {
       products: [],
     } as InvoiceStore),
   getters: {
-    getMappedInvoices(): InvoiceTableDetail[] {
+    mapped(): InvoiceTableDetail[] {
       if (!this.invoices) return [];
       return this.invoices?.map(invoiceMapperHelper);
     },

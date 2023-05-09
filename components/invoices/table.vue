@@ -216,7 +216,7 @@ const getPayments = async () => {
   }
 
   state.invoiceExist = true;
-  state.tableInvoices = invoice.getMappedInvoices;
+  state.tableInvoices = invoice.mapped;
 
   pagination();
 };
