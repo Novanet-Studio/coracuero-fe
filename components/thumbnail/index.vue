@@ -52,7 +52,7 @@ const setThumbsSwiper = (swiper: any) => {
   height: 10rem;
   width: 35rem;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 10px 0.2rem;
 }
 
 .swiper-thumbs .swiper-slide {
