@@ -111,7 +111,7 @@ const { form, status, submitter, verify } = useForm({
   },
 });
 
-const { submit } = submitter(() => {
+const { submit } = submitter(async () => {
   if (!verify() || type.value === AddressType.None) return;
 
   const info = {

@@ -64,8 +64,10 @@ export const useCheckout = defineStore('checkout', {
     },
     async updateAddress(data: AddressDetail, type: AddressType) {
       const { $notify, $store } = useNuxtApp();
+      const { fetchUser } = useStrapiAuth();
       const router = useRouter();
       const user = $store.user();
+      const auth = $store.auth();
 
       if (type === AddressType.Shipping) {
         await user.update({ shipping_address: data });
@@ -74,6 +76,10 @@ export const useCheckout = defineStore('checkout', {
       } else {
         throw new Error('Invalid address type');
       }
+
+      const userData = await fetchUser();
+
+      Object.assign(auth.user, userData.value);
 
       $notify({
         group: 'all',
