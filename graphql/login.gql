@@ -6,6 +6,10 @@ mutation loginUser($identifier: String!, $password: String!) {
       username
       email
       customerId
+      first_name
+      last_name
+      shipping_address
+      billing_address
     }
   }
 }

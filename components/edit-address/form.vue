@@ -82,7 +82,7 @@ const checkout = $store.checkout();
 const haveLastAddress = ref(false);
 const existentId = ref('');
 
-const type = computed(() =>
+const type = computed<AddressType>(() =>
   [AddressType.Billing, AddressType.Shipping].includes(props.type)
     ? props.type
     : AddressType.None
@@ -111,15 +111,6 @@ const { form, status, submitter, verify } = useForm({
   },
 });
 
-const sendAddress = async (data: Record<string, string>) => {
-  if (haveLastAddress.value) {
-    checkout.updateAddress(existentId.value, data);
-    return;
-  }
-
-  checkout.createAddress(data);
-};
-
 const { submit } = submitter(() => {
   if (!verify() || type.value === AddressType.None) return;
 
@@ -128,29 +119,25 @@ const { submit } = submitter(() => {
     country: form.country,
     city: form.state,
     zipCode: form.postcode,
+    home: '',
+    phone: '',
   };
 
-  const body = {
-    type: type.value,
-    userId: +auth.user.id,
-    address: info,
-  };
-
-  sendAddress(body as unknown as Record<string, string>);
+  checkout.updateAddress(info, type.value);
 });
 
-const getLastAddress = async () => {
-  const id = +auth.user.id;
-  const address = await checkout.getAddress({ userId: id, type: type.value });
+const getLastAddress = () => {
+  const id = Number(auth.user.id);
+  const address = checkout.getAddress(type.value);
 
   if (!address) return;
 
   haveLastAddress.value = true;
-  existentId.value = address.id;
-  form.country = address.attributes.address.country;
-  form.state = address.attributes.address.city;
-  form.streetAddress = address.attributes.address.address;
-  form.postcode = address.attributes.address.zipCode;
+  existentId.value = id.toString();
+  form.country = address.country;
+  form.state = address.city;
+  form.streetAddress = address.address;
+  form.postcode = address.zipCode;
 };
 
 onMounted(() => {

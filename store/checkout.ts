@@ -102,12 +102,12 @@ export const useCheckout = defineStore('checkout', {
       const hasBilling = ref(false);
       const hasShipping = ref(false);
 
-      if (auth.user?.billing_address?.home) {
+      if (auth.user?.billing_address?.country) {
         hasBilling.value = true;
       }
 
-      if (auth.user?.shipping_address?.home) {
-        hasBilling.value = true;
+      if (auth.user?.shipping_address?.country) {
+        hasShipping.value = true;
       }
 
       return {

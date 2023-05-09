@@ -1,4 +1,4 @@
-mutation updateUser($id: String, $input: UsersPermissionsUserEntity!) {
+mutation updateUser($id: ID!, $input: UsersPermissionsUserInput!) {
   updateUsersPermissionsUser(id: $id, data: $input) {
     data {
       id
