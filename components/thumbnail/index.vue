@@ -64,7 +64,7 @@ const setThumbsSwiper = (swiper: any) => {
 .swiper-thumbs .swiper-slide-thumb-active {
   /* opacity: 1;
   border: 1px solid #000; */
-  @apply opacity-100 border-2 border-color-1;
+  @apply opacity-100 border-2 border-color-1 ring-2 ring-color-1;
   /* filter: blur(2px);
   outline-offset: 1px;
   outline: #000 solid; */
