@@ -88,7 +88,7 @@
     </div>
   </div>
 
-  <app-pagination />
+  <app-pagination @change="setPageInvoice" />
   <!-- <div class="table-responsive w-full">
     <table v-if="state.invoiceExist" class="table table-bordered">
       <thead>
@@ -168,38 +168,37 @@ const TABLE_LIMIT = 10;
 type State = {
   invoiceExist: boolean;
   tableInvoices: InvoiceTableDetail[] | null;
-  page: boolean;
-  pages: any[];
-  number: string | null;
-  invoicesList: InvoicesData[] | null;
+  // page: boolean;
+  // pages: any[];
+  // number: string | null;
+  // invoicesList: InvoicesData[] | null;
 };
 
 const state = reactive<State>({
   invoiceExist: false,
   tableInvoices: null,
-  page: false,
-  pages: [],
-  number: null,
-  invoicesList: null,
+  // page: false,
+  // pages: [],
+  // number: null,
+  // invoicesList: null,
 });
 
-const pagination = () => {
-  if (!state.tableInvoices?.length || !state.invoiceExist) return;
+// const pagination = () => {
+//   if (!state.tableInvoices?.length || !state.invoiceExist) return;
 
-  if (state.tableInvoices.length > TABLE_LIMIT) {
-    state.page = true;
-    state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
-    // TODO: refactor this
-    let pages = [];
-    for (let i = 1; i <= Number(state.number); i++) {
-      pages.push(i);
-    }
-    state.pages = pages;
-  }
-};
+//   if (state.tableInvoices.length > TABLE_LIMIT) {
+//     state.page = true;
+//     state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
+//     // TODO: refactor this
+//     let pages = [];
+//     for (let i = 1; i <= Number(state.number); i++) {
+//       pages.push(i);
+//     }
+//     state.pages = pages;
+//   }
+// };
 
-// 📝: Why this?
-const setPageInvoice = (number: any) => console.log(number);
+const setPageInvoice = (page: string) => console.log(page);
 
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
   // invoice.invoice = invoiceItem;
@@ -218,7 +217,7 @@ const getPayments = async () => {
   state.invoiceExist = true;
   state.tableInvoices = invoice.mapped;
 
-  pagination();
+  // pagination();
 };
 
 onMounted(() => {
