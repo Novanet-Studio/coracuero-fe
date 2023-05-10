@@ -88,73 +88,13 @@
     </div>
   </div>
 
-  <app-pagination @change="setPageInvoice" />
-  <!-- <div class="table-responsive w-full">
-    <table v-if="state.invoiceExist" class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Nº</th>
-          <th>Factura</th>
-          <th>Fecha</th>
-          <th>Monto</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody v-if="!state.page">
-        <tr
-          v-for="item in state.tableInvoices"
-          :key="item.id"
-          @click="goToInvoice(item.id_invoice_user.toString(), item)"
-        >
-          <td class="invoice-hover">{{ item.id_invoice_user }}</td>
-          <td>{{ item.payment_id }}</td>
-          <td>{{ item.date }}</td>
-          <td>${{ item.amount }}</td>
-          <td v-if="item.paid === true" class="status-color">
-            {{ item.status }}
-          </td>
-          <td v-else>{{ item.status }}</td>
-        </tr>
-      </tbody>
-      <tbody v-else>
-        <tr
-          v-for="item in state.tableInvoices"
-          :key="item.id"
-          @click="goToInvoice(item.id_invoice_user.toString(), item)"
-        >
-          <td class="invoice-hover">{{ item.id_invoice_user }}</td>
-          <td>{{ item.payment_id }}</td>
-          <td>{{ item.date }}</td>
-          <td>${{ item.amount }}</td>
-          <td v-if="item.paid === true" class="status-color">
-            {{ item.status }}
-          </td>
-          <td v-else>{{ item.status }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <h4 class="text-lg text-yellow-400 font-bold mb-3" v-else>
-      No posees ninguna factura aun!
-    </h4>
-    <div class="ps-pagination" v-if="state.page">
-      hola
-      <ul class="pagination">
-        <li
-          class="active"
-          v-for="link in state.pages"
-          @click="setPageInvoice(link)"
-        >
-          <a href="#">{{ link }}</a>
-        </li>
-        <li>
-          <a href="#">
-            Next Page
-            <i class="icon-chevron-right"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div> -->
+  <app-pagination
+    :current-page="state.page"
+    :per-page="state.perPage"
+    :total="state.total"
+    @change="setPageInvoice"
+    v-if="state.total"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -163,65 +103,59 @@ const router = useRouter();
 const auth = $store.auth();
 const invoice = $store.invoice();
 
-const TABLE_LIMIT = 10;
+const pageCount = ref(0);
 
 type State = {
   invoiceExist: boolean;
   tableInvoices: InvoiceTableDetail[] | null;
-  // page: boolean;
-  // pages: any[];
-  // number: string | null;
-  // invoicesList: InvoicesData[] | null;
+  total: number;
+  perPage: string;
+  page: string;
 };
 
 const state = reactive<State>({
   invoiceExist: false,
   tableInvoices: null,
-  // page: false,
-  // pages: [],
-  // number: null,
-  // invoicesList: null,
+  total: 0,
+  perPage: '3',
+  page: '1',
 });
 
-// const pagination = () => {
-//   if (!state.tableInvoices?.length || !state.invoiceExist) return;
-
-//   if (state.tableInvoices.length > TABLE_LIMIT) {
-//     state.page = true;
-//     state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
-//     // TODO: refactor this
-//     let pages = [];
-//     for (let i = 1; i <= Number(state.number); i++) {
-//       pages.push(i);
-//     }
-//     state.pages = pages;
-//   }
-// };
-
-const setPageInvoice = (page: string) => console.log(page);
+const setPageInvoice = (page: string) => (state.page = page);
 
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
-  // invoice.invoice = invoiceItem;
   invoice.invoice = invoiceItem;
   router.push(`/invoices/${invoiceId}`);
 };
 
-const getPayments = async () => {
-  const invoices = await invoice.fetchInvoices(auth.user.id!.toString());
+const getInvoices = async () => {
+  const result = await invoice.fetchInvoices(auth.user.id!.toString(), {
+    page: state.page,
+    pageSize: state.perPage,
+  });
 
-  if (!invoices.length) {
+  if (!result?.data?.length) {
     state.invoiceExist = false;
     return;
   }
 
   state.invoiceExist = true;
   state.tableInvoices = invoice.mapped;
-
-  // pagination();
+  state.total = result.meta?.pagination.total as number;
+  pageCount.value = result.meta?.pagination.pageCount as number;
 };
 
+watch(
+  () => state.page,
+  (page) => {
+    if (Number(page) > pageCount.value) return;
+
+    getInvoices();
+  }
+);
+
 onMounted(() => {
-  getPayments();
+  getInvoices();
 });
 </script>
 

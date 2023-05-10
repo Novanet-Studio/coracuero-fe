@@ -1,5 +1,9 @@
-query GetInvoicesByUserId($id: ID) {
-  invoices(filters: { users_permissions_user: { id: { eq: $id } } }) {
+# query GetInvoicesByUserId($id: ID) {
+query GetInvoicesByUserId($id: ID, $page: Int, $pageSize: Int) {
+  invoices(
+    filters: { user: { id: { eq: $id } } }
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
     data {
       id
       attributes {
@@ -24,6 +28,12 @@ query GetInvoicesByUserId($id: ID) {
           confirmation_id
           payment_date
         }
+      }
+    }
+    meta {
+      pagination {
+        total
+        pageCount
       }
     }
   }

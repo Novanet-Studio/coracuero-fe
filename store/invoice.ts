@@ -13,6 +13,9 @@ type InvoiceStore = {
   products: ProductsMapped[] | null;
 };
 
+const PAGE_LIMIT = 10;
+const DEFAULT_PAGE = 1;
+
 const invoiceMapperHelper = (
   invoice: InvoicesMapped,
   index: number
@@ -29,6 +32,16 @@ const invoiceMapperHelper = (
   return invoices as unknown as InvoiceTableDetail;
 };
 
+interface FetchInvoicesReturn {
+  data: InvoicesMapped[] | undefined;
+  meta: Meta | null;
+}
+
+interface Options {
+  page: string;
+  pageSize: string;
+}
+
 export const useInvoice = defineStore('invoice', {
   state: () =>
     ({
@@ -44,20 +57,34 @@ export const useInvoice = defineStore('invoice', {
     },
   },
   actions: {
-    async fetchInvoices(userId: string): Promise<InvoicesMapped[]> {
+    async fetchInvoices(
+      userId: string,
+      options?: Options
+    ): Promise<FetchInvoicesReturn> {
       const graphql = useStrapiGraphQL();
       const id = Number(userId);
 
       const response = await graphql<InvoicesRequest>(GetInvoicesByUserId, {
         id,
+        page: Number(options?.page) ?? DEFAULT_PAGE,
+        pageSize: Number(options?.pageSize) ?? PAGE_LIMIT,
       });
 
-      if (!response.data.invoices?.data?.length) return [];
+      if (!response.data.invoices?.data?.length) {
+        return {
+          data: [],
+          meta: null,
+        };
+      }
 
       const mapped = mapperData<InvoicesMapped[]>(response.data.invoices.data);
 
       this.invoices = mapped;
-      return mapped;
+
+      return {
+        data: mapped,
+        meta: response.data.invoices.meta,
+      };
     },
     async createInvoice(order: OrderResponseBody, items: any[]) {
       const { $store } = useNuxtApp();

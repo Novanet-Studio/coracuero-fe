@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 interface Props {
   currentPage: string;
-  perPage: string;
-  total: number;
-  space: string;
+  perPage?: string;
+  total?: number;
+  space?: string;
 }
 
 interface Emits {
@@ -22,7 +22,7 @@ const emit = defineEmits<Emits>();
 const activePage = ref(parseInt(props.currentPage));
 
 const pages = computed(() => {
-  const pages = [];
+  const $pages = [];
   const edge = 3;
   const count = Math.ceil(props.total / parseInt(props.perPage));
 
@@ -35,18 +35,18 @@ const pages = computed(() => {
       _distance < edge ||
       (_distance === edge && _distance === count - 2)
     ) {
-      pages.push({
+      $pages.push({
         id: i,
         n: i,
       });
     } else if (_distance === edge) {
-      pages.push({
+      $pages.push({
         id: i,
         n: props.space,
       });
     }
   }
-  return pages;
+  return $pages;
 });
 
 function setPage(page: number | string): void {
