@@ -4,6 +4,7 @@ interface Props {
   perPage?: string;
   total?: number;
   space?: string;
+  disabled?: boolean;
 }
 
 interface Emits {
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   perPage: '10',
   total: 100,
   space: '...',
+  disabled: false,
 });
 
 const emit = defineEmits<Emits>();
@@ -66,7 +68,7 @@ watch(activePage, (newVal, oldVal) => {
     <a
       @click.prevent="setPage(activePage > 1 ? activePage - 1 : 1)"
       class="paginator-item paginator-item-prev"
-      :class="{ disabled: activePage === 1 }"
+      :class="{ disabled: activePage === 1 || disabled }"
     >
       <slot name="prev-button">&lsaquo;</slot>
     </a>
@@ -79,6 +81,7 @@ watch(activePage, (newVal, oldVal) => {
         :class="{
           active: activePage === p.n,
           space: p.n === space,
+          disabled,
         }"
         @click.prevent="setPage(p.n)"
       >
@@ -95,7 +98,9 @@ watch(activePage, (newVal, oldVal) => {
         )
       "
       class="paginator-item paginator-item-next"
-      :class="{ disabled: activePage === pages[pages.length - 1].n }"
+      :class="{
+        disabled: activePage === pages[pages.length - 1].n || disabled,
+      }"
     >
       <slot name="next-button">&rsaquo;</slot>
     </a>

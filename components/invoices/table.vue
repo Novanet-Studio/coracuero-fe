@@ -4,10 +4,17 @@
     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div
-          class="overflow-hidden rounded-2xl shadow shadow-md shadow-gray-300"
+          class="overflow-hidden rounded-2xl shadow shadow-md shadow-gray-300 relative"
         >
+          <div
+            class="absolute flex w-full justify-center h-full items-center filter-drop-shadow z-10"
+            v-if="isLoading"
+          >
+            <loading />
+          </div>
           <table
             class="min-w-full"
+            :class="[isLoading && 'filter-blur-[1px]']"
             v-if="state.invoiceExist && state.tableInvoices?.length"
           >
             <thead class="bg-color-6 border-b">
@@ -93,6 +100,7 @@
     :per-page="state.perPage"
     :total="state.total"
     @change="setPageInvoice"
+    :disabled="isLoading"
     v-if="state.total"
   />
 </template>
@@ -104,6 +112,7 @@ const auth = $store.auth();
 const invoice = $store.invoice();
 
 const pageCount = ref(0);
+const isLoading = ref(false);
 
 type State = {
   invoiceExist: boolean;
@@ -129,20 +138,27 @@ const goToInvoice = (invoiceId: string, invoiceItem: any) => {
 };
 
 const getInvoices = async () => {
-  const result = await invoice.fetchInvoices(auth.user.id!.toString(), {
-    page: state.page,
-    pageSize: state.perPage,
-  });
+  isLoading.value = true;
+  try {
+    const result = await invoice.fetchInvoices(auth.user.id!.toString(), {
+      page: state.page,
+      pageSize: state.perPage,
+    });
 
-  if (!result?.data?.length) {
-    state.invoiceExist = false;
-    return;
+    if (!result?.data?.length) {
+      state.invoiceExist = false;
+      return;
+    }
+
+    state.invoiceExist = true;
+    state.tableInvoices = invoice.mapped;
+    state.total = result.meta?.pagination.total as number;
+    pageCount.value = result.meta?.pagination.pageCount as number;
+  } catch (error) {
+    console.log('An error occurred while fetching invoices');
+  } finally {
+    isLoading.value = false;
   }
-
-  state.invoiceExist = true;
-  state.tableInvoices = invoice.mapped;
-  state.total = result.meta?.pagination.total as number;
-  pageCount.value = result.meta?.pagination.pageCount as number;
 };
 
 watch(
