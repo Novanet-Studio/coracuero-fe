@@ -96,7 +96,7 @@ const title = computed(() =>
 
 const { form, status, submitter, verify } = useForm({
   form: () => ({
-    country: '',
+    country: 'VE',
     streetAddress: '',
     state: '',
     postcode: '',

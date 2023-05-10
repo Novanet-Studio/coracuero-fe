@@ -124,6 +124,7 @@ import { PhCheck, PhCaretUpDown } from '@phosphor-icons/vue';
 import { onClickOutside } from '@vueuse/core';
 
 type Options = string[] | number[] | Object[];
+
 interface ObjectValue {
   label: string;
   value: string;
@@ -142,6 +143,8 @@ interface Props {
 interface Emits {
   (e: 'update:modelValue', value: string): void;
 }
+
+const DELAY_UNWATCH_INTERVAL = 1000;
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
@@ -185,23 +188,7 @@ onClickOutside(target, () => {
 });
 
 const open = ref(false);
-const isSetDefault = ref(false);
-const existDefault = ref(false);
-
-const selected = computed(() => {
-  if (!props.modelValue) return null;
-
-  const options = props.options.map((opt: { [key: string] }) => ({
-    label: opt[props.label as string],
-    value: opt[props.valueKey as string],
-  }));
-
-  const [result] = options.filter(
-    (option) => option.value === props.modelValue
-  );
-
-  return result;
-});
+const selected = ref(null);
 
 const compareOptions = (option: any) => {
   if (!selected.value) return;
@@ -214,8 +201,6 @@ const compareOptions = (option: any) => {
 };
 
 watch(selected, (val: string | ObjectValue) => {
-  if (!val) return;
-
   if (isObjectData.value) {
     value.value = val.value;
     return;
@@ -223,4 +208,24 @@ watch(selected, (val: string | ObjectValue) => {
 
   value.value = val;
 });
+
+const unwatch = watchEffect(() => {
+  if (props.modelValue) {
+    const options = props.options.map((opt: { [key: string] }) => ({
+      label: opt[props.label as string],
+      value: opt[props.valueKey as string],
+    }));
+
+    const [result] = options.filter(
+      (option) => option.value === props.modelValue
+    );
+
+    selected.value = result;
+    return;
+  }
+});
+
+setTimeout(() => {
+  unwatch();
+}, DELAY_UNWATCH_INTERVAL);
 </script>
