@@ -10,39 +10,44 @@
       </a>
       <!-- Menu -->
       <transition name="slide-fade">
-        <div v-if="isOpen && total > 0" class="mini-cart">
-          <div class="mini-cart__body">
-            <template v-if="isLoadingCart">
-              <loading />
-            </template>
-            <template v-else-if="cartProducts?.length">
-              <div v-for="(product, index) in cartProducts" :key="index">
-                <product-mini-cart :product="product" />
-              </div>
-            </template>
+        <template>
+          <div v-if="isOpen && total > 0" class="mini-cart">
+            <div class="mini-cart__body">
+              <template v-if="isLoadingCart">
+                <loading />
+              </template>
+              <template v-else-if="cartProducts?.length">
+                <div v-for="(product, index) in cartProducts" :key="index">
+                  <product-mini-cart :product="product" />
+                </div>
+              </template>
+            </div>
+            <div class="mini-cart__footer">
+              <h3 class="mini-cart__footer-title">
+                Sub total:
+                <strong class="mini-cart__amount">${{ amount }}</strong>
+              </h3>
+              <figure class="mini-cart__wrapper">
+                <div class="mini-cart__left">
+                  <nuxt-link to="/shopping-cart" class="btn py-3 text-xs">
+                    Ver carrito
+                  </nuxt-link>
+                </div>
+                <div class="mini-cart__right">
+                  <nuxt-link
+                    to="/checkout"
+                    class="btn btn--outline py-3 text-xs"
+                  >
+                    Pagar
+                  </nuxt-link>
+                </div>
+              </figure>
+            </div>
           </div>
-          <div class="mini-cart__footer">
-            <h3 class="mini-cart__footer-title">
-              Sub total:
-              <strong class="mini-cart__amount">${{ amount }}</strong>
-            </h3>
-            <figure class="mini-cart__wrapper">
-              <div class="mini-cart__left">
-                <nuxt-link to="/shopping-cart" class="btn py-3 text-xs">
-                  Ver carrito
-                </nuxt-link>
-              </div>
-              <div class="mini-cart__right">
-                <nuxt-link to="/checkout" class="btn btn--outline py-3 text-xs">
-                  Pagar
-                </nuxt-link>
-              </div>
-            </figure>
+          <div v-else-if="isOpen" class="mini-cart">
+            <div class="mini-cart__empty">No hay productos en el carrito</div>
           </div>
-        </div>
-        <div v-else-if="isOpen" class="mini-cart">
-          <div class="mini-cart__empty">No hay productos en el carrito</div>
-        </div>
+        </template>
       </transition>
     </div>
   </div>
