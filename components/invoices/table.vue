@@ -95,14 +95,16 @@
     </div>
   </div>
 
-  <app-pagination
-    :current-page="state.page"
-    :per-page="state.perPage"
-    :total="state.total"
-    @change="setPageInvoice"
-    :disabled="isLoading"
-    v-if="state.total"
-  />
+  <div class="flex w-full justify-center pt-12">
+    <app-pagination
+      :current-page="state.page"
+      :per-page="state.perPage"
+      :total="state.total"
+      @change="setPageInvoice"
+      :disabled="isLoading"
+      v-if="state.total"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -126,7 +128,7 @@ const state = reactive<State>({
   invoiceExist: false,
   tableInvoices: null,
   total: 0,
-  perPage: '3',
+  perPage: '10',
   page: '1',
 });
 
