@@ -120,19 +120,19 @@ type State = {
   invoiceExist: boolean;
   tableInvoices: InvoiceTableDetail[] | null;
   total: number;
-  perPage: string;
-  page: string;
+  perPage: number;
+  page: number;
 };
 
 const state = reactive<State>({
   invoiceExist: false,
   tableInvoices: null,
   total: 0,
-  perPage: '10',
-  page: '1',
+  perPage: 5,
+  page: 1,
 });
 
-const setPageInvoice = (page: string) => (state.page = page);
+const setPageInvoice = (page: number) => (state.page = page);
 
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
   invoice.invoice = invoiceItem;

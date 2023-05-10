@@ -1,32 +1,32 @@
 <script lang="ts" setup>
 interface Props {
-  currentPage: string;
-  perPage?: string;
+  currentPage: number;
+  perPage?: number;
   total?: number;
   space?: string;
   disabled?: boolean;
 }
 
 interface Emits {
-  (e: 'change', page: string): void;
+  (e: 'change', page: number): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  currentPage: '1',
-  perPage: '10',
-  total: 100,
+  currentPage: 1,
+  perPage: 10,
+  total: 20,
   space: '...',
   disabled: false,
 });
 
 const emit = defineEmits<Emits>();
 
-const activePage = ref(parseInt(props.currentPage));
+const activePage = ref(props.currentPage);
 
 const pages = computed(() => {
   const $pages = [];
   const edge = 3;
-  const count = Math.ceil(props.total / parseInt(props.perPage));
+  const count = Math.ceil(props.total / props.perPage);
 
   for (let i = 1; i <= count; i++) {
     const _distance = Math.abs(i - activePage.value);
@@ -54,7 +54,7 @@ const pages = computed(() => {
 function setPage(page: number | string): void {
   if (isNaN(page as number) || page === Number(activePage.value)) return;
   activePage.value = page as number;
-  emit('change', page.toString());
+  emit('change', Number(page));
 }
 
 watch(activePage, (newVal, oldVal) => {

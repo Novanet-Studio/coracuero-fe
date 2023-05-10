@@ -38,8 +38,8 @@ interface FetchInvoicesReturn {
 }
 
 interface Options {
-  page: string;
-  pageSize: string;
+  page: number;
+  pageSize: number;
 }
 
 export const useInvoice = defineStore('invoice', {
@@ -66,8 +66,8 @@ export const useInvoice = defineStore('invoice', {
 
       const response = await graphql<InvoicesRequest>(GetInvoicesByUserId, {
         id,
-        page: Number(options?.page) ?? DEFAULT_PAGE,
-        pageSize: Number(options?.pageSize) ?? PAGE_LIMIT,
+        page: options?.page ?? DEFAULT_PAGE,
+        pageSize: options?.pageSize ?? PAGE_LIMIT,
       });
 
       if (!response.data.invoices?.data?.length) {
