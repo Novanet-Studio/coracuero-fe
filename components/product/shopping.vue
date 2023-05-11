@@ -143,6 +143,6 @@ const handleAddToCart = (isBuyNow = false) => {
 
 <style scoped>
 .p-shopping {
-  @apply mt-4 mb-14 flex gap-4 lg:mb-2;
+  @apply mt-4 mb-4 flex gap-4 lg:(mb-2 mt-4);
 }
 </style>

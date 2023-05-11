@@ -1,9 +1,12 @@
 <template>
   <section>
     <header class="my-12">
-      <app-message class="!text-2xl" message="Resumen de Informacion" />
+      <app-message
+        class="text-lg lg:!text-2xl"
+        message="Resumen de Informacion"
+      />
     </header>
-    <div class="block__content mx-6 lg:mx-16 lg:gap-16">
+    <div class="block__content md:mx-10 lg:(mx-16 gap-16)">
       <div class="block__left lg:flex-[0_0_55%]">
         <resume-information />
         <div class="block__link-wrapper">

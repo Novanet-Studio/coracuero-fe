@@ -85,7 +85,10 @@
                 <td
                   class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg:text-base"
                 >
-                  <product-shopping-cart :product="product" />
+                  <product-shopping-cart
+                    image-class="!h-auto"
+                    :product="product"
+                  />
                 </td>
                 <td
                   class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"

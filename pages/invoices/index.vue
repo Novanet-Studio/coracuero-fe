@@ -1,8 +1,5 @@
 <template>
   <section class="invoices">
-    <!-- <header class="invoices__header">
-      <app-message message="Ordenes de compra" />
-    </header> -->
     <div class="invoices__content">
       <invoices-table />
     </div>
@@ -33,6 +30,6 @@ message.value = 'Ordenes de compra';
 }
 
 .invoices__content {
-  @apply p-5 px-8;
+  @apply p-5 px-8 md:(py-10 px-0);
 }
 </style>

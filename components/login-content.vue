@@ -2,43 +2,49 @@
   <form class="auth-form" @submit.prevent="submit" @keyup.enter="submit">
     <div class="auth-form__wrapper">
       <h5 class="auth-form__title">Inicia sesión en tu cuenta</h5>
-      <app-input2
-        v-model="form.user"
-        placeholder="john o john@doe.com"
-        :error="status.user.isError"
-        :error-message="status.user.message"
-      >
-        <template #left>
-          <ph-user :size="20" weight="light" class="text-gray-400" />
-        </template>
-      </app-input2>
-      <app-input2
-        v-model="form.password"
-        placeholder="Ingrese su contraseña"
-        :type="showPassword ? 'text' : 'password'"
-        :error="status.password.isError"
-        :error-message="status.password.message"
-      >
-        <template #left>
-          <ph-lock :size="20" weight="light" class="text-gray-400" />
-        </template>
-        <template #right>
-          <div @click="handleIconClick" class="hover:cursor-pointer group">
-            <ph-eye
-              :size="20"
-              weight="light"
-              class="transition text-gray-400 group-hover:text-gray-500"
-              v-if="!showPassword"
-            />
-            <ph-eye-slash
-              :size="20"
-              weight="light"
-              class="transition text-gray-400 group-hover:text-gray-500"
-              v-else
-            />
-          </div>
-        </template>
-      </app-input2>
+      <div class="flex w-full mb-4">
+        <app-input2
+          v-model="form.user"
+          placeholder="john o john@doe.com"
+          class="w-full"
+          :error="status.user.isError"
+          :error-message="status.user.message"
+        >
+          <template #left>
+            <ph-user :size="20" weight="light" class="text-gray-400" />
+          </template>
+        </app-input2>
+      </div>
+      <div class="flex w-full mb-4">
+        <app-input2
+          v-model="form.password"
+          class="w-full"
+          placeholder="Ingrese su contraseña"
+          :type="showPassword ? 'text' : 'password'"
+          :error="status.password.isError"
+          :error-message="status.password.message"
+        >
+          <template #left>
+            <ph-lock :size="20" weight="light" class="text-gray-400" />
+          </template>
+          <template #right>
+            <div @click="handleIconClick" class="hover:cursor-pointer group">
+              <ph-eye
+                :size="20"
+                weight="light"
+                class="transition text-gray-400 group-hover:text-gray-500"
+                v-if="!showPassword"
+              />
+              <ph-eye-slash
+                :size="20"
+                weight="light"
+                class="transition text-gray-400 group-hover:text-gray-500"
+                v-else
+              />
+            </div>
+          </template>
+        </app-input2>
+      </div>
       <div class="auth-form__footer">
         <template v-if="state.isLoading">
           <loading />
@@ -48,7 +54,7 @@
           text="Entrar"
           @click="submit"
           :disabled="state.isDisabled"
-          class="absolute -bottom-5 rounded-full !w-[70%] !bg-color-1 text-sm lg:!w-[40%]"
+          class="absolute -bottom-5 rounded-full !w-[50%] !bg-color-1 text-sm lg:!w-[40%]"
         />
       </div>
     </div>
@@ -140,7 +146,7 @@ const { submit } = submitter(async () => {
 }
 
 .auth-form__wrapper {
-  @apply relative bg-color-8 rounded-xl !pb-1 p-6 mx-auto md:max-w-[26rem] lg:p-10 lg:max-w-md;
+  @apply relative bg-color-8 rounded-xl !pb-1 py-8 px-10 mx-auto md:max-w-[26rem] lg:p-10 lg:max-w-md;
 }
 
 .auth-form__title {

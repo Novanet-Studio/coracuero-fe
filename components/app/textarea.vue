@@ -1,7 +1,7 @@
 <template>
   <div class="input-group" :class="class">
     <div
-      class="flex items-center border p-2 rounded-lg bg-white"
+      class="flex items-center border p-2 rounded-xl bg-white"
       :class="[error && 'input--error', focus && 'border-color-1']"
     >
       <div class="flex-0 mr-3" v-if="$slots.left">
@@ -9,7 +9,7 @@
       </div>
       <textarea
         v-model="value"
-        class="flex-1 text-xs outline-transparent lg:text-sm"
+        class="flex-1 text-xs outline-transparent md:text-sm"
         @focus="focus = true"
         @blur="focus = false"
         rows="10"

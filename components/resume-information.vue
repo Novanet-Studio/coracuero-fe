@@ -3,17 +3,17 @@
     <figure class="resume__content">
       <div class="resume__wrapper">
         <small class="resume__item-title">Contacto:</small>
-        <p class="resume__contact">
+        <p class="resume__text">
           {{ checkout.email }}
         </p>
       </div>
       <nuxt-link to="/checkout" class="resume__link">Cambiar</nuxt-link>
     </figure>
-    <hr class="my-4" />
+    <div class="min-w-full h-[0.10rem] my-4 bg-color-3"></div>
     <figure class="resume__content">
       <div class="resume__wrapper">
         <small class="resume__item-title">Enviar a:</small>
-        <p class="resume__address">
+        <p class="resume__text">
           {{ checkout.fullAddress }}
         </p>
       </div>
@@ -29,7 +29,7 @@ const checkout = $store.checkout();
 
 <style scoped>
 .resume {
-  @apply mb-8 px-5 py-3 rounded-xl bg-color-8 rounded-xl text-dark-200 lg:p-8;
+  @apply mb-8 px-5 py-3 rounded-xl bg-color-8 rounded-xl text-dark-200 md:p-8;
 }
 
 .resume__content {
@@ -37,7 +37,7 @@ const checkout = $store.checkout();
 }
 
 .resume__wrapper {
-  @apply md:(w-full flex flex-row) lg:items-center lg:gap-2;
+  @apply md:(w-full flex flex-row items-center) lg:gap-2;
 }
 
 .resume__item-title {

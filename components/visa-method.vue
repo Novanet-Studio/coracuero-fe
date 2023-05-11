@@ -383,4 +383,8 @@ onMounted(async () => {
 .visa__link {
   @apply text-color-1 font-bold;
 }
+
+.visa__text {
+  @apply text-sm mb-8;
+}
 </style>

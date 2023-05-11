@@ -1,14 +1,14 @@
 <template>
   <div class="input-group" :class="class">
     <div
-      class="flex items-center bg-white p-2 rounded-xl lg:p-4"
+      class="flex items-center bg-white p-2 rounded-xl md:p-3 lg:p-4"
       :class="[error && 'input--error', focus && 'ring-2 ring-color-1']"
     >
       <div class="flex-0 mr-3" v-if="$slots.left">
         <slot name="left" />
       </div>
       <input
-        class="flex-1 outline-none text-xs lg:text-sm"
+        class="flex-1 outline-none text-xs md:text-sm"
         :type="type"
         v-model="value"
         @focus="focus = true"

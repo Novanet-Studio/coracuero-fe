@@ -1,12 +1,16 @@
 <template>
   <div class="access">
     <div class="access__wrapper">
-      <header class="access__header">
-        <nuxt-link class="access__link" to="/">
-          <img src="~/assets/img/logo.png" alt="Project logo" />
-        </nuxt-link>
-      </header>
-      <nuxt-page />
+      <div class="h-full">
+        <header class="access__header">
+          <nuxt-link class="access__link" to="/">
+            <img src="~/assets/img/logo.png" alt="Project logo" />
+          </nuxt-link>
+        </header>
+        <main>
+          <nuxt-page />
+        </main>
+      </div>
       <notify />
       <app-footer :show-widgets="false" />
     </div>
@@ -15,11 +19,11 @@
 
 <style scoped>
 .access {
-  @apply w-full min-h-screen overflow-hidden;
+  @apply flex w-full min-h-screen overflow-hidden;
 }
 
 .access__wrapper {
-  @apply w-full mt-12 md:(max-w-xl mx-auto) lg:max-w-full lg:mt-0 lg:(flex flex-col h-screen);
+  @apply w-full flex flex-col mt-12 md:(mx-auto) lg:(max-w-full mt-0 flex flex-col h-screen);
 }
 
 .access__header {

@@ -1,8 +1,8 @@
 <template>
   <div class="widgets">
     <section class="widgets__wrapper flex rounded-full items-center">
-      <h3 class="widgets__title w-64">Contáctanos</h3>
-      <ul class="widgets__list flex gap-2 rounded-full flex-1">
+      <h3 class="widgets__title px-4 lg:w-64">Contáctanos</h3>
+      <ul class="widgets__list flex gap-2 rounded-full flex-1 py-1">
         <li
           v-for="(item, index) in socialNetworks"
           :key="index"
@@ -60,7 +60,7 @@ const socialNetworks = [
 }
 
 .widgets__title {
-  @apply text-white text-[7px] text-center font-semibold md:text-sm lg:text-lg;
+  @apply text-white text-xs text-center font-semibold md:text-sm lg:text-lg;
 }
 
 .widgets__list {
@@ -68,7 +68,7 @@ const socialNetworks = [
 }
 
 .widgets__item {
-  @apply relative text-[7px] py-2 px-1 flex gap-1 items-center first:pl-2 last:pr-2 md:(mr-[20px] text-sm py-4 first:pl-6) align-top text-color-1 lg:text-base;
+  @apply relative text-[10px] py-2 px-1 flex gap-1 items-center first:pl-2 last:pr-2 md:(mr-3 text-sm py-4 first:pl-6) align-top text-color-1 lg:text-base;
 }
 
 .widgets__link {

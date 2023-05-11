@@ -1,14 +1,16 @@
 <template>
   <section class="wrapper">
     <app-message
-      class="py-10 !text-2xl"
+      class="py-6 text-lg lg:(py-10 !text-2xl)"
       message="Contáctanos si tienes cualquier pregunta"
     />
     <div class="wrapper__content">
       <p class="message">Para pedidos, por favor llene el formulario</p>
       <form class="form" @submit.prevent="submit">
-        <div>
-          <label class="form__label" for="fullname">Nombre y apellido</label>
+        <div class="form-group">
+          <label class="form__label mb-12" for="fullname"
+            >Nombre y apellido</label
+          >
           <app-input2
             v-model="data.fullname"
             placeholder="john doe"
@@ -17,7 +19,7 @@
             id="fullname"
           />
         </div>
-        <div>
+        <div class="form-group">
           <label class="form__label" for="email">Email</label>
           <app-input2
             v-model="data.email"
@@ -27,7 +29,7 @@
             id="email"
           />
         </div>
-        <div>
+        <div class="form-group">
           <label class="form__label" for="subject">Asunto</label>
           <app-input2
             v-model="data.subject"
@@ -37,7 +39,7 @@
             id="subject"
           />
         </div>
-        <div>
+        <div class="form-group">
           <label class="form__label" for="message">Mensaje</label>
           <app-textarea
             v-model="data.message"
@@ -58,7 +60,7 @@
       </form>
       <p class="message mt-16">Mapa</p>
       <!-- TODO: change to bem when implement real map -->
-      <div class="w-full h-80 rounded-md bg-gray-300 shadow-md" />
+      <div class="w-full h-80 rounded-xl bg-gray-300 shadow-md" />
     </div>
   </section>
 </template>
@@ -148,8 +150,12 @@ const { submit } = submitter(async () => {
   @apply relative bg-color-8 rounded-xl shadow-md !pb-1 p-6 mx-auto md:p-12;
 }
 
+.form-group {
+  @apply flex flex-col mb-4;
+}
+
 .form__label {
-  @apply text-xs text-color-1 font-semibold md:text-sm;
+  @apply text-xs text-color-1 font-semibold md:(mb-2 text-sm);
 }
 
 .form__footer {

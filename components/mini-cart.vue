@@ -1,22 +1,26 @@
 <template>
   <div class="relative">
-    <div @mouseover="isOpen = true" @mouseleave="isOpen = false">
-      <a class="header-actions__link" href="#" @click="loadCartProducts">
-        <!-- <i class="header-actions__icon icon-bag2"></i> -->
+    <div
+      class="cursor-pointer"
+      @mouseover="isOpen = true"
+      @mouseleave="isOpen = false"
+      @click.prevent="isOpen = !isOpen"
+    >
+      <div class="header-actions__link">
         <ph-bag class="header-actions__icon" weight="light" />
         <span class="header-actions__indicator-wrapper">
           <i class="header-actions__indicator">{{ total }}</i>
         </span>
-      </a>
+      </div>
       <!-- Menu -->
       <transition name="slide-fade">
-        <template>
-          <div v-if="isOpen && total > 0" class="mini-cart">
+        <template v-if="isOpen">
+          <div v-if="total > 0" class="mini-cart">
             <div class="mini-cart__body">
               <template v-if="isLoadingCart">
                 <loading />
               </template>
-              <template v-else-if="cartProducts?.length">
+              <template v-if="cartProducts?.length">
                 <div v-for="(product, index) in cartProducts" :key="index">
                   <product-mini-cart :product="product" />
                 </div>
@@ -44,7 +48,7 @@
               </figure>
             </div>
           </div>
-          <div v-else-if="isOpen" class="mini-cart">
+          <div v-else class="mini-cart">
             <div class="mini-cart__empty">No hay productos en el carrito</div>
           </div>
         </template>
@@ -84,7 +88,7 @@ const loadCartProducts = async () => {
       return;
     }
 
-    // If doesnt exist in the local storage
+    // If does not exist in the local storage
     // then load from database
     if (!productStore.cartProducts?.length) {
       const [response] = await Promise.all(itemsList);
@@ -98,7 +102,7 @@ const loadCartProducts = async () => {
   }
 };
 
-// onMounted(() => loadCartProducts());
+onMounted(() => loadCartProducts());
 </script>
 
 <style scoped>

@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="mt-5">
-      <app-message class="!text-2xl" message="Bio" />
+      <app-message class="text-lg lg:!text-2xl" message="Bio" />
     </div>
     <div class="px-7 pt-6 md:px-24 lg:flex lg:gap-3 lg:my-10">
       <p class="text-xs md:text-base lg:border-r-2">
@@ -82,7 +82,7 @@
     </div>
     <div class="mt-5">
       <app-message
-        class="!text-2xl !px-20 py-10"
+        class="text-lg px-8 py-8 lg:(!text-2xl !px-16 py-10)"
         message='"El producto viene de un animal. Esto debería invitarnos a cuidarlo y llevarlo con orgullo. Es una inversión en una pieza que sabemos vamos a utilizar y mantener por mucho tiempo"'
         half-mode
       />
@@ -92,7 +92,7 @@
 
 <style scoped>
 .n-banner {
-  @apply py-16 mb-8 px-4;
+  @apply py-16 mb-8 px-8 md:(py-12 mb-0);
 }
 
 .n-banner__wrapper {
@@ -100,7 +100,7 @@
 }
 
 .n-banner__left {
-  @apply w-full min-h-full mb-4 md:(flex-basis-[60%] w-[60%] mb-0) lg:flex-basis-[50%];
+  @apply w-full min-h-full mb-4 md:(flex-basis-[50%]) lg:flex-basis-[50%];
 }
 
 .n-banner__slider {
@@ -112,11 +112,11 @@
 }
 
 .n-banner__image-alt {
-  @apply rounded-xl h-28 w-full object-cover object-center md:h-32 lg:h-60;
+  @apply rounded-xl h-28 w-full object-cover object-center md:h-38 lg:h-60;
 }
 
 .n-banner__right {
-  /* @apply grid grid-cols-1 rounded-xl gap-4 md:(max-w-[50%] w-2/4 ml-8 flex-col gap-0); */
-  @apply grid grid-cols-2 rounded-xl md:(flex-basis-[40%] w-[40%] px-10) lg:(grid-cols-1 gap-6);
+  /* @apply grid grid-cols-2 rounded-xl md:(flex-basis-[40%] w-[40%] pl-6) lg:(grid-cols-1 gap-6); */
+  @apply grid grid-cols-2 rounded-xl md:(flex-basis-[50%] grid-cols-1 pl-6);
 }
 </style>

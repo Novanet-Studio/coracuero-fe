@@ -38,3 +38,25 @@ const state = reactive({
 
 const handleQuickView = (open: boolean) => (state.quickView = open);
 </script>
+
+<style scoped>
+.product {
+  @apply box-border relative block box-border max-w-[150px] transition ease lg:(max-w-[250px]);
+}
+
+.product__thumbnail {
+  @apply relative;
+}
+
+.product__content {
+  @apply flex justify-center mb-2;
+}
+
+.product-modal {
+  @apply p-4 relative lg:p-8;
+}
+
+.product-modal__icon {
+  @apply absolute top-3 right-4 cursor-pointer;
+}
+</style>

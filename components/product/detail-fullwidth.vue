@@ -1,9 +1,9 @@
 <template>
   <div class="detail flex gap-4">
     <div
-      class="ps-product__header bg-color-8 shadow-md container relative rounded-xl flex flex-col md:flex-row lg:mx-auto"
+      class="ps-product__header p-6 bg-color-8 shadow-md container relative rounded-xl flex flex-col md:flex-row lg:mx-auto"
     >
-      <div class="p-2 md:p-4 lg:p-14 lg:pb-18">
+      <div class="flex justify-center p-2 md:p-4 lg:(p-14 pb-18)">
         <thumbnail-default :product="product" />
       </div>
       <section class="my-4 mx-4 lg:py-10 lg:pb-12 text-color-1">
@@ -24,7 +24,7 @@
       </section>
       <div class="py-3 mb-4 mt-4 flex justify-center absolute -bottom-4 w-full">
         <app-button
-          class="absolute -bottom-5 rounded-full !w-[70%] !bg-color-1 text-xs md:!w-[30%] lg:!w-[15%] lg:text-sm"
+          class="absolute -bottom-5 rounded-full !w-[50%] !bg-color-1 text-xs md:!w-[30%] lg:!w-[15%] lg:text-sm"
           >Comprar</app-button
         >
       </div>

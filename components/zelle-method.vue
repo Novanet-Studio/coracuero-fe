@@ -82,9 +82,11 @@
           :error-message="status.confirmation.message"
         />
       </div>
-      <p>
+      <p class="text-xs mb-6 mx-6 md:text-sm lg:(text-base mx-0)">
         Al realizar esta compra usted acepta
-        <a href="#" class="text-yellow-400">nuestros términos y condiciones</a>.
+        <a href="#" class="text-color-1 font-bold"
+          >nuestros términos y condiciones</a
+        >.
       </p>
       <div class="form__btn-group">
         <app-button

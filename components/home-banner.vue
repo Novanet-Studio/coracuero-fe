@@ -89,7 +89,7 @@ const sliderImages = [
 }
 
 .banner__right {
-  @apply grid grid-cols-2 rounded-xl md:(flex-basis-[40%] w-[40%] px-10);
+  @apply grid grid-cols-2 rounded-xl md:(flex-basis-[40%] w-[40%] pl-10);
 }
 
 .image-banner {

@@ -50,7 +50,7 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .order-summary__title {
-  @apply font-semibold mb-3 text-color-4 text-xs lg:text-lg;
+  @apply font-bold mb-3 text-color-4 text-xs md:text-base lg:text-lg;
 }
 
 .order-summary__content {

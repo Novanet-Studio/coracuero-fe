@@ -196,7 +196,7 @@ onMounted(() => {
 }
 
 .wishlist__subtitle {
-  @apply text-sm text-color-4 mb-2 font-bold lg:text-2xl;
+  @apply text-center mt-12 text-sm text-color-4 mb-2 font-bold lg:(text-2xl text-left mt-0);
 }
 
 .w-table-wrapper {

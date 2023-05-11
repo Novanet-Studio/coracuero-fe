@@ -1,52 +1,63 @@
 <template>
   <form class="auth-form" @submit.prevent="submit" @keyup.enter="submit">
-    <div class="auth-form__wrapper">
+    <div class="auth-form__wrapper py-8 px-10">
       <h5 class="auth-form__title">Crear una cuenta</h5>
-      <app-input2
-        v-model="form.username"
-        placeholder="John Doe"
-        :error="status.username.isError"
-        :error-message="status.username.message"
-      >
-        <template #left>
-          <ph-user :size="20" weight="light" class="text-gray-400" />
-        </template>
-      </app-input2>
+      <div class="flex w-full mb-3">
+        <app-input2
+          v-model="form.username"
+          class="w-full"
+          placeholder="John Doe"
+          :error="status.username.isError"
+          :error-message="status.username.message"
+        >
+          <template #left>
+            <ph-user :size="20" weight="light" class="text-gray-400" />
+          </template>
+        </app-input2>
+      </div>
+      <div class="flex w-full mb-4">
+        <app-input2
+          v-model="form.email"
+          class="w-full"
+          placeholder="john@doe.com"
+          :error="status.email.isError"
+          :error-message="status.email.message"
+        >
+          <template #left>
+            <ph-envelope :size="20" weight="light" class="text-gray-400" />
+          </template>
+        </app-input2>
+      </div>
 
-      <app-input2
-        v-model="form.email"
-        placeholder="john@doe.com"
-        :error="status.email.isError"
-        :error-message="status.email.message"
-      >
-        <template #left>
-          <ph-envelope :size="20" weight="light" class="text-gray-400" />
-        </template>
-      </app-input2>
+      <div class="flex w-full mb-4">
+        <app-input2
+          v-model="form.password"
+          class="w-full"
+          placeholder="Ingresa tu contraseña"
+          :type="showPasswords ? 'text' : 'password'"
+          :error="status.password.isError"
+          :error-message="status.password.message"
+        >
+          <template #left>
+            <ph-lock :size="20" weight="light" class="text-gray-400" />
+          </template>
+        </app-input2>
+      </div>
 
-      <app-input2
-        v-model="form.password"
-        placeholder="Ingresa tu contraseña"
-        :type="showPasswords ? 'text' : 'password'"
-        :error="status.password.isError"
-        :error-message="status.password.message"
-      >
-        <template #left>
-          <ph-lock :size="20" weight="light" class="text-gray-400" />
-        </template>
-      </app-input2>
-
-      <app-input2
-        v-model="form.confirmPassword"
-        placeholder="Confirma contraseña"
-        :type="showPasswords ? 'text' : 'password'"
-        :error="status.confirmPassword.isError"
-        :error-message="status.confirmPassword.message"
-      >
-        <template #left>
-          <ph-lock :size="20" weight="light" class="text-gray-400" />
-        </template>
-      </app-input2>
+      <div class="flex w-full mb-4">
+        <app-input2
+          v-model="form.confirmPassword"
+          class="w-full"
+          placeholder="Confirma contraseña"
+          :type="showPasswords ? 'text' : 'password'"
+          :error="status.confirmPassword.isError"
+          :error-message="status.confirmPassword.message"
+        >
+          <template #left>
+            <ph-lock :size="20" weight="light" class="text-gray-400" />
+          </template>
+        </app-input2>
+      </div>
 
       <app-checkbox label="Show passwords" v-model="showPasswords" />
 
@@ -55,7 +66,7 @@
           <loading />
         </template>
         <app-button
-          class="absolute -bottom-5 rounded-full !w-[70%] !bg-color-1 text-sm lg:!w-[50%]"
+          class="absolute -bottom-5 rounded-full !w-[50%] !bg-color-1 text-sm lg:!w-[50%]"
           text="Registrar cuenta"
           @click="submit"
           v-else

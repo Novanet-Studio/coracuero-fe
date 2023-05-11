@@ -30,12 +30,7 @@ export default defineNuxtConfig({
     'nuxt-lodash',
   ],
 
-  css: [
-    '@unocss/reset/tailwind.css',
-    '~/assets/styles/index.css',
-    '~/assets/styles/components.css',
-    '~/assets/styles/pages.css',
-  ],
+  css: ['@unocss/reset/tailwind.css'],
 
   runtimeConfig: {
     public: {
@@ -100,5 +95,7 @@ export default defineNuxtConfig({
       '2xl': 1536,
     },
   },
-  devtools: true,
+  devtools: {
+    enabled: true,
+  },
 });

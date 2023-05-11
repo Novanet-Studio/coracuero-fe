@@ -1,9 +1,6 @@
 <template>
   <section class="edit-address" v-if="type">
     <div class="edit-address__wrapper">
-      <!-- <header class="edit-address__header">
-        <h3 class="edit-address__title">Direcciones</h3>
-      </header> -->
       <div class="edit-address__content">
         <edit-address-form :type="type" />
       </div>
@@ -32,3 +29,17 @@ const type = computed(() => {
   return type as AddressType.None;
 });
 </script>
+
+<style scoped>
+.edit-address {
+  @apply w-full lg:ml-8;
+}
+
+.edit-address__wrapper {
+  @apply w-full;
+}
+
+.edit-address__content {
+  @apply p-5;
+}
+</style>

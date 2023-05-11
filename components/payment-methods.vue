@@ -37,11 +37,11 @@ import { Tabs, Tab } from 'vue3-tabs-component';
 }
 
 :deep(.tabs-component-tab) {
-  @apply p-3 px-6 border text-color-1 text-xs font-bold lg:text-base lg:p-4 lg:px-8;
+  @apply p-4 px-6 text-color-1 text-xs font-bold lg:text-base lg:p-4 lg:px-8;
 }
 
 :deep(.is-active:not(a)) {
-  @apply p-3 px-6 border bg-color-6 text-color-7 first:rounded-l-full lg:p-4 lg:px-8;
+  @apply p-4 px-6 bg-color-6 text-color-7 first:rounded-l-full lg:p-4 lg:px-8;
 }
 
 :deep(.is-disabled:not(a)) {
@@ -50,5 +50,9 @@ import { Tabs, Tab } from 'vue3-tabs-component';
 
 :deep(.tabs-component-panels) {
   @apply py-6 lg:py-8;
+}
+
+.payment-methods {
+  @apply w-full;
 }
 </style>

@@ -4,10 +4,10 @@
     <app-message
       message="¿Quieres conocer nuestra colección de cueros? 
 Tenemos artículos"
-      class="py-12 font-bold !text-2xl"
+      class="md:(py-6 !text-lg) lg:(py-12 font-bold !text-2xl)"
     />
     <template v-if="isLoading">
-      <div class="px-18">
+      <div class="px-8 lg:px-18">
         <product-loader />
       </div>
     </template>
@@ -16,10 +16,7 @@ Tenemos artículos"
         <product-landing :category="category" />
       </div>
     </template>
-    <app-message
-      class="py-2 !text-2xl"
-      message="Productos únicos y verdaderos!"
-    />
+    <app-message message="Productos únicos y verdaderos!" />
   </div>
 </template>
 

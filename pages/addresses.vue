@@ -93,18 +93,18 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 }
 
 .address__content {
-  @apply max-w-full flex-[0_0_100%] md:(max-w-[50%] flex-[0_0_50%]);
+  @apply w-full;
 }
 
 .address__figcaption {
   @apply mb-5 pb-3 text-sm font-semibold text-color-4 font-bold lg:text-xl;
 }
 .address__text {
-  @apply mb-4 text-color-1 text-xs text-center lg:(text-sm mb-2);
+  @apply mb-1 text-color-1 text-xs text-center lg:(text-sm mb-2);
 }
 
 .address__link {
-  @apply text-xs transition ease absolute font-semibold bg-color-1 p-2 px-6 text-white rounded-full shadow-xl lg:(text-sm px-10 -bottom-4);
+  @apply text-xs -bottom-4 transition ease absolute font-semibold bg-color-1 p-2 px-6 text-white rounded-full shadow-xl lg:(text-sm px-10 -bottom-4);
 }
 
 .address__link-wrapper {
@@ -112,6 +112,6 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 }
 
 .address-wrapper {
-  @apply bg-color-8 p-3 rounded-xl relative shadow-xl lg:p-12;
+  @apply bg-color-8 p-12 rounded-xl relative shadow-xl lg:p-12;
 }
 </style>

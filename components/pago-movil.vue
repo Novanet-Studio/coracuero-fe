@@ -65,11 +65,9 @@
         <label class="form__label"
           >Monto en Bs<sup class="form__required">*</sup></label
         >
-        <p>
-          <b
-            >La tasa del día BCV es de {{ bcvUsd }} BsD. El monto del pago debe
-            ser de {{ amountRate }}</b
-          >
+        <p class="text-xs font-bold md:text-sm lg:text-base">
+          La tasa del día BCV es de {{ bcvUsd }} BsD. El monto del pago debe ser
+          de {{ amountRate }}
         </p>
         <app-input
           v-model="formData.amountPayed"
@@ -89,9 +87,11 @@
           :error-message="status.confirmation.message"
         />
       </div>
-      <p>
+      <p class="text-xs mb-6 mx-6 md:text-sm lg:(text-base mx-0)">
         Al realizar esta compra usted acepta
-        <a href="#" class="text-yellow-400">nuestros términos y condiciones</a>.
+        <a href="#" class="text-color-1 font-bold"
+          >nuestros términos y condiciones</a
+        >.
       </p>
       <div class="form__btn-group">
         <app-button

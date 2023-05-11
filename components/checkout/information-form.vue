@@ -112,7 +112,7 @@
             v-model="checkout.saveInformation"
           />
         </div>
-        <div class="form__btn-group w-full flex justify-center">
+        <div class="form__btn-group ml-0 w-full flex justify-center">
           <app-button
             class="custom-btn"
             btn-type="submit"
@@ -212,11 +212,31 @@ onMounted(() => {
 }
 
 .wrapper {
-  @apply bg-color-8 p-4 rounded-xl relative shadow-xl lg:p-8;
+  @apply bg-color-8 p-10 rounded-xl relative shadow-xl md:p-6 lg:p-8;
+}
+
+.form__container {
+  @apply flex flex-col justify-between lg:flex-row;
+}
+
+.form__left {
+  @apply flex-[0_0_100%] gap-4 lg:flex-[0_0_calc(50%-1rem)];
+}
+
+.form__right {
+  @apply flex-[0_0_100%] md:flex-[0_0_calc(50%-1rem)];
 }
 
 .form__label {
   @apply text-xs text-color-1 font-semibold lg:text-sm;
+}
+
+.form__group-alt {
+  @apply mb-4 md:(px-4 mb-0) lg:mb-6;
+}
+
+.form__grid {
+  @apply grid grid-cols-1 md:gap-0 lg:(gap-4 grid-cols-2);
 }
 
 .custom-btn {

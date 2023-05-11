@@ -2,7 +2,7 @@
   <client-only>
     <div class="ps-product__thumbnail h-full" data-vertical="true">
       <figure class="h-full">
-        <div class="ps-wrapper container md:max-w-sm lg:max-w-xl h-full">
+        <div class="ps-wrapper max-w-sm md:max-w-xs lg:max-w-xl h-full">
           <!-- Gallery-->
           <div class="ps-product__gallery h-full">
             <swiper

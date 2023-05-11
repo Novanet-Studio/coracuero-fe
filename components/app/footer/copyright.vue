@@ -1,7 +1,7 @@
 <template>
   <div class="copyright">
     <p class="copyright__site">
-      fast-ecommerce.com - {{ new Date().getFullYear() }}
+      coracuero.com - {{ new Date().getFullYear() }}
     </p>
 
     <p class="copyright__payment">
@@ -16,7 +16,11 @@
     <p class="copyright__author">
       <span class="copyright__author-text">Tienda realizada por:</span>
       <a href="https://novanet.studio/">
-        <img class="w-14 mt-2" src="/img/novanet-logo.svg" alt="Novanet logo" />
+        <img
+          class="w-14 mt-2 md:mt-0"
+          src="/img/novanet-logo.svg"
+          alt="Novanet logo"
+        />
       </a>
     </p>
   </div>
@@ -32,7 +36,7 @@
 }
 
 .copyright__payment {
-  @apply flex flex-col items-center w-full !mb-0 !mt-0 leading-8 text-sm md:(flex-row w-auto);
+  @apply flex flex-col items-center w-full mb-2 !mt-0 leading-8 text-sm md:(flex-row w-auto mb-0);
 }
 
 .copyright__payment-title {

@@ -3,7 +3,7 @@
     <div class="relative mt-2" ref="target">
       <button
         type="button"
-        class="relative w-full cursor-default rounded-md bg-[#F7F4F4] py-5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-color-1 sm:text-sm sm:leading-6"
+        class="relative w-full cursor-default rounded-xl bg-[#F7F4F4] py-5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 md:py-3 focus:outline-none focus:ring-2 focus:ring-color-1 sm:(text-sm leading-6)"
         :class="[error && 'ring-red-600']"
         aria-haspopup="listbox"
         aria-expanded="true"

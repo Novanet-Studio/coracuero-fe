@@ -5,7 +5,7 @@
         <div class="header__brand">
           <nuxt-link class="header__link" to="/">
             <img
-              class="w-[69px]mx-auto lg:w-[75px]"
+              class="w-[69px] mx-auto lg:w-[75px]"
               src="~/assets/img/logo.png"
               alt="Coracuero logo"
             />

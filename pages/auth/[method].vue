@@ -1,5 +1,5 @@
 <template>
-  <section class="flex-1 mt-10">
+  <section class="mt-4">
     <ul class="auth__links">
       <li class="auth__link" :class="[isLogin && 'auth__link--active']">
         <nuxt-link to="/auth/login">Iniciar Sesión</nuxt-link>
@@ -45,7 +45,7 @@ onMounted(() => {
 }
 
 .auth__link {
-  @apply text-sm font-bold text-color-3 first:mr-8 lg:text-lg;
+  @apply text-md font-bold text-color-3 first:mr-8 lg:text-lg;
 }
 
 .auth__link--active {

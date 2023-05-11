@@ -1,7 +1,7 @@
 <template>
   <div class="input-group" :class="class">
     <input
-      class="input bg-[#F7F4F4]"
+      class="input bg-[#F7F4F4] text-xs md:text-sm lg:text-base"
       :class="isError && 'input--error'"
       :type="type"
       v-model="value"
@@ -39,3 +39,21 @@ const value = computed({
   set: (val: string) => emits('update:modelValue', val),
 });
 </script>
+
+<style scoped>
+.input {
+  @apply w-full border border-gray-300 rounded-xl p-4 focus:border-yellow-400 outline-transparent md:p-3;
+}
+
+.input--error {
+  @apply border-red-500;
+}
+
+.input-group {
+  @apply py-3 pt-2 md:py-2 first:mb-4;
+}
+
+.input__error {
+  @apply pt-3 text-red-500 text-xs md:text-sm lg:text-base;
+}
+</style>

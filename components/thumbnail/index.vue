@@ -1,7 +1,7 @@
 <template>
-  <div class="ps-product__variants max-w-48">
+  <div class="ps-product__variants max-w-48 md:max-w-8 lg:max-w-32">
     <swiper
-      class="swiper-thumbs"
+      class="swiper-thumbs md:(max-w-84 max-h-23)"
       @swiper="setThumbsSwiper"
       :space-between="10"
       :slides-per-view="4"
