@@ -56,7 +56,7 @@ const socialNetworks = [
 }
 
 .widgets__wrapper {
-  @apply max-w-full w-full relative mb-5 bg-color-6 shadow-sm shadow-cool-gray-400;
+  @apply max-w-full w-full relative mb-5 bg-color-2 shadow-sm shadow-cool-gray-400;
 }
 
 .widgets__title {
@@ -64,7 +64,7 @@ const socialNetworks = [
 }
 
 .widgets__list {
-  @apply bg-color-2 flex justify-around;
+  @apply bg-color-5 flex justify-around;
 }
 
 .widgets__item {

@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                   <tr
-                    class="bg-color-7 border-b transition duration-300 ease-in-out hover:bg-color-8 group"
+                    class="bg-color-6 border-b transition duration-300 ease-in-out hover:bg-color-6 group"
                     v-for="item in productStore.wishlistItems"
                     :key="item.id"
                   >

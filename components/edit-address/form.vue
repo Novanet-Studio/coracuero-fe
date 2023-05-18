@@ -5,7 +5,7 @@
         {{ title }}
       </h3>
     </header>
-    <div class="bg-color-8 rounded-2xl lg:p-12 lg:px-20 relative">
+    <div class="bg-color-6 rounded-2xl lg:p-12 lg:px-20 relative">
       <div class="address-form__group">
         <label class="address-form__label"
           >País<sup class="address-form__required">*</sup></label

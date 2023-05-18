@@ -7,7 +7,7 @@
             <div class="default__content">
               <app-header />
               <div
-                class="py-8 bg-color-7 px-16 text-sm text-color-4 font-bold md:(flex justify-center)"
+                class="py-8 bg-color-6 px-16 text-sm text-color-4 font-bold md:(flex justify-center)"
                 v-if="$route.path.includes('product')"
               >
                 <button @click="$router.go(-1)">Volver</button>

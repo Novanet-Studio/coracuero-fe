@@ -53,7 +53,7 @@
             </thead>
             <tbody>
               <tr
-                class="bg-color-7 border-b transition duration-300 ease-in-out hover:bg-color-8"
+                class="bg-color-6 border-b transition duration-300 ease-in-out hover:bg-color-6"
                 v-for="item in state.tableInvoices"
                 :key="item.id"
                 @click="goToInvoice(item.id_invoice_user.toString(), item)"

@@ -28,14 +28,14 @@ const wrapper = computed(() => {
 
 <style scoped>
 .message-wrapper {
-  @apply w-full bg-color-8 p-6;
+  @apply w-full bg-color-6 p-6;
 }
 
 .message {
-  @apply text-color-1 text-[10px] text-center whitespace-pre-wrap leading-3 md:(text-xl whitespace-normal);
+  @apply text-color-3 text-[10px] text-center whitespace-pre-wrap leading-3 md:(text-xl whitespace-normal);
 }
 
 .message-wrapper-alt {
-  @apply bg-color-8 p-6 rounded-md shadow w-[90%] mt-12 mx-auto shadow shadow-xl;
+  @apply bg-color-6 p-6 rounded-md shadow w-[90%] mt-12 mx-auto shadow shadow-xl;
 }
 </style>

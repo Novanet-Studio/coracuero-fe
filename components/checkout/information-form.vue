@@ -212,7 +212,7 @@ onMounted(() => {
 }
 
 .wrapper {
-  @apply bg-color-8 p-10 rounded-xl relative shadow-xl md:p-6 lg:p-8;
+  @apply bg-color-6 p-10 rounded-xl relative shadow-xl md:p-6 lg:p-8;
 }
 
 .form__container {

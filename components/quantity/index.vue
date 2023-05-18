@@ -43,7 +43,7 @@ const handleDescreaseQuantity = () => {
 
 <style scoped>
 .quantity {
-  @apply w-20 flex items-center justify-evenly rounded-full bg-color-8 p-2 transition ease-in transition-colors lg:(w-28 p-4);
+  @apply w-20 flex items-center justify-evenly rounded-full bg-color-6 p-2 transition ease-in transition-colors lg:(w-28 p-4);
 }
 
 .quantity__btn {

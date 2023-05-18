@@ -26,7 +26,7 @@
 }
 
 .header__wrapper {
-  @apply px-6 py-8 bg-color-5 md:px-10 lg:px-14;
+  @apply px-6 py-8 bg-color-1 md:px-10 lg:px-14;
 }
 
 .header__container {

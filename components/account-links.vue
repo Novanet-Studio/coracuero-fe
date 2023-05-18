@@ -5,7 +5,7 @@
       :key="link.text"
       :class="
         $route.path.includes(link?.name)
-          ? 'bg-color-6 text-white first:rounded-t-2xl'
+          ? 'bg-color-6 first:rounded-t-2xl'
           : ''
       "
     >

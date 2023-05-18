@@ -146,7 +146,7 @@ const { submit } = submitter(async () => {
 }
 
 .auth-form__wrapper {
-  @apply relative bg-color-8 rounded-xl !pb-1 py-8 px-10 mx-auto md:max-w-[26rem] lg:p-10 lg:max-w-md;
+  @apply relative bg-color-6 rounded-xl !pb-1 py-8 px-10 mx-auto md:max-w-[26rem] lg:p-10 lg:max-w-md;
 }
 
 .auth-form__title {

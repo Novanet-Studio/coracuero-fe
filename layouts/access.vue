@@ -31,6 +31,6 @@
 }
 
 .access__link {
-  @apply cursor-pointer bg-color-5 p-4 rounded-xl;
+  @apply bg-color-1 cursor-pointer p-8 rounded-xl ;
 }
 </style>

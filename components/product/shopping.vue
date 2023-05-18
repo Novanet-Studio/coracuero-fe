@@ -1,20 +1,20 @@
 <template>
   <div class="p-shopping">
     <app-button
-      class="rounded-full !bg-color-7 !w-10 opacity-70 text-xs !p-2 flex items-center justify-center shadow-md lg:text-sm lg:!w-14 lg:!h-14"
+      class="rounded-full !bg-white border !border-black !w-10 text-xs !p-2 flex items-center justify-center shadow-md lg:text-sm lg:!w-14 lg:!h-14"
     >
-      <span class="text-color-1 !p-0">$ {{ product?.price }}</span>
+      <span class="text-color-1 text-base !p-0">$ {{ product?.price }}</span>
     </app-button>
     <figure>
       <div
-        class="bg-color-1 !shadow-md rounded-full opacity-70 text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
+        class="bg-color-2 !shadow-md rounded-full  text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
       >
         <button class="up" @click.prevent="handleIncreaseQuantity">
           <ph-plus class="lg:text-sm" />
         </button>
         <input
           v-model="quantity"
-          class="bg-color-1 opacity-70 font-bold w-8 text-center"
+          class="bg-color-2 font-bold w-8 text-center"
           type="text"
           disabled
         />
@@ -24,13 +24,13 @@
       </div>
     </figure>
     <app-button
-      class="rounded-full shadow-md !bg-color-1 !w-36 opacity-70 text-xs lg:text-sm lg:!w-44"
+      class="rounded-full shadow-md !bg-color-2 !w-36 text-xs lg:text-sm lg:!w-44"
       @click="handleAddToCart"
     >
       Agregar al carrito
     </app-button>
     <app-button
-      class="rounded-full !bg-color-7 !w-10 opacity-70 text-xs !p-2 flex items-center justify-center !shadow-md lg:!w-14 lg:!h-14"
+      class="rounded-full !bg-color-6 !w-10 text-xs !p-2 flex items-center justify-center !shadow-md lg:!w-14 lg:!h-14"
       @click="handleAddItemToWishlist"
     >
       <ph-heart class="text-color-1 lg:text-2xl" />

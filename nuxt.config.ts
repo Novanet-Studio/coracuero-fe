@@ -58,6 +58,12 @@ export default defineNuxtConfig({
     upperAfterPrefix: false,
   },
 
+  router: {
+    options: {
+      linkActiveClass: "text-black font-bold",
+    },
+  },
+
   pwa: {
     meta: {
       title: 'Coracuero',

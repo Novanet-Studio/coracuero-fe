@@ -32,7 +32,7 @@
 }
 
 .copyright__site {
-  @apply block w-full mb-0 leading-8 text-xs md:(w-auto my-0);
+  @apply block w-full mb-0 leading-8 text-sm md:(w-auto my-0);
 }
 
 .copyright__payment {
@@ -40,7 +40,7 @@
 }
 
 .copyright__payment-title {
-  @apply block text-xs pb-[10px] md:(pb-0 pr-2);
+  @apply block text-sm pb-[10px] md:(pb-0 pr-2);
 }
 
 .copyright__author {
@@ -48,6 +48,6 @@
 }
 
 .copyright__author-text {
-  @apply text-xs md:mr-2;
+  @apply text-sm md:mr-2;
 }
 </style>

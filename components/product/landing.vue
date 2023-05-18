@@ -75,7 +75,7 @@ onMounted(() => {
 }
 
 .landing__title {
-  @apply mb-0 inline-block text-md font-semibold text-color-1 md:text-lg lg:text-xl first-letter:uppercase;
+  @apply mb-0 inline-block text-md font-semibold text-color-6 md:text-lg lg:text-xl first-letter:uppercase;
 }
 
 .landing__content {

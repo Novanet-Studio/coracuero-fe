@@ -54,7 +54,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .order-summary__content {
-  @apply px-5 py-8 mb-3 rounded-sm rounded-2xl bg-color-7 shadow-lg lg:p-8;
+  @apply px-5 py-8 mb-3 rounded-sm rounded-2xl bg-color-6 shadow-lg lg:p-8;
 }
 
 .order-summary__figure {

@@ -147,7 +147,7 @@ const { submit } = submitter(async () => {
 }
 
 .form {
-  @apply relative bg-color-8 rounded-xl shadow-md !pb-1 p-6 mx-auto md:p-12;
+  @apply relative bg-color-6 rounded-xl shadow-md !pb-1 p-6 mx-auto md:p-12;
 }
 
 .form-group {

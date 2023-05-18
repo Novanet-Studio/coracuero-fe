@@ -1,7 +1,7 @@
 <template>
   <div class="detail flex gap-4">
     <div
-      class="ps-product__header p-6 bg-color-8 shadow-md container relative rounded-xl flex flex-col md:flex-row lg:mx-auto"
+      class="ps-product__header p-6 bg-color-6 shadow-md container relative rounded-xl flex flex-col md:flex-row lg:mx-auto"
     >
       <div class="flex justify-center p-2 md:p-4 lg:(p-14 pb-18)">
         <thumbnail-default :product="product" />

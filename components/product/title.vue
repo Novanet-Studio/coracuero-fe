@@ -15,6 +15,6 @@ defineProps<Props>();
 
 <style scoped>
 .title {
-  @apply m-0 block whitespace-pre-wrap truncate text-color-5 text-center font-semibold text-xs pb-1 pl-0 lg:(text-sm pb-3) overflow-hidden;
+  @apply m-0 block whitespace-pre-wrap truncate text-color-3 text-center font-semibold text-xs pb-1 pl-0 lg:(text-sm pb-3) overflow-hidden;
 }
 </style>

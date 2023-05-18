@@ -29,7 +29,7 @@ const checkout = $store.checkout();
 
 <style scoped>
 .resume {
-  @apply mb-8 px-5 py-3 rounded-xl bg-color-8 rounded-xl text-dark-200 md:p-8;
+  @apply mb-8 px-5 py-3 rounded-xl bg-color-6 rounded-xl text-dark-200 md:p-8;
 }
 
 .resume__content {

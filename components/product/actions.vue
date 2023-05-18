@@ -113,6 +113,6 @@ const handleOpenQuickView = () => {
 }
 
 .actions__link {
-  @apply flex justify-center text-xs p-2 px-6 rounded-full bg-color-1 rounded-full text-white font-semibold shadow-md shadow-gray-300 lg:text-sm;
+  @apply flex justify-center text-xs p-2 px-6 rounded-full bg-color-2 rounded-full text-white font-semibold shadow-md shadow-gray-300 lg:text-sm;
 }
 </style>

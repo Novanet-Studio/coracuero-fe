@@ -112,6 +112,6 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 }
 
 .address-wrapper {
-  @apply bg-color-8 p-12 rounded-xl relative shadow-xl lg:p-12;
+  @apply bg-color-6 p-12 rounded-xl relative shadow-xl lg:p-12;
 }
 </style>

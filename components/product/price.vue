@@ -13,6 +13,6 @@ defineProps<Props>();
 
 <style scoped>
 .price {
-  @apply bg-color-2 inline-flex p-3 text-base rounded-full text-color-1 mt-6 shadow-md shadow-gray-200 text-xs font-semibold before:content-$;
+  @apply inline-flex bg-color-white rounded-full border-1 border-black text-color-2 text-base font-semibold shadow-md shadow-gray-200 p-3 mt-6 before:content-$;
 }
 </style>
