@@ -82,12 +82,12 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 
-definePageMeta({
+/* definePageMeta({
   pageTransition: {
     name: 'page',
   },
 });
-
+ */
 const router = useRouter();
 const { $store, $notify } = useNuxtApp();
 

@@ -52,7 +52,7 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-      <transition
+      <Transition
         leave-active-class="transition ease-in duration-100"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
@@ -111,7 +111,7 @@
             </li>
           </template>
         </ul>
-      </transition>
+      </Transition>
     </div>
     <div class="text-xs pt-2 text-red-500" v-if="error && errorMessage">
       {{ errorMessage }}

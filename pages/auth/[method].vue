@@ -20,6 +20,9 @@ import RegisterContent from '~/components/register-content.vue';
 
 definePageMeta({
   layout: 'access',
+  layoutTransition: {
+    name: 'page'
+  }
 });
 
 const isLogin = ref(false);

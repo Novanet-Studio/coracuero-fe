@@ -18,7 +18,7 @@
         </span>
       </div>
       <!-- Menu -->
-      <transition name="slide-fade">
+      <Transition name="slide-fade">
         <template v-if="isOpen">
           <div v-if="total > 0" class="mini-cart">
             <div class="mini-cart__body">
@@ -57,7 +57,7 @@
             <div class="mini-cart__empty">No hay productos en el carrito</div>
           </div>
         </template>
-      </transition>
+      </Transition>
     </div>
   </div>
 </template>

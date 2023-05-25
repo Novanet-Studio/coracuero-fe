@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'page' },
+    layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
   modules: [
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
 
   router: {
     options: {
-      linkActiveClass: "text-black font-bold",
+      linkActiveClass: 'text-black font-bold',
     },
   },
 
