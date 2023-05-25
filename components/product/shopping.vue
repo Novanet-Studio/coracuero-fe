@@ -7,13 +7,13 @@
     </app-button>
     <figure>
       <div
-        class="bg-color-2 !shadow-md rounded-full  text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
+        class="bg-color-2 !shadow-md rounded-full text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
       >
         <button class="up" @click.prevent="handleIncreaseQuantity">
           <ph-plus class="lg:text-sm" />
         </button>
         <input
-          v-model="quantity"
+          v-model.number="quantity"
           class="bg-color-2 font-bold w-8 text-center"
           type="text"
           disabled
@@ -53,11 +53,11 @@ interface Props {
 
 const { $notify, $store } = useNuxtApp();
 const cart = $store.cart();
-// const productStore = $store.product();
+const productStore = $store.product();
 const wishlist = $store.wishlist();
 const router = useRouter();
 const props = defineProps<Props>();
-const quantity = ref<number>(1);
+const quantity = inject('quantity') as Ref<number>;
 
 const handleIncreaseQuantity = () => quantity.value++;
 const handleDescreaseQuantity = () =>
@@ -71,7 +71,7 @@ const addItemToCart = async (payload: any) => {
 
   // const itemsId = cart.cartItems.map((item) => item.id);
 
-  // await product.getCartProducts(itemsId);
+  // await productStore.getCartProducts(itemsId);
 
   $notify({
     group: 'all',
