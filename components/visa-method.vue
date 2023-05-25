@@ -217,7 +217,7 @@ const createInvoice = async (payment: any, products: any[]) => {
     paid: true,
     payment_id: payment.id,
     products: filterProducts,
-    user_id: Number(auth.user.id),
+    user: Number(auth.user.id),
     shippingAddress: payment.shippingAddress,
     fullName: payment.note,
     cardType: payment.cardDetails.card.cardBrand,

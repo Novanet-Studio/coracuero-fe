@@ -37,7 +37,7 @@ import { PhX } from '@phosphor-icons/vue';
   border-radius: 4px;
   background-color: #fff;
   border: 1px solid #f9f9f9;
-  border-bottom: 3px solid #feeed7;
+  border-bottom: 3px solid #000000;
   box-shadow: 0 1px 5px 1px rgba(#ccc, 0.5);
 }
 

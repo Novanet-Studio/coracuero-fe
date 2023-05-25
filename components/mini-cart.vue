@@ -2,7 +2,12 @@
   <div class="relative">
     <div
       class="cursor-pointer"
-      @mouseover="isOpen = true"
+      @mouseover="
+        () => {
+          isOpen = true;
+          loadCartProducts();
+        }
+      "
       @mouseleave="isOpen = false"
       @click.prevent="isOpen = !isOpen"
     >
