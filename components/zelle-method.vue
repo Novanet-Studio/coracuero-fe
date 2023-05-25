@@ -93,7 +93,7 @@
           btn-type="submit"
           text="Enviar"
           @click="submit"
-          :disabled="isError || !verify()"
+          :disabled="isError || !verify() || sending"
         />
       </div>
     </form>
