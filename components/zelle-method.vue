@@ -196,7 +196,7 @@ async function createInvoice(payment: any, products: any[]) {
     paid: false,
     payment_id: payment.confirmation_id,
     products: filterProducts,
-    users_permissions_user: Number(auth.user.id),
+    user: Number(auth.user.id),
     shipment_address: addressData,
     payment_info: [paymentInfo],
     payment_method: 'zelle',

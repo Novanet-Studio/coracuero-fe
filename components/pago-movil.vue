@@ -81,7 +81,7 @@
           >Numero de confirmacion<sup class="form__required">*</sup></label
         >
         <app-input
-          v-model="formData.confirmation"
+          v-model.number="formData.confirmation"
           type="number"
           :is-error="status.confirmation.isError"
           :error-message="status.confirmation.message"
@@ -205,7 +205,7 @@ async function createInvoice(payment: any, products: any[]) {
     paid: false,
     payment_id: payment.confirmation_id,
     products: filterProducts,
-    users_permissions_user: Number(auth.user.id),
+    user: Number(auth.user.id),
     shipment_address: addressData,
     payment_info: [paymentInfo],
     payment_method: 'pago_movil',

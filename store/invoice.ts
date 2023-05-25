@@ -116,7 +116,7 @@ export const useInvoice = defineStore('invoice', {
         paid: true,
         payment_id: order.id,
         products: items,
-        users_permissions_user: Number(auth.user.id),
+        user: Number(auth.user.id),
         shippingAddress: address,
         payment_info: [paymentInfo],
         payment_method: 'paypal',
