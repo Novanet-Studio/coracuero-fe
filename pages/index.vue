@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-banner />
+    <app-slider :slider="images.inicio.slider" />
     <app-message
       message="¿Quieres conocer nuestra colección de cueros? 
 Tenemos artículos"
@@ -21,5 +21,7 @@ Tenemos artículos"
 </template>
 
 <script lang="ts" setup>
+import images from '~/data/images.json';
+
 const { categories, isLoading } = useCategory({ ordered: true });
 </script>

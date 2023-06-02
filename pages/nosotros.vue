@@ -1,28 +1,7 @@
 <template>
   <section>
-    <div class="n-banner">
-      <div class="n-banner__wrapper">
-        <div class="n-banner__left">
-          <div class="n-banner__slider">
-            <nuxt-img
-              class="n-banner__image"
-              src="/slider/home/promotion-1.jpeg"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="n-banner__right">
-          <nuxt-img
-            src="/slider/home/promotion-1.jpeg"
-            class="n-banner__image-alt"
-          />
-          <nuxt-img
-            src="/slider/home/promotion-2.jpeg"
-            class="n-banner__image-alt"
-          />
-        </div>
-      </div>
-    </div>
+    <app-slider :slider="images.nosotros.slider" />
+
     <div class="mt-5">
       <app-message class="text-lg lg:!text-2xl" message="Bio" />
     </div>
@@ -90,33 +69,6 @@
   </section>
 </template>
 
-<style scoped>
-.n-banner {
-  @apply py-16 mb-8 px-8 md:(py-12 mb-0);
-}
-
-.n-banner__wrapper {
-  @apply flex flex-col flex-nowrap mx-auto md:flex-row justify-center;
-}
-
-.n-banner__left {
-  @apply w-full min-h-full mb-4 md:(flex-basis-[50%]) lg:flex-basis-[50%];
-}
-
-.n-banner__slider {
-  @apply min-h-full relative;
-}
-
-.n-banner__image {
-  @apply block w-full h-64 bg-center rounded-xl bg-cover md:h-80 lg:h-lg;
-}
-
-.n-banner__image-alt {
-  @apply rounded-xl h-28 w-full object-cover object-center md:h-38 lg:h-60;
-}
-
-.n-banner__right {
-  /* @apply grid grid-cols-2 rounded-xl md:(flex-basis-[40%] w-[40%] pl-6) lg:(grid-cols-1 gap-6); */
-  @apply grid grid-cols-2 rounded-xl md:(flex-basis-[50%] grid-cols-1 pl-6);
-}
-</style>
+<script lang="ts" setup>
+import images from '~/data/images.json';
+</script>

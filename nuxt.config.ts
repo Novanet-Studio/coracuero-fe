@@ -2,7 +2,6 @@ import gql from '@rollup/plugin-graphql';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  ssr: false,
   telemetry: false,
 
   app: {
@@ -90,7 +89,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    dir: 'assets/img',
     // The screen sizes predefined by `@nuxt/image`:
     screens: {
       xs: 320,
