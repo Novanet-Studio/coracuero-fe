@@ -1,6 +1,6 @@
 <template>
-  <div :class="wrapper">
-    <p class="message" :class="class">
+  <div :class="message__wrapper">
+    <p class="message__text">
       {{ message }}
     </p>
   </div>
@@ -10,32 +10,29 @@
 type Props = {
   message: string;
   halfMode?: boolean;
-  wrapperClass?: string;
-  class?: string;
 };
 
 const props = withDefaults(defineProps<Props>(), {
   halfMode: false,
 });
 
-const wrapper = computed(() => {
-  const classes = props.wrapperClass;
-  const variant = props.halfMode ? 'message-wrapper-alt' : 'message-wrapper';
-
-  return `${classes} ${variant}`;
+const message__wrapper = computed(() => {
+  const variant = props.halfMode
+    ? 'message__wrapper-centered'
+    : 'message__wrapper';
+  return `${variant}`;
 });
 </script>
 
 <style scoped>
-.message-wrapper {
+.message__wrapper {
   @apply w-full bg-color-6 p-6;
 }
-
-.message {
-  @apply text-color-3 text-[10px] text-center whitespace-pre-wrap leading-3 md:(text-xl whitespace-normal);
+.message__wrapper-centered {
+  @apply mx-auto w-[90%] bg-color-6 mt-12 p-6 rounded-lg shadow shadow-xl;
 }
-
-.message-wrapper-alt {
-  @apply bg-color-6 p-6 rounded-md shadow w-[90%] mt-12 mx-auto shadow shadow-xl;
+.message__text {
+  @apply text-color-3 text-center text-lg leading-8 p-8 
+  md:(text-2xl );
 }
 </style>

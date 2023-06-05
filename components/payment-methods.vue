@@ -37,15 +37,15 @@ import { Tabs, Tab } from 'vue3-tabs-component';
 }
 
 :deep(.tabs-component-tab) {
-  @apply p-4 px-6 text-color-1 text-xs font-bold lg:text-base lg:p-4 lg:px-8;
+  @apply p-4 px-6 text-color-1 text-xs font-bold lg:(text-base p-4 px-8);
 }
 
 :deep(.is-active:not(a)) {
   @apply p-4 px-6 bg-color-6 text-color-7 first:rounded-l-full lg:p-4 lg:px-8;
 }
 
-:deep(.is-disabled:not(a)) {
-  @apply p-4 text-color-4;
+:deep(.is-inactive) {
+  @apply p-4 text-white;
 }
 
 :deep(.tabs-component-panels) {

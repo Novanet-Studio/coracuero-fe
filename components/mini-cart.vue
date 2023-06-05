@@ -38,14 +38,13 @@
               </h3>
               <figure class="mini-cart__wrapper">
                 <div class="mini-cart__left">
-                  <nuxt-link to="/shopping-cart" class="btn py-3 text-xs">
+                  <nuxt-link to="/shopping-cart">
                     Ver carrito
                   </nuxt-link>
                 </div>
                 <div class="mini-cart__right">
                   <nuxt-link
-                    to="/checkout"
-                    class="btn btn--outline py-3 text-xs"
+                    to="/checkout"                   
                   >
                     Pagar
                   </nuxt-link>
@@ -139,10 +138,18 @@ onMounted(() => loadCartProducts());
 }
 
 .mini-cart__left {
-  @apply max-w-[50%] pr-1 flex basis-full;
+  @apply max-w-1/2 pr-1 flex basis-full;
+}
+
+.mini-cart__left a {
+  @apply btn py-3 text-xs !text-white
 }
 
 .mini-cart__right {
-  @apply max-w-[50%] pl-1 basis-full;
+  @apply max-w-1/2 pl-1 basis-full;
+}
+
+.mini-cart__right a {
+  @apply btn btn--outline py-3 text-xs;
 }
 </style>

@@ -1,0 +1,20 @@
+{
+  "message_a": "Conoce nuestra colección de cueros, tenemos artículos para diversos gustos",
+  "message_b": "Productos únicos y duraderos elaborados con cuero natural",
+  "slider": [
+    {
+      "id": "1",
+      "path": "/img/home/1.jpg"
+    },
+    {
+      "id": "2",
+      "path": "/img/home/2.jpg"
+    }
+  ],
+  "promotions": [
+    {
+      "id": "1",
+      "path": "/img/home/promotion-1.jpeg"
+    }
+  ]
+}
