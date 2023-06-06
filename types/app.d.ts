@@ -100,6 +100,11 @@ interface SubCategoryAttributes {
   products: Products[];
 }
 
+interface ColorAttributes {
+  name: string;
+  image: Image;
+}
+
 interface ProductAttributes {
   name: string;
   description: string;
@@ -108,6 +113,7 @@ interface ProductAttributes {
   materials: string;
   price: number;
   subcategory: SubCategoryAttributes;
+  colors?: ColorAttributes[];
 }
 
 interface InvoiceAtributes {
