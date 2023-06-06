@@ -19,6 +19,16 @@
         <p class="text-xs lg:text-sm">Lorem ipsum dolor sit amet.</p>
         <h5 class="text-xs font-bold mt-4 lg:text-lg">Material</h5>
         <p class="text-xs lg:text-sm">Lorem ipsum dolor sit amet.</p>
+        <div class="my-4" v-if="product.colors?.length">
+          <h4 class="font-bold mb-2">Selecciona el color:</h4>
+          <button v-for="color in product.colors">
+            <img
+              class="w-8 mr-2 rounded-full ring-2 ring-transparent transition ring-offset-2 hover:ring-dark"
+              :src="color.image.url"
+              :alt="color.name"
+            />
+          </button>
+        </div>
         <product-shopping :product="product" />
         <thumbnail :product="product" />
       </section>

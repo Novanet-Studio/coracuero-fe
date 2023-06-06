@@ -8,6 +8,7 @@ query GetProductById($id: ID!) {
         price
         colors {
           data {
+            id
             attributes {
               name
               image {
