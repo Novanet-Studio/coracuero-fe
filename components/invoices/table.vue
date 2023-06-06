@@ -59,30 +59,30 @@
                 @click="goToInvoice(item.id_invoice_user.toString(), item)"
               >
                 <td
-                  class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 border p-2 lg:text-base"
+                  class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-2 border p-2 lg:text-base"
                 >
                   {{ item.id_invoice_user }}
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   {{ item.payment_id }}
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   {{ item.date }}
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   ${{ item.amount }}
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   <span
-                    class="p-2 rounded-md text-xs"
+                    class="p-2 rounded-md text-xs text-white"
                     :class="item.paid ? 'bg-green-300' : 'bg-color-2'"
                     >{{ item.status }}</span
                   >

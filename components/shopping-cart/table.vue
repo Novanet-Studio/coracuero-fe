@@ -46,31 +46,31 @@
               <tr>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-7 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Producto
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-7 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Precio
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-7 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Cantidad
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-7 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Total
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-bold text-color-7 px-6 py-4 text-left lg:text-base"
+                  class="text-sm font-bold text-color-1 px-6 py-4 text-left lg:text-base"
                 >
                   Acciones
                 </th>
@@ -83,7 +83,7 @@
                 :key="product.id"
               >
                 <td
-                  class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg:text-base"
+                  class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-1 p-2 lg:text-base"
                 >
                   <product-shopping-cart
                     image-class="!h-auto"
@@ -91,22 +91,22 @@
                   />
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-1 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   ${{ product.price }}
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-1 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   <quantity class="group-hover:bg-white" :product="product" />
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-1 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   <total-quantity :product="product" />
                 </td>
                 <td
-                  class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                  class="text-sm text-color-1 font-light px-6 py-4 whitespace-nowrap lg:text-base"
                 >
                   <a
                     href="#"
@@ -171,7 +171,7 @@ const handleRemoveProductFromCart = (product: ProductsMapped) => {
 }
 
 .cart-table {
-  @apply w-full mb-4 text-color-6;
+  @apply w-full mb-4 text-color-1;
 }
 
 .cart-table__thead {
