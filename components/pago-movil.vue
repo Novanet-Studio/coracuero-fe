@@ -82,7 +82,7 @@
         >
         <app-input
           v-model.number="formData.confirmation"
-          type="number"
+          type="text"
           :is-error="status.confirmation.isError"
           :error-message="status.confirmation.message"
         />
