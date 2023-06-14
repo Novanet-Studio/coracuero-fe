@@ -113,7 +113,7 @@ interface ProductAttributes {
   materials: string;
   price: number;
   subcategory: SubCategoryAttributes;
-  colors?: ColorAttributes[];
+  colors?: ColorsMapped[];
 }
 
 interface InvoiceAtributes {
@@ -147,6 +147,10 @@ interface ProductsMapped extends ProductAttributes {
 }
 
 interface InvoicesMapped extends InvoiceAtributes {
+  id: string;
+}
+
+interface ColorsMapped extends ColorAttributes {
   id: string;
 }
 
@@ -241,6 +245,7 @@ interface CartItem {
   id: string;
   quantity: number;
   price: number;
+  color: string;
 }
 
 interface ProductBuyed {
