@@ -21,9 +21,13 @@
         <p class="text-xs lg:text-sm">Lorem ipsum dolor sit amet.</p>
         <div class="my-4" v-if="product.colors?.length">
           <h4 class="font-bold mb-2">Selecciona el color:</h4>
-          <button v-for="color in product.colors">
+          <button
+            v-for="color in product.colors"
+            @click.prenvent="colorId = color.id"
+          >
             <img
-              class="w-8 mr-2 rounded-full ring-2 ring-transparent transition ring-offset-2 hover:ring-dark"
+              class="w-6 mr-3 rounded-full ring-2 transition ring-offset-2 hover:ring-dark"
+              :class="color.id === colorId ? 'ring-dark' : 'ring-transparent'"
               :src="color.image.url"
               :alt="color.name"
             />
@@ -60,16 +64,28 @@ const router = useRouter();
 const markdown = new MarkdownIt();
 const thumbsSwiper = ref(null);
 const quantity = ref(1);
+const colorId = ref('');
 
 provide('thumbs', thumbsSwiper);
 provide('quantity', quantity);
 
 function handleBuy() {
   const existItem = cart.cartItems.find((item) => item.id === props.product.id);
+
+  if (!colorId.value) {
+    $notify({
+      group: 'all',
+      title: 'Advertencia!',
+      text: `Debe seleccionar un color`,
+    });
+    return;
+  }
+
   const item = {
     id: props.product.id,
     quantity: quantity.value,
     price: props.product.price,
+    color: colorId.value,
   };
 
   if (!existItem) {
