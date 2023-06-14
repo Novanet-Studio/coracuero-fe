@@ -49,6 +49,7 @@ import { PhPlus, PhMinus, PhHeart } from '@phosphor-icons/vue';
 
 interface Props {
   product: ProductsMapped;
+  colorId: string;
 }
 
 const { $notify, $store } = useNuxtApp();
@@ -113,10 +114,21 @@ const handleAddItemToWishlist = () => {
 
 const handleAddToCart = (isBuyNow = false) => {
   const existItem = cart.cartItems.find((item) => item.id === props.product.id);
+
+  if (!props.colorId) {
+    $notify({
+      group: 'all',
+      title: 'Advertencia!',
+      text: `Debe seleccionar un color`,
+    });
+    return;
+  }
+
   const item = {
     id: props.product.id,
     quantity: quantity.value,
     price: props.product.price,
+    color: props.colorId,
   };
 
   if (!existItem) {

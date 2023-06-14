@@ -33,7 +33,7 @@
             />
           </button>
         </div>
-        <product-shopping :product="product" />
+        <product-shopping :product="product" :color-id="colorId" />
         <thumbnail :product="product" />
       </section>
       <div class="py-3 mb-4 mt-4 flex justify-center absolute -bottom-4 w-full">
