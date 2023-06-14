@@ -165,7 +165,7 @@ const {
   defaultMessage: '',
 });
 
-async function createInvoice(payment: any, products: any[]) {
+async function createInvoice(payment: any, products: CartItem[]) {
   const productName = productsCart.value;
   const filterProducts: any[] = [];
 
@@ -177,6 +177,7 @@ async function createInvoice(payment: any, products: any[]) {
         quantity: Number(product.quantity),
         product_id: product.id.toString(),
         product_name: found.name,
+        color: product.color,
       });
     }
   });

@@ -169,6 +169,7 @@ async function createInvoice(payment: any, products: any[]) {
         product_id: product.id.toString(),
         quantity: Number(product.quantity),
         product_name: found.name,
+        color: product.color,
       });
     }
   });

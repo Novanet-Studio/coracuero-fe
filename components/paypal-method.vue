@@ -224,6 +224,7 @@ const loadPaypal = async () => {
               product_name: product.cartProducts?.find(
                 (prod) => prod.id === item.id
               )?.name,
+              color: item.color,
             }));
 
             await invoice.createInvoice(result, items);
