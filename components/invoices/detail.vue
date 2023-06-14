@@ -145,7 +145,7 @@
                         <td
                           class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
                         >
-                          {{ product.color?.name }}
+                          {{ product.color?.name ?? 'N/A' }}
                         </td>
                         <td
                           class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
