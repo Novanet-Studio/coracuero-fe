@@ -54,7 +54,7 @@ const sendInvoiceEmail = async (
       if (productFound) {
         productItems.push({
           quantity: item.quantity,
-          name: productFound.name,
+          name: `${productFound.name} / ${item.color}`,
           amount: item.price,
           description: productFound.description,
         });

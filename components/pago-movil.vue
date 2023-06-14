@@ -263,7 +263,7 @@ const { submit } = submitter(async () => {
   }
 });
 
-async function sendInvoiceEmail(products: any[], payment: any) {
+async function sendInvoiceEmail(products: CartItem[], payment: any) {
   try {
     let emailContent = '';
     // TODO! improve types
@@ -285,7 +285,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
       if (productFinded) {
         productItems.push({
           quantity: item.quantity,
-          name: productFinded.name,
+          name: `${productFinded.name} / ${item.color}`,
           amount: item.price,
           description: productFinded.description,
         });
