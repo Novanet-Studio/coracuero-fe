@@ -253,6 +253,7 @@ interface ProductBuyed {
   quantity: number;
   product_id: number;
   product_name: string;
+  color: ColorsMapped;
 }
 
 interface AddressDetail {
