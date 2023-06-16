@@ -96,10 +96,7 @@ const sendInvoiceEmail = async (
       text: '¡Gracias por preferirnos!',
     });
     cart.clearCartItems();
-    router.push({
-      path: '/',
-      replace: true,
-    });
+    router.push('/invoices');
   } catch (error) {
     $notify({
       group: 'all',
