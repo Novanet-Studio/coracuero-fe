@@ -9,8 +9,8 @@
       <div
         class="bg-color-2 !shadow-md rounded-full text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
       >
-        <button class="up" @click.prevent="handleIncreaseQuantity">
-          <ph-plus class="lg:text-sm" />
+        <button class="down" @click.prevent="handleDescreaseQuantity">
+          <ph-minus class="lg:text-sm" />
         </button>
         <input
           v-model.number="quantity"
@@ -18,8 +18,8 @@
           type="text"
           disabled
         />
-        <button class="down" @click.prevent="handleDescreaseQuantity">
-          <ph-minus class="lg:text-sm" />
+        <button class="up" @click.prevent="handleIncreaseQuantity">
+          <ph-plus class="lg:text-sm" />
         </button>
       </div>
     </figure>
