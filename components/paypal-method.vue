@@ -1,5 +1,8 @@
 <template>
-  <div ref="paypalRef" id="paypal-container"></div>
+  <div :class="[isSending && 'flex justify-center w-full']">
+    <simple-loader color="black" v-if="isSending" />
+    <div ref="paypalRef" id="paypal-container" v-show="!isSending"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -27,6 +30,7 @@ const invoice = $store.invoice();
 const paypalRef = ref();
 // const paypal = ref();
 const productsMail = ref<ProductsMapped[]>();
+const isSending = ref(false);
 
 const httpsCallable = $httpsCallable as HttpsCallableHelper;
 
@@ -192,6 +196,7 @@ const loadPaypal = async () => {
           }),
         onApprove: async (_, actions) => {
           try {
+            isSending.value = true;
             const result = await actions.order?.capture();
             const container = document.getElementById('paypal-container');
             container!.innerHTML = '';
@@ -237,6 +242,8 @@ const loadPaypal = async () => {
               title: 'Pagos paypal',
               text: `Hubo un error al procesar el pago!`,
             });
+          } finally {
+            isSending.value = false;
           }
         },
         onError: () =>
