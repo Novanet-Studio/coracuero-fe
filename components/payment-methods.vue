@@ -1,25 +1,27 @@
 <template>
   <div class="payment-methods">
-    <Tabs :options="{ useUrlFragmet: false }">
-      <!-- <tab name="Square up">
+    <client-only>
+      <Tabs :options="{ useUrlFragmet: false }">
+        <!-- <tab name="Square up">
         <visa-method />
       </tab> -->
-      <tab name="Paypal">
-        <paypal-method />
-      </tab>
-      <tab name="Pago movil">
-        <pago-movil />
-      </tab>
-      <tab name="Trans BoFa">
-        <trans-bofa />
-      </tab>
-      <tab name="Zelle">
-        <zelle-method />
-      </tab>
-      <tab name="Venmo">
-        <venmo-method />
-      </tab>
-    </Tabs>
+        <tab name="Paypal">
+          <paypal-method />
+        </tab>
+        <tab name="Pago movil">
+          <pago-movil />
+        </tab>
+        <tab name="Trans BoFa">
+          <trans-bofa />
+        </tab>
+        <tab name="Zelle">
+          <zelle-method />
+        </tab>
+        <tab name="Venmo">
+          <venmo-method />
+        </tab>
+      </Tabs>
+    </client-only>
   </div>
 </template>
 
