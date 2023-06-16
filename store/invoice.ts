@@ -107,8 +107,8 @@ export const useInvoice = defineStore('invoice', {
         last_name: order.payer.name?.surname,
         email: order.payer.email_address,
         confirmation_id: order.id,
-        amount: order.purchase_units[0].amount.value,
-        payment_date: order.create_time,
+        amount: Number(order.purchase_units[0].amount.value),
+        payment_date: getDate(order.create_time),
       };
 
       const body = {
@@ -118,7 +118,7 @@ export const useInvoice = defineStore('invoice', {
         payment_id: order.id,
         products: items,
         user: Number(auth.user.id),
-        shippingAddress: address,
+        shipment_address: address,
         payment_info: [paymentInfo],
         payment_method: 'paypal',
       };
