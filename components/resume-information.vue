@@ -45,7 +45,7 @@ const checkout = $store.checkout();
 }
 
 .resume__text {
-  @apply mt-0 mb-0 text-color-4 flex-basis-[100%] text-sm md:flex-1;
+  @apply mt-0 mb-0 text-color-3 flex-basis-[100%] text-sm md:flex-1;
 }
 
 .resume__link {

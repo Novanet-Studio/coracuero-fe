@@ -6,23 +6,24 @@ import {
 } from '~/graphql';
 import type { OrderResponseBody } from '@paypal/paypal-js';
 
+type ProductsMappedWithColor = ProductsMapped & {
+  color?: ColorsMapped;
+};
+
 type InvoiceStore = {
   loading: boolean;
   invoices: InvoicesMapped[] | null;
   invoice: InvoiceTableDetail | null;
-  products: ProductsMapped[] | null;
+  products: ProductsMappedWithColor[] | null;
 };
 
 const PAGE_LIMIT = 10;
 const DEFAULT_PAGE = 1;
 
-const invoiceMapperHelper = (
-  invoice: InvoicesMapped,
-  index: number
-): InvoiceTableDetail => {
+const invoiceMapperHelper = (invoice: InvoicesMapped): InvoiceTableDetail => {
   const invoices = {
     ...invoice,
-    id_invoice_user: index + 1,
+    id_invoice_user: invoice.id,
     date: new Date(invoice.createdAt as unknown as string).toLocaleDateString(
       'es-VE'
     ),
@@ -106,8 +107,8 @@ export const useInvoice = defineStore('invoice', {
         last_name: order.payer.name?.surname,
         email: order.payer.email_address,
         confirmation_id: order.id,
-        amount: order.purchase_units[0].amount.value,
-        payment_date: order.create_time,
+        amount: Number(order.purchase_units[0].amount.value),
+        payment_date: getDate(order.create_time),
       };
 
       const body = {
@@ -117,7 +118,7 @@ export const useInvoice = defineStore('invoice', {
         payment_id: order.id,
         products: items,
         user: Number(auth.user.id),
-        shippingAddress: address,
+        shipment_address: address,
         payment_info: [paymentInfo],
         payment_method: 'paypal',
       };
@@ -132,7 +133,7 @@ export const useInvoice = defineStore('invoice', {
       try {
         this.loading = true;
         const graphql = useStrapiGraphQL();
-        const temp: ProductsMapped[] = [];
+        const temp: ProductsMappedWithColor[] = [];
 
         if (!this.invoice?.products.length) return [];
 
@@ -147,7 +148,20 @@ export const useInvoice = defineStore('invoice', {
         const result = mapperData<any[]>(response);
 
         result.forEach((product) => {
-          temp.push(product.products[0]);
+          const [tempProduct] = product.products as ProductsMapped[];
+
+          let color = tempProduct.colors?.find((color) => {
+            const tem = this.invoice?.products.find(
+              (item) => item.color.id === color.id
+            );
+
+            return tem;
+          });
+
+          temp.push({
+            ...tempProduct,
+            color,
+          });
         });
 
         this.products = temp;

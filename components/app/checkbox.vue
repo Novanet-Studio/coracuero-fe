@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group flex items-center gap-2 text-sm text-gray-500">
+  <div class="checkbox__wrapper">
     <input
       id="check"
       type="checkbox"
@@ -7,7 +7,7 @@
       v-model="value"
       @change="onChange"
     />
-    <label for="check" class="lg:text-base">{{ label }}</label>
+    <label for="check">{{ label }}</label>
   </div>
 </template>
 
@@ -30,3 +30,13 @@ const value = computed({
   set: (val: boolean) => emits('update:modelValue', val),
 });
 </script>
+
+<style>
+.checkbox__wrapper {
+  @apply input-group flex items-center gap-2 text-sm text-gray-500;
+}
+
+.checkbox__wrapper label {
+  @apply lg:text-base;
+}
+</style>

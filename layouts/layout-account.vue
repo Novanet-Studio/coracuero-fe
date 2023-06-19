@@ -1,6 +1,6 @@
 <template>
-  <client-only>
-    <div class="account">
+  <div class="account">
+    <client-only>
       <div class="account__wrapper">
         <div class="account__main">
           <div class="account__main-wrapper">
@@ -30,8 +30,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </client-only>
+    </client-only>
+  </div>
 </template>
 
 <script lang="ts" setup>

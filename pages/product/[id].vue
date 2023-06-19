@@ -1,12 +1,12 @@
 <template>
   <div class="flex min-h-full mt-12 lg:mx-24">
     <div class="product2 mx-auto lg:w-full">
-      <transition name="page">
+      <Transition name="product">
         <product-detail-fullwidth
           v-if="state.product"
           :product="state.product"
         />
-      </transition>
+      </Transition>
     </div>
   </div>
 </template>

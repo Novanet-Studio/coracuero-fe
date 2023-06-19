@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="relative mt-2" ref="target">
+    <div class="custom__select" ref="target">
       <button
         type="button"
-        class="relative w-full cursor-default rounded-xl bg-[#F7F4F4] py-5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 md:py-3 focus:outline-none focus:ring-2 focus:ring-color-1 sm:(text-sm leading-6)"
+        class=""
         :class="[error && 'ring-red-600']"
         aria-haspopup="listbox"
         aria-expanded="true"
@@ -52,13 +52,13 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-      <transition
+      <Transition
         leave-active-class="transition ease-in duration-100"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
         <ul
-          class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-[#F7F4F4] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          class="countries"
           :class="open ? '' : 'hidden'"
           tabindex="-1"
           role="listbox"
@@ -73,7 +73,7 @@
           -->
 
             <li
-              class="relative cursor-default select-none py-2 pl-3 pr-9 transition ease hover:bg-color-1 hover:text-white"
+              class="countries__item"
               :class="
                 compareOptions(option)
                   ? 'bg-color-1 text-white'
@@ -111,7 +111,7 @@
             </li>
           </template>
         </ul>
-      </transition>
+      </Transition>
     </div>
     <div class="text-xs pt-2 text-red-500" v-if="error && errorMessage">
       {{ errorMessage }}
@@ -229,3 +229,21 @@ setTimeout(() => {
   unwatch();
 }, DELAY_UNWATCH_INTERVAL);
 </script>
+
+<style>
+.custom__select {
+  @apply relative mt-2;
+}
+
+.custom__select button {
+  @apply relative w-full cursor-default rounded-xl bg-white py-5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 md:py-3 focus:outline-none focus:ring-2 focus:ring-color-1 sm:(text-sm leading-6);
+}
+
+.countries {
+  @apply absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+
+.countries__item {
+  @apply relative cursor-default select-none py-2 pl-3 pr-9 transition ease hover:bg-color-1 hover:text-white;
+}
+</style>

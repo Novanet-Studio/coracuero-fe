@@ -100,6 +100,11 @@ interface SubCategoryAttributes {
   products: Products[];
 }
 
+interface ColorAttributes {
+  name: string;
+  image: Image;
+}
+
 interface ProductAttributes {
   name: string;
   description: string;
@@ -108,6 +113,7 @@ interface ProductAttributes {
   materials: string;
   price: number;
   subcategory: SubCategoryAttributes;
+  colors?: ColorsMapped[];
 }
 
 interface InvoiceAtributes {
@@ -141,6 +147,10 @@ interface ProductsMapped extends ProductAttributes {
 }
 
 interface InvoicesMapped extends InvoiceAtributes {
+  id: string;
+}
+
+interface ColorsMapped extends ColorAttributes {
   id: string;
 }
 
@@ -235,6 +245,7 @@ interface CartItem {
   id: string;
   quantity: number;
   price: number;
+  color: string;
 }
 
 interface ProductBuyed {
@@ -242,6 +253,7 @@ interface ProductBuyed {
   quantity: number;
   product_id: number;
   product_name: string;
+  color: ColorsMapped;
 }
 
 interface AddressDetail {

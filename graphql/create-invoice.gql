@@ -10,6 +10,20 @@ mutation createNewInvoice($invoice: InvoiceInput!) {
           quantity
           product_id
           product_name
+          color {
+            data {
+              attributes {
+                name
+                image {
+                  data {
+                    attributes {
+                      formats
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
         payment_id
         order_id

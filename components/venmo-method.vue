@@ -73,7 +73,7 @@
         >
         <app-input
           v-model="formData.confirmation"
-          type="number"
+          type="text"
           :is-error="status.confirmation.isError"
           :error-message="status.confirmation.message"
         />
@@ -165,6 +165,7 @@ async function createInvoice(payment: any, products: any[]) {
         product_id: product.id.toString(),
         quantity: Number(product.quantity),
         product_name: found.name,
+        color: product.color,
       });
     }
   });
@@ -246,7 +247,7 @@ const { submit } = submitter(async () => {
   }
 });
 
-async function sendInvoiceEmail(products: any[], payment: any) {
+async function sendInvoiceEmail(products: CartItem[], payment: any) {
   try {
     let emailContent = '';
     // TODO! improve types
@@ -268,7 +269,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
       if (productFinded) {
         productItems.push({
           quantity: item.quantity,
-          name: productFinded.name,
+          name: `${productFinded.name} / ${item.color}`,
           amount: item.price,
           description: productFinded.description,
         });

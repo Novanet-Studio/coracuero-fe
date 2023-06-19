@@ -103,19 +103,25 @@
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-center"
                         >
                           Precio
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-center"
+                        >
+                          Color
+                        </th>
+                        <th
+                          scope="col"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-center"
                         >
                           Cantidad
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-color-1 px-6 py-4 text-left"
+                          class="text-sm font-bold text-color-1 px-6 py-4 text-center"
                         >
                           Monto
                         </th>
@@ -139,6 +145,11 @@
                         <td
                           class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
                         >
+                          {{ product.color?.name ?? 'N/A' }}
+                        </td>
+                        <td
+                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
+                        >
                           {{ invoiceStore.invoice?.products[index].quantity }}
                         </td>
                         <td
@@ -157,8 +168,9 @@
                         </td>
                         <td></td>
                         <td></td>
+                        <td></td>
                         <td
-                          class="text-xs text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right"
+                          class="text-xs text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-center"
                         >
                           ${{ invoiceStore.invoice?.amount }}
                         </td>

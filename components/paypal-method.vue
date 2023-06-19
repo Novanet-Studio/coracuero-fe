@@ -1,5 +1,8 @@
 <template>
-  <div ref="paypalRef" id="paypal-container"></div>
+  <div :class="[isSending && 'flex justify-center w-full']">
+    <simple-loader color="black" v-if="isSending" />
+    <div ref="paypalRef" id="paypal-container" v-show="!isSending"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -27,6 +30,7 @@ const invoice = $store.invoice();
 const paypalRef = ref();
 // const paypal = ref();
 const productsMail = ref<ProductsMapped[]>();
+const isSending = ref(false);
 
 const httpsCallable = $httpsCallable as HttpsCallableHelper;
 
@@ -54,7 +58,7 @@ const sendInvoiceEmail = async (
       if (productFound) {
         productItems.push({
           quantity: item.quantity,
-          name: productFound.name,
+          name: `${productFound.name} / ${item.color}`,
           amount: item.price,
           description: productFound.description,
         });
@@ -96,10 +100,7 @@ const sendInvoiceEmail = async (
       text: '¡Gracias por preferirnos!',
     });
     cart.clearCartItems();
-    router.push({
-      path: '/',
-      replace: true,
-    });
+    router.push('/invoices');
   } catch (error) {
     $notify({
       group: 'all',
@@ -195,6 +196,7 @@ const loadPaypal = async () => {
           }),
         onApprove: async (_, actions) => {
           try {
+            isSending.value = true;
             const result = await actions.order?.capture();
             const container = document.getElementById('paypal-container');
             container!.innerHTML = '';
@@ -218,12 +220,12 @@ const loadPaypal = async () => {
 
             const items = cartItems.map((item) => ({
               quantity: item.quantity,
-              product_id: Number(
-                product.cartProducts?.find((prod) => prod.id === item.id)?.id
-              ),
+              product_id:
+                product.cartProducts?.find((prod) => prod.id === item.id)?.id,
               product_name: product.cartProducts?.find(
                 (prod) => prod.id === item.id
               )?.name,
+              color: item.color,
             }));
 
             await invoice.createInvoice(result, items);
@@ -240,6 +242,8 @@ const loadPaypal = async () => {
               title: 'Pagos paypal',
               text: `Hubo un error al procesar el pago!`,
             });
+          } finally {
+            isSending.value = false;
           }
         },
         onError: () =>
@@ -249,7 +253,7 @@ const loadPaypal = async () => {
             text: `Hubo un error, no se puede procesar el pago en estos momentos!`,
           }),
       })
-      .render('#paypal-container');
+      .render(paypalRef.value);
   } catch (error) {
     console.log('An error occurred when trying render button: ', error);
   }

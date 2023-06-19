@@ -1,10 +1,9 @@
 <template>
   <div>
-    <home-banner />
-    <app-message
-      message="¿Quieres conocer nuestra colección de cueros? 
-Tenemos artículos"
-      class="md:(py-6 !text-lg) lg:(py-12 font-bold !text-2xl)"
+    <app-slider :slider="home.slider" />
+    <app-title
+      :text="home.message_a"
+      heading="h1"
     />
     <template v-if="isLoading">
       <div class="px-8 lg:px-18">
@@ -16,10 +15,15 @@ Tenemos artículos"
         <product-landing :category="category" />
       </div>
     </template>
-    <app-message message="Productos únicos y verdaderos!" />
+    <app-title
+      :text="home.message_b"
+      heading="h2"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
+import home from '~/data/home.json';
+
 const { categories, isLoading } = useCategory({ ordered: true });
 </script>

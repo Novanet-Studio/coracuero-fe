@@ -22,7 +22,7 @@
     @mouseleave="isOpen = false"
   >
     <ph-user class="header-actions__icon" weight="light" />
-    <transition name="slide-fade">
+    <Transition name="slide-fade">
       <div class="user-area__menu-container" v-if="isOpen">
         <ul class="user-area__menu-list">
           <li
@@ -39,7 +39,7 @@
           </li>
         </ul>
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 

@@ -3,6 +3,7 @@ import gql from '@rollup/plugin-graphql';
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
+  telemetry: false,
 
   app: {
     head: {
@@ -14,7 +15,7 @@ export default defineNuxtConfig({
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'page' },
+    layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
   modules: [
@@ -60,7 +61,7 @@ export default defineNuxtConfig({
 
   router: {
     options: {
-      linkActiveClass: "text-black font-bold",
+      linkActiveClass: 'text-black font-bold',
     },
   },
 
@@ -89,7 +90,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    dir: 'assets/img',
     // The screen sizes predefined by `@nuxt/image`:
     screens: {
       xs: 320,

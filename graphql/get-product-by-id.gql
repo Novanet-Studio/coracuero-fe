@@ -6,8 +6,29 @@ query GetProductById($id: ID!) {
         name
         description
         price
+        colors {
+          data {
+            id
+            attributes {
+              name
+              image {
+                data {
+                  id
+                  attributes {
+                    name
+                    url
+                    alternativeText
+                    caption
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }
         images {
           data {
+            id
             attributes {
               name
               url
@@ -17,14 +38,6 @@ query GetProductById($id: ID!) {
             }
           }
         }
-        # category {
-        #   data {
-        #     id
-        #     attributes {
-        #       name
-        #     }
-        #   }
-        # }
       }
     }
   }

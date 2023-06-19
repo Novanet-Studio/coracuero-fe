@@ -1,9 +1,6 @@
 <template>
   <section class="wrapper">
-    <app-message
-      class="py-6 text-lg lg:(py-10 !text-2xl)"
-      message="Contáctanos si tienes cualquier pregunta"
-    />
+    <app-title heading="h1" text="Contáctanos si tienes cualquier pregunta" />
     <div class="wrapper__content">
       <p class="message">Para pedidos, por favor llene el formulario</p>
       <form class="form" @submit.prevent="submit">
@@ -135,7 +132,7 @@ const { submit } = submitter(async () => {
 
 <style scoped>
 .wrapper {
-  @apply mt-8;
+  @apply 
 }
 
 .wrapper__content {

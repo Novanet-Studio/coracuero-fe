@@ -1,8 +1,8 @@
 <template>
   <section>
-    <header class="p-6 flex justify-center mt-12">
-      <nuxt-link class="cursor-pointer bg-color-5 p-4 rounded-xl" to="/">
-        <img src="~/assets/img/logo.png" alt="Project logo" />
+    <header class="header">
+      <nuxt-link class="header__logo" to="/">
+        <img src="/img/logo.png" alt="Project logo" />
       </nuxt-link>
     </header>
     <div class="my-8 mb-0">
@@ -23,10 +23,7 @@
           </h4>
           <payment-methods />
           <div class="block__link-wrapper">
-            <nuxt-link
-              class="bg-color-4 px-6 py-3 rounded-full text-white flex items-center gap-2 text-xs mx-4 lg:(text-base mx-0)"
-              to="/shipping"
-            >
+            <nuxt-link class="" to="/shipping">
               <!-- <i class="icon-arrow-left mr-2"></i> -->
               <ph-arrow-left weight="light" />
               Regresar
@@ -51,7 +48,18 @@ definePageMeta({
 </script>
 
 <style scoped>
+.header {
+  @apply p-6 flex justify-center mt-12;
+}
+
+.header__logo {
+  @apply cursor-pointer bg-color-2 p-4 rounded-xl;
+}
 .app-title {
   @apply font-semibold mb-3 text-color-4 text-sm;
+}
+
+.block__link-wrapper a {
+  @apply flex items-center gap-2 text-xs mx-4 lg:(text-base mx-0);
 }
 </style>

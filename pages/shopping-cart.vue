@@ -21,7 +21,11 @@
         <div class="shopping-cart__footer">
           <div></div>
           <div>
-            <app-button text="Proceder a la compra" class="mb-16" />
+            <app-button
+              text="Proceder a la compra"
+              class="mb-16"
+              @click="goToCheckout"
+            />
           </div>
         </div>
       </div>
@@ -55,12 +59,7 @@ const message = inject('title') as Ref<string>;
 message.value = 'Carrito de compras';
 
 const goToCheckout = async () => {
-  // TODO!: fix routing
-  await router.push({
-    path: '/checkout',
-    force: true,
-    replace: true,
-  });
+  await router.push('/checkout');
   router.go(0);
 };
 

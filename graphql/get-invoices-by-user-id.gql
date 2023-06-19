@@ -14,6 +14,21 @@ query GetInvoicesByUserId($id: ID, $page: Int, $pageSize: Int) {
           quantity
           product_id
           product_name
+          color {
+            data {
+              id
+              attributes {
+                name
+                image {
+                  data {
+                    attributes {
+                      formats
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
         payment_id
         order_id

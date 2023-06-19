@@ -55,13 +55,14 @@ export const useGlobal = defineStore('global', {
     },
     changeCurrency(currency: Currency) {
       this.currency = currency;
-      // const cookieParams = {
-      //   data: this.currency,
-      // };
-      // this.$cookies.set('currency', cookieParams, {
-      //     path: '/',
-      //     maxAge: 60 * 60 * 24 * 7
-      // });
+      const cookieParams = {
+        data: this.currency,
+      };
+      this.$cookies.set('currency', cookieParams, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+        sameSite: 'lax'
+      });
     },
   },
 });
