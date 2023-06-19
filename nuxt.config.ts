@@ -90,7 +90,12 @@ export default defineNuxtConfig({
   },
 
   image: {
-    // The screen sizes predefined by `@nuxt/image`:
+    image: {
+      provider: 'netlify',
+      netlify: {
+        baseURl: process.env.IMAGES_URL
+      }
+    },
     screens: {
       xs: 320,
       sm: 640,
