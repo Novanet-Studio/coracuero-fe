@@ -7,7 +7,7 @@
     :modules="[Navigation]"
   >
     <swiper-slide v-for="(image, index) in slider" :key="index">
-      <img
+      <nuxt-picture
         class="slider__image"
         :src="image.path"
         alt="Products of the brand"
