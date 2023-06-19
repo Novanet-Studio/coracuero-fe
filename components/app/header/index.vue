@@ -6,7 +6,7 @@
           <nuxt-link class="header__link" to="/">
             <img
               class="w-[69px] mx-auto lg:w-[75px]"
-              src="~/assets/img/logo.png"
+              src="/img/logo.png"
               alt="Coracuero logo"
             />
           </nuxt-link>

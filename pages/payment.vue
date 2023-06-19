@@ -2,7 +2,7 @@
   <section>
     <header class="header">
       <nuxt-link class="header__logo" to="/">
-        <img src="~/assets/img/logo.png" alt="Project logo" />
+        <img src="/img/logo.png" alt="Project logo" />
       </nuxt-link>
     </header>
     <div class="my-8 mb-0">
