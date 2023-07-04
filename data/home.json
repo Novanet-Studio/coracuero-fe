@@ -4,17 +4,11 @@
   "slider": [
     {
       "id": "1",
-      "path": "/img/home/1.jpg"
+      "path": "/img/home/coracuero-carteras.webp"
     },
     {
       "id": "2",
-      "path": "/img/home/2.jpg"
-    }
-  ],
-  "promotions": [
-    {
-      "id": "1",
-      "path": "/img/home/promotion-1.jpeg"
+      "path": "/img/home/coracuero-carteras-abanico.webp"
     }
   ]
 }
