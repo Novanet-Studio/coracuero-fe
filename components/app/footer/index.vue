@@ -23,6 +23,6 @@ withDefaults(defineProps<Props>(), {
 }
 
 .footer__wrapper {
-  @apply mx-auto md:(px-0 max-w-full);
+  @apply mx-auto px-0 max-w-full;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex min-h-full mt-12 lg:mx-24">
-    <div class="product2 mx-auto lg:w-full">
+    <div class="mx-auto w-full">
       <Transition name="product">
         <product-detail-fullwidth
           v-if="state.product"

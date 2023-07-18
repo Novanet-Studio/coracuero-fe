@@ -1,8 +1,8 @@
 <template>
   <client-only>
-    <div class="ps-product__thumbnail h-full" data-vertical="true">
+    <div class="ps-product__thumbnail" data-vertical="true">
       <figure class="h-full">
-        <div class="ps-wrapper max-w-sm md:max-w-xs lg:max-w-xl h-full">
+        <div class="ps-wrapper max-w-xs md:max-w-xs lg:max-w-xl h-full">
           <!-- Gallery-->
           <div class="ps-product__gallery h-full">
             <swiper
@@ -117,7 +117,6 @@ const thumbsSwiper = inject('thumbs') as Ref<any>;
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+
 }
 </style>

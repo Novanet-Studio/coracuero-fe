@@ -64,7 +64,7 @@ const socialNetworks = [
 }
 
 .widgets__list {
-  @apply bg-color-5 flex justify-around;
+  @apply bg-color-5 flex-wrap justify-around;
 }
 
 .widgets__item {

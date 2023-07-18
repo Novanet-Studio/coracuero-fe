@@ -6,22 +6,39 @@
           {{ category.name }}
         </h3>
       </div>
-      <div class="landing__content">
-        <swiper
-          navigation
-          :modules="modules"
-          :slides-per-view="breakpoints.between('sm', 'md') ? 2 : 5"
-          :space-between="1"
+
+      <swiper
+        navigation
+        :modules="modules"
+        :space-between="20"
+        :slides-per-view="3"
+        :breakpoints="{
+          '375': {
+            slidesPerView: 2,
+          },
+          '480': {
+            slidesPerView: 2,
+          },
+          '640': {
+            slidesPerView: 2,
+          },
+          '768': {
+            slidesPerView: 4,
+          },
+          '1024': {
+            slidesPerView: 6,
+          },
+        }"
+        class="landing__content"
+      >
+        <swiper-slide
+          v-for="product in products"
+          :key="product.id"
+          class="landing__slide"
         >
-          <swiper-slide
-            v-for="product in products"
-            :key="product.id"
-            class="landing__slide"
-          >
-            <product-default :product="product" />
-          </swiper-slide>
-        </swiper>
-      </div>
+          <product-default :product="product" />
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
 </template>
@@ -42,13 +59,6 @@ type Props = {
 const props = defineProps<Props>();
 const products = ref<ProductsMapped[] | null>(null);
 const modules = [Autoplay, Navigation, Pagination];
-const breakpoints = useBreakpoints({
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  '2xl': 1366,
-});
 
 onMounted(() => {
   const productList: ProductsMapped[] = [];
@@ -83,6 +93,6 @@ onMounted(() => {
 }
 
 .landing__slide {
-  @apply flex justify-center md:(block !w-[260px]) lg:!w-[297px];
+  @apply flex justify-center;
 }
 </style>

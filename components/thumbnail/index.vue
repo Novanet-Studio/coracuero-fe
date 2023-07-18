@@ -1,7 +1,7 @@
 <template>
-  <div class="ps-product__variants max-w-48 md:max-w-8 lg:max-w-32">
+  <div class="ps-product__variants max-w-full md:(max-w-1/2)">
     <swiper
-      class="swiper-thumbs md:(max-w-84 max-h-23)"
+      class="swiper-thumbs w-full"
       @swiper="setThumbsSwiper"
       :space-between="10"
       :slides-per-view="4"
@@ -49,15 +49,14 @@ const setThumbsSwiper = (swiper: any) => {
 <style scoped>
 .swiper-thumbs {
   /* height: 20%; */
-  height: 10rem;
-  width: 35rem;
+
   box-sizing: border-box;
   padding: 10px 0.2rem;
 }
 
 .swiper-thumbs .swiper-slide {
-  width: 25%;
-  height: 100%;
+
+
   opacity: 0.4;
 }
 

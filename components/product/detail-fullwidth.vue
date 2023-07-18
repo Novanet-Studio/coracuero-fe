@@ -1,7 +1,7 @@
 <template>
   <div class="detail flex gap-4">
     <div
-      class="ps-product__header p-6 bg-color-6 shadow-md container relative rounded-xl flex flex-col md:flex-row lg:mx-auto"
+      class="ps-product__header bg-color-6 shadow-md containerrounded-xl relative flex flex-col md:flex-row lg:mx-auto"
     >
       <div class="flex justify-center p-2 md:p-4 lg:(p-14 pb-18)">
         <thumbnail-default :product="product" />
@@ -16,9 +16,15 @@
           v-html="markdown.render(product?.description ?? '')"
         ></div>
         <h5 class="text-xs font-bold mt-4 lg:text-lg">Tamaños</h5>
-        <p class="text-xs lg:text-sm">Lorem ipsum dolor sit amet.</p>
+        <div
+          class="text-xs lg:text-sm"
+          v-html="markdown.render(product?.size ?? '')"
+        ></div>
         <h5 class="text-xs font-bold mt-4 lg:text-lg">Material</h5>
-        <p class="text-xs lg:text-sm">Lorem ipsum dolor sit amet.</p>
+        <div
+          class="text-xs lg:text-sm"
+          v-html="markdown.render(product?.materials ?? '')"
+        ></div>
         <div class="my-4" v-if="product.colors?.length">
           <h4 class="font-bold mb-2">Selecciona el color:</h4>
           <button

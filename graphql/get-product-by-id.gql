@@ -6,6 +6,8 @@ query GetProductById($id: ID!) {
         name
         description
         price
+        size
+        materials
         colors {
           data {
             id
