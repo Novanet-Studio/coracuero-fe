@@ -4,7 +4,6 @@
     <div class="wrapper__content">
       <p class="message">Para pedidos, por favor llene el formulario</p>
       <form class="form" name="contacto" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contacto" />
         <div class="form-group">
           <label class="form__label mb-12" for="fullname"
             >Nombre y apellido</label
