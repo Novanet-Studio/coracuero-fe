@@ -66,7 +66,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/contact': { prerender: true },
+    '/contacto': { prerender: true },
   },
 
   pwa: {
