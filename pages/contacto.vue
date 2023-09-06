@@ -3,7 +3,15 @@
     <app-title heading="h1" text="Contáctanos si tienes cualquier pregunta" />
     <div class="wrapper__content">
       <p class="message">Para pedidos, por favor llene el formulario</p>
-      <form class="form" @submit.prevent="submit">
+      <form
+        class="form"
+        @submit.prevent="submit"
+        name="contacto"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contacto" />
         <div class="form-group">
           <label class="form__label mb-12" for="fullname"
             >Nombre y apellido</label
@@ -132,7 +140,7 @@ const { submit } = submitter(async () => {
 
 <style scoped>
 .wrapper {
-  @apply 
+  @apply;
 }
 
 .wrapper__content {
