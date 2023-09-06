@@ -65,6 +65,10 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/contact': { prerender: true },
+  },
+
   pwa: {
     meta: {
       title: 'Coracuero',
