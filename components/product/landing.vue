@@ -72,6 +72,22 @@ onMounted(() => {
 </script>
 
 <style scoped>
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  --swiper-navigation-size: 1.5rem;
+  --swiper-navigation-color: white;
+  height: var(--swiper-navigation-size);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1.5em;
+  border-radius: 100%;
+}
+
+:global(.landing .swiper-button-next),
+:global(.landing .swiper-button-prev) {
+  --swiper-navigation-size: 1rem;
+  padding: 1em;
+}
+
 .landing {
   @apply pb-10 first:pt-10;
 }
