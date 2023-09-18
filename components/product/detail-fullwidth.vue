@@ -4,7 +4,10 @@
       class="ps-product__header bg-color-6 shadow-md container rounded-xl relative flex flex-col md:flex-row lg:(mx-auto gap-4)"
     >
       <div class="flex justify-center p-2 md:(p-4 mb-6) lg:(p-14 pb-18)">
-        <thumbnail-default :product="product" />
+        <thumbnail-default
+          :product="product"
+          @show-ligthbox="showLightbox = true"
+        />
       </div>
       <section class="my-4 ml-2 lg:py-10 lg:pb-12 text-color-1">
         <h4 class="text-lg text-color-1 font-bold lg:text-2xl">
@@ -55,6 +58,7 @@
       </div>
     </div>
     <!-- <information-default :product="product" /> -->
+    <lightbox v-model="showLightbox" :images="product.images" />
   </div>
 </template>
 
@@ -75,6 +79,7 @@ const markdown = new MarkdownIt();
 const thumbsSwiper = ref(null);
 const quantity = ref(1);
 const colorId = ref('');
+const showLightbox = ref(false);
 
 provide('thumbs', thumbsSwiper);
 provide('quantity', quantity);

@@ -6,6 +6,7 @@
           <!-- Gallery-->
           <div
             class="ps-product__gallery max-w-xs max-h-xs md:(max-w-sm max-h-sm) lg:(max-w-md max-h-md) h-full"
+            @click="$emit('show-ligthbox')"
           >
             <swiper
               class="main-swiper min-h-full"
@@ -70,7 +71,12 @@ type Props = {
   product: ProductsMapped;
 };
 
+type Emits = {
+  (e: 'show-ligthbox'): void;
+};
+
 defineProps<Props>();
+defineEmits<Emits>();
 
 const modules = ref([Autoplay, Navigation, Pagination, Thumbs, FreeMode]);
 const thumbsSwiper = inject('thumbs') as Ref<any>;

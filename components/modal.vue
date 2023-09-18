@@ -1,5 +1,5 @@
 <template>
-  <GDialog v-model="active" max-width="900">
+  <GDialog v-model="active" :max-width="maxWidth || 900">
     <slot></slot>
   </GDialog>
 </template>
@@ -9,7 +9,7 @@ import 'gitart-vue-dialog/dist/style.css';
 import { GDialog } from 'gitart-vue-dialog';
 
 const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>();
-const props = defineProps<{ modelValue: boolean }>();
+const props = defineProps<{ modelValue: boolean; maxWidth?: number }>();
 
 const active = computed({
   get: () => props.modelValue,
