@@ -21,6 +21,7 @@ query getCategories {
                         attributes {
                           name
                           formats
+                          url
                           alternativeText
                         }
                       }

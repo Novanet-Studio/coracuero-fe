@@ -5,17 +5,31 @@ import {
   transformerVariantGroup,
 } from 'unocss';
 
+type MappedColor = Record<number, string> & { [key: string]: string };
+
+const themeColors = {
+  color_1: '#000000',
+  color_2: '#292929',
+  color_3: '#707070',
+  color_4: '#C1C1C1',
+  color_5: '#E0E0E0',
+  color_6: '#F7F6F5',
+};
+
+const getColor = (item: string = ''): string | MappedColor => {
+  const mapped: MappedColor = {};
+
+  Object.entries(themeColors).forEach(([key, val]) => {
+    mapped[key.replace('color_', '')] = val;
+  });
+
+  return item ? mapped[item] : mapped;
+};
+
 export default defineConfig({
   theme: {
     colors: {
-      color: {
-        1: '#000000',
-        2: '#292929',
-        3: '#707070',
-        4: '#C1C1C1',
-        5: '#E0E0E0',
-        6: '#F7F6F5',
-      },
+      color: getColor(),
     },
     breakpoints: {
       sm: '640px',
@@ -54,4 +68,10 @@ export default defineConfig({
   },
   presets: [presetUno()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
+  rules: [
+    [
+      /^border-color-(\d)$/,
+      ([, d]) => ({ 'border-color': getColor(d) as string }),
+    ],
+  ],
 });
