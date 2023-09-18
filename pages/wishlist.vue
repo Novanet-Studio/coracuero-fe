@@ -24,7 +24,7 @@
                       scope="col"
                       class="text-sm font-bold text-color-7 px-6 py-4 text-left lg:text-base"
                     >
-                      Nombre
+                      Producto
                     </th>
                     <th
                       scope="col"
@@ -47,31 +47,47 @@
                     :key="item.id"
                   >
                     <td
-                      class="px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base"
+                      class="px-6 py-4 text-sm font-bold text-color-6 p-2 flex items-center gap-2 lg:(text-base gap-4)"
                     >
-                      <product-shopping-cart
-                        image-class="!h-auto"
-                        :product="item"
-                      />
+                      <nuxt-link
+                        class="flex h-14 w-14 justify-center items-center lg:(h-20 w-20)"
+                        :class="class"
+                        :to="`/product/${item.id}`"
+                      >
+                        <nuxt-img
+                          :src="item.images[0].formats?.small.url"
+                          :alt="item.name"
+                          :placeholder="[100, 50, 10]"
+                          sizes="sm:100vw md:50vw lg:200px"
+                          fit="outside"
+                          class="h-full object-contain"
+                        />
+                      </nuxt-link>
+                      <p class="text-color-1 lg:text-lg">{{ item.name }}</p>
                     </td>
                     <td
-                      class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+                      class="text-sm text-color-2 font-light px-6 whitespace-nowrap lg:text-base min-w-12rem"
                     >
                       $ {{ item.price.toFixed(2) }}
                     </td>
                     <td
-                      class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base lg:flex items-center"
+                      class="text-sm text-color-6 font-light px-6 py-4 lg:text-base"
                     >
-                      <app-button class="!w-48" @click="handleAddToCart(item)">
-                        Añadir al carrito
-                      </app-button>
-                      <a
-                        href="#"
-                        class="w-table__action-delete"
-                        @click.prevent="handleRemoveItemFromWishlist(item)"
-                      >
-                        <ph-x weight="light" />
-                      </a>
+                      <div class="flex gap-2 items-center">
+                        <app-button
+                          class="!w-38"
+                          @click="handleAddToCart(item)"
+                        >
+                          Añadir al carrito
+                        </app-button>
+                        <a
+                          href="#"
+                          class="w-table__action-delete"
+                          @click.prevent="handleRemoveItemFromWishlist(item)"
+                        >
+                          <ph-x class="text-xl" weight="light" />
+                        </a>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -244,6 +260,6 @@ onMounted(() => {
 }
 
 .w-table__action-delete {
-  @apply ml-4 text-red-700;
+  @apply ml-4 text-red-700 inline-block;
 }
 </style>
