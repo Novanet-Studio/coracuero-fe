@@ -20,7 +20,6 @@
 
 <script lang="ts" setup>
 import {
-  PhFacebookLogo,
   PhInstagramLogo,
   PhWhatsappLogo,
   PhEnvelope,
@@ -31,11 +30,6 @@ const socialNetworks = [
     link: 'https://www.instagram.com/coracuero/',
     icon: PhInstagramLogo,
     text: '@coracuero',
-  },
-  {
-    link: 'https://www.facebook.com/people/coracuero',
-    icon: PhFacebookLogo,
-    text: 'coracuero',
   },
   {
     link: '#',
