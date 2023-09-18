@@ -7,38 +7,53 @@
         </h3>
       </div>
 
-      <swiper
-        navigation
-        :modules="modules"
-        :space-between="20"
-        :slides-per-view="3"
-        :breakpoints="{
-          '375': {
-            slidesPerView: 2,
-          },
-          '480': {
-            slidesPerView: 2,
-          },
-          '640': {
-            slidesPerView: 2,
-          },
-          '768': {
-            slidesPerView: 4,
-          },
-          '1024': {
-            slidesPerView: 6,
-          },
-        }"
-        class="landing__content"
-      >
-        <swiper-slide
-          v-for="product in products"
-          :key="product.id"
-          class="landing__slide"
+      <div class="flex gap-2">
+        <button class="prev disabled:opacity-60" :class="`prev-${category.id}`">
+          <ph-caret-left
+            class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
+          />
+        </button>
+        <swiper
+          :modules="modules"
+          :space-between="20"
+          :slides-per-view="2"
+          :navigation="{
+            prevEl: `.prev-${category.id}`,
+            nextEl: `.next-${category.id}`,
+          }"
+          :breakpoints="{
+            '375': {
+              slidesPerView: 2,
+            },
+            '480': {
+              slidesPerView: 2,
+            },
+            '640': {
+              slidesPerView: 2,
+            },
+            '768': {
+              slidesPerView: 4,
+            },
+            '1024': {
+              slidesPerView: 6,
+            },
+          }"
+          class="landing__content flex-1"
         >
-          <product-default :product="product" />
-        </swiper-slide>
-      </swiper>
+          <swiper-slide
+            v-for="product in products"
+            :key="product.id"
+            class="landing__slide"
+          >
+            <product-default :product="product" />
+          </swiper-slide>
+        </swiper>
+        <button class="disabled:opacity-60" :class="`next-${category.id}`">
+          <ph-caret-right
+            class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
+          />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -46,7 +61,7 @@
 <script lang="ts" setup>
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { useBreakpoints } from '@vueuse/core';
+import { PhCaretLeft, PhCaretRight } from '@phosphor-icons/vue';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
