@@ -1,5 +1,5 @@
 <template>
-  <div class="ps-product__variants max-w-full md:(max-w-1/2)">
+  <div class="ps-product__variants max-w-full md:(max-w-xs)">
     <swiper
       class="swiper-thumbs w-full"
       @swiper="setThumbsSwiper"
@@ -55,8 +55,6 @@ const setThumbsSwiper = (swiper: any) => {
 }
 
 .swiper-thumbs .swiper-slide {
-
-
   opacity: 0.4;
 }
 

@@ -1,12 +1,12 @@
 <template>
   <div class="detail flex gap-4">
     <div
-      class="ps-product__header bg-color-6 shadow-md containerrounded-xl relative flex flex-col md:flex-row lg:mx-auto"
+      class="ps-product__header bg-color-6 shadow-md container rounded-xl relative flex flex-col md:flex-row lg:(mx-auto gap-4)"
     >
-      <div class="flex justify-center p-2 md:p-4 lg:(p-14 pb-18)">
+      <div class="flex justify-center p-2 md:(p-4 mb-6) lg:(p-14 pb-18)">
         <thumbnail-default :product="product" />
       </div>
-      <section class="my-4 mx-4 lg:py-10 lg:pb-12 text-color-1">
+      <section class="my-4 ml-2 lg:py-10 lg:pb-12 text-color-1">
         <h4 class="text-lg text-color-1 font-bold lg:text-2xl">
           {{ product.name }}
         </h4>
@@ -40,9 +40,13 @@
           </button>
         </div>
         <product-shopping :product="product" :color-id="colorId" />
-        <thumbnail :product="product" />
+        <div class="w-20rem mb-12 mt-6">
+          <thumbnail :product="product" />
+        </div>
       </section>
-      <div class="py-3 mb-4 mt-4 flex justify-center absolute -bottom-4 w-full">
+      <div
+        class="py-3 mb-4 mt-4 flex justify-center absolute -bottom-4 !w-full"
+      >
         <app-button
           class="absolute -bottom-5 rounded-full !w-[50%] !bg-color-1 text-xs md:!w-[30%] lg:!w-[15%] lg:text-sm"
           @click="handleBuy"

@@ -2,9 +2,11 @@
   <client-only>
     <div class="ps-product__thumbnail" data-vertical="true">
       <figure class="h-full">
-        <div class="ps-wrapper max-w-xs md:max-w-xs lg:max-w-xl h-full">
+        <div class="h-full">
           <!-- Gallery-->
-          <div class="ps-product__gallery h-full">
+          <div
+            class="ps-product__gallery max-w-xs max-h-xs md:(max-w-sm max-h-sm) lg:(max-w-md max-h-md) h-full"
+          >
             <swiper
               class="main-swiper min-h-full"
               :space-between="10"
@@ -17,10 +19,11 @@
                 v-for="image in product.images"
                 :key="image.id"
               >
-                <img
+                <nuxt-img
                   class="rounded-2xl"
                   :src="image.url"
                   :alt="image.alternativeText"
+                  placeholder
                 />
               </swiper-slide>
             </swiper>
@@ -117,6 +120,5 @@ const thumbsSwiper = inject('thumbs') as Ref<any>;
 .swiper-slide img {
   display: block;
   width: 100%;
-
 }
 </style>
