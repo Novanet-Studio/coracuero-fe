@@ -55,9 +55,6 @@
           </app-button>
         </div>
       </form>
-      <p class="message mt-16">Mapa</p>
-      <!-- TODO: change to bem when implement real map -->
-      <div class="w-full h-80 rounded-xl bg-gray-300 shadow-md" />
     </div>
   </section>
 </template>
