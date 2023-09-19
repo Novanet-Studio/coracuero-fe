@@ -5,12 +5,12 @@
     <div class="px-8 lg:px-18" v-if="isLoading">
       <product-loader />
     </div>
-    <template v-if="!isLoading && categories.length">
+    <div id="parent" v-if="!isLoading && categories.length">
       <filter-category
         :category-active="categoryActive"
         :categories="categories"
         @remove-filter="removeFilters"
-        @filter="(id) => filterByCategory(id)"
+        @filter="(id) => filterByCategory(id, '#parent')"
       />
       <transition-group name="list" tag="div">
         <product-landing
@@ -20,9 +20,10 @@
           :key="category.id"
           :category="category"
           :filtered="!!categoryActive"
+          @filter="filterByCategory(category.id, '#parent')"
         />
       </transition-group>
-    </template>
+    </div>
     <app-title :text="home.message_b" heading="h2" />
   </div>
 </template>

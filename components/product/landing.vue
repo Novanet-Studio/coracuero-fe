@@ -5,9 +5,22 @@
         <h3 class="landing__title">
           {{ category.name }}
         </h3>
+        <!-- <nuxt-link
+          class="text-white underline text-sm"
+          :to="`/category?name=${category.name.toLowerCase()}`"
+        >
+          Ver todos
+        </nuxt-link> -->
+        <button
+          class="text-white underline text-sm"
+          @click="$emit('filter')"
+          v-if="!filtered"
+        >
+          Ver todos
+        </button>
       </div>
 
-      <div class="flex gap-2">
+      <div class="flex gap-2" v-if="products?.length && !filtered">
         <button
           class="prev disabled:opacity-60 hidden lg:block"
           :class="`prev-${category.id}`"
@@ -62,6 +75,17 @@
           />
         </button>
       </div>
+
+      <div
+        class="grid grid-cols-2 gap-4 mt-6 md:(grid-cols-3) lg:(grid-cols-5)"
+        v-if="filtered"
+      >
+        <product-default
+          v-for="product in products"
+          :product="product"
+          :key="product.id"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -77,9 +101,15 @@ import 'swiper/css/pagination';
 
 type Props = {
   category: CategoriesMapped;
+  filtered: boolean;
+};
+
+type Emits = {
+  (e: 'filter'): void;
 };
 
 const props = defineProps<Props>();
+defineEmits<Emits>();
 const products = ref<ProductsMapped[] | null>(null);
 const modules = [Autoplay, Navigation, Pagination];
 

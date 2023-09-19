@@ -10,7 +10,7 @@ interface Result {
   categoriesResult: Ref<CategoriesMapped[]>;
   categoryActive: Ref<string>;
   isLoading: Ref<boolean>;
-  filterByCategory: (categoryId: string) => void;
+  filterByCategory: (categoryId: string, selector?: string) => void;
   removeFilters: () => void;
 }
 
@@ -55,16 +55,25 @@ export default function useCategory(params?: Params): Result {
     }
   };
 
-  const filterByCategory = (categoryId: string) => {
+  const filterByCategory = (categoryId: string, selector = '') => {
     categoryActive.value = categoryId;
     categoriesResult.value = categories.value.filter(
       (category) => category.id === categoryId
     );
+
+    if (!selector) return;
+
+    setTimeout(() => {
+      document.querySelector(selector)?.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }, 1000);
   };
 
   const removeFilters = () => {
     categoryActive.value = '';
-    getCategories();
+    categoriesResult.value = categories.value;
+    // getCategories();
   };
 
   onMounted(() => {
