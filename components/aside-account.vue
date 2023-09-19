@@ -2,7 +2,7 @@
   <aside class="aside">
     <div class="aside__wrapper">
       <header class="aside__header">
-        <h3 class="aside__title">Bienvenido {{ auth.user.username }}</h3>
+        <h3 class="aside__title">Hola {{ auth.user.username }}</h3>
       </header>
     </div>
     <div>
