@@ -105,15 +105,15 @@ onMounted(() => loadCartProducts());
 
 <style scoped>
 .mini-cart {
-  @apply absolute min-w-[300px] right-0 -left-[140px] z-30 pt-[10px] transition ease shadow shadow-lg rounded-md lg:pt-0;
+  @apply absolute min-w-[300px] right-0 -left-[220px] z-30 pt-[10px] transition ease shadow shadow-lg rounded-xl lg:pt-0;
 }
 
 .mini-cart__body {
-  @apply min-h-[150px] relative p-5 max-h-[300px] overflow-auto bg-white border border-white border-b-transparent;
+  @apply min-h-[150px] relative p-5 max-h-[300px] overflow-auto bg-white border border-white border-b-transparent rounded-md;
 }
 
 .mini-cart__footer {
-  @apply p-[10px_20px_20px] border-t-0 bg-white;
+  @apply p-[10px_20px_20px] border-t-0 bg-white rounded-b-md;
 }
 .mini-cart__footer-title {
   @apply block mb-5 text-base font-semibold flex justify-between text-color-1;
