@@ -38,16 +38,10 @@
               </h3>
               <figure class="mini-cart__wrapper">
                 <div class="mini-cart__left">
-                  <nuxt-link to="/shopping-cart">
-                    Ver carrito
-                  </nuxt-link>
+                  <nuxt-link to="/shopping-cart">Ver carrito</nuxt-link>
                 </div>
                 <div class="mini-cart__right">
-                  <nuxt-link
-                    to="/checkout"                   
-                  >
-                    Pagar
-                  </nuxt-link>
+                  <nuxt-link to="/checkout">Pagar</nuxt-link>
                 </div>
               </figure>
             </div>
@@ -111,7 +105,7 @@ onMounted(() => loadCartProducts());
 
 <style scoped>
 .mini-cart {
-  @apply absolute min-w-[300px] right-0 -left-[265px] z-30 pt-[10px] transition ease rounded-md lg:pt-0;
+  @apply absolute min-w-[300px] right-0 -left-[140px] z-30 pt-[10px] transition ease shadow shadow-lg rounded-md lg:pt-0;
 }
 
 .mini-cart__body {
@@ -142,7 +136,7 @@ onMounted(() => loadCartProducts());
 }
 
 .mini-cart__left a {
-  @apply btn py-3 text-xs !text-white
+  @apply btn py-3 text-xs !text-white;
 }
 
 .mini-cart__right {
