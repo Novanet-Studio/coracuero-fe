@@ -6,7 +6,7 @@
         <app-input2
           v-model="form.username"
           class="w-full"
-          placeholder="John Doe"
+          placeholder="Usuario"
           :error="status.username.isError"
           :error-message="status.username.message"
         >
@@ -19,7 +19,7 @@
         <app-input2
           v-model="form.email"
           class="w-full"
-          placeholder="john@doe.com"
+          placeholder="Correo"
           :error="status.email.isError"
           :error-message="status.email.message"
         >
@@ -102,7 +102,7 @@ const state = reactive({
 const showPasswords = ref(false);
 
 const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#,;\$%\^&\*\.])(?=.{8,})/gm;
 
 const { form, status, submitter, verify } = useForm({
   form: () => ({
