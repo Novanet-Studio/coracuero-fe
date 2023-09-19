@@ -31,6 +31,6 @@ defineProps<Props>();
 
 <style scoped>
 .slider__image {
-  @apply w-full;
+  @apply w-full h-62 object-cover md:h-auto;
 }
 </style>

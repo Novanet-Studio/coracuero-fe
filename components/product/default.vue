@@ -3,14 +3,19 @@
     <product-title class="truncate !whitespace-pre" :product="product" />
     <div class="product__thumbnail">
       <product-thumbnail-image
-        class="!h-[200px] rounded-xl shadow shadow-md p-2"
+        class="!h-150px !w-150px rounded-xl shadow shadow-sm p-2"
         :product="product"
       />
       <product-actions :product="product" @quick-view="handleQuickView" />
     </div>
     <div class="product__container">
       <div class="product__content">
-        <product-price :product="product" />
+        <p
+          class="flex bg-color-white rounded-full border border-black text-color-2 text-xs w-15 h-15 font-semibold justify-center items-center shadow-md shadow-gray-200 p-3 mt-6"
+        >
+          $ {{ product.price }}
+        </p>
+        <!-- <product-price :product="product" /> -->
       </div>
     </div>
     <modal v-model="state.quickView">
@@ -41,11 +46,11 @@ const handleQuickView = (open: boolean) => (state.quickView = open);
 
 <style scoped>
 .product {
-  @apply box-border relative block box-border max-w-[150px] transition ease lg:(max-w-[250px]);
+  @apply box-border relative block box-border w-full transition ease lg:(max-w-[250px]);
 }
 
 .product__thumbnail {
-  @apply relative;
+  @apply relative p-2;
 }
 
 .product__content {

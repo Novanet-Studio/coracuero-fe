@@ -8,7 +8,7 @@
         @click.prevent="handleAddToCart"
       >
         <!-- <ph-bag weight="light" /> -->
-        Comprar
+        <span>Comprar</span>
       </a>
     </li>
 
@@ -105,7 +105,7 @@ const handleOpenQuickView = () => {
 
 <style scoped>
 .actions {
-  @apply absolute w-full -bottom-4 flex justify-center;
+  @apply absolute w-[calc(100%-10px)] -bottom-4 flex justify-center;
 }
 
 .actions__item {

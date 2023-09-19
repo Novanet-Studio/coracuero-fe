@@ -8,15 +8,19 @@
       </div>
 
       <div class="flex gap-2">
-        <button class="prev disabled:opacity-60" :class="`prev-${category.id}`">
+        <button
+          class="prev disabled:opacity-60 hidden lg:block"
+          :class="`prev-${category.id}`"
+        >
           <ph-caret-left
             class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
           />
         </button>
         <swiper
           :modules="modules"
-          :space-between="20"
+          :space-between="10"
           :slides-per-view="2"
+          :pagination="true"
           :navigation="{
             prevEl: `.prev-${category.id}`,
             nextEl: `.next-${category.id}`,
@@ -36,6 +40,7 @@
             },
             '1024': {
               slidesPerView: 6,
+              pagination: false,
             },
           }"
           class="landing__content flex-1"
@@ -43,12 +48,15 @@
           <swiper-slide
             v-for="product in products"
             :key="product.id"
-            class="landing__slide"
+            class="landing__slide pb-10"
           >
             <product-default :product="product" />
           </swiper-slide>
         </swiper>
-        <button class="disabled:opacity-60" :class="`next-${category.id}`">
+        <button
+          class="disabled:opacity-60 hidden lg:block"
+          :class="`next-${category.id}`"
+        >
           <ph-caret-right
             class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
           />
@@ -97,6 +105,10 @@ onMounted(() => {
   border-radius: 100%;
 }
 
+:global(.swiper-pagination-bullets .swiper-pagination-bullet-active) {
+  --swiper-pagination-color: rgba(0, 0, 0, 0.7);
+}
+
 :global(.landing .swiper-button-next),
 :global(.landing .swiper-button-prev) {
   --swiper-navigation-size: 1rem;
@@ -108,7 +120,7 @@ onMounted(() => {
 }
 
 .landing__wrapper {
-  @apply mx-auto px-9 lg:px-18;
+  @apply mx-auto px-4 lg:px-18;
 }
 
 .landing__header {

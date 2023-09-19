@@ -1,7 +1,7 @@
 <template>
   <div class="widgets">
     <section class="widgets__wrapper flex rounded-full items-center">
-      <h3 class="widgets__title px-4 lg:w-64">Contáctanos</h3>
+      <h3 class="widgets__title px-4 w-36 min-w-20 lg:w-64">Contáctanos</h3>
       <ul class="widgets__list flex gap-2 rounded-full flex-1 py-1">
         <li
           v-for="(item, index) in socialNetworks"
@@ -9,9 +9,12 @@
           class="widgets__item py-2"
         >
           <a class="widgets__link" :href="item.link">
-            <component :is="item.icon" v-bind="{ class: 'lg:text-3xl' }" />
+            <component
+              :is="item.icon"
+              v-bind="{ class: 'text-2xl lg:text-3xl' }"
+            />
           </a>
-          {{ item.text }}
+          <span class="hidden md:block">{{ item.text }}</span>
         </li>
       </ul>
     </section>
