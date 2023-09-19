@@ -1,6 +1,7 @@
 import {
   defineConfig,
   presetUno,
+  presetTypography,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
@@ -66,7 +67,7 @@ export default defineConfig({
       'absolute bottom-0 -right-[5px] flex justify-center items-center w-[20px] h-[20px] text-white bg-color-3 rounded-full',
     'header-actions__indicator': 'text-xs leading-4 font-medium not-italic',
   },
-  presets: [presetUno()],
+  presets: [presetUno(), presetTypography()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   rules: [
     [

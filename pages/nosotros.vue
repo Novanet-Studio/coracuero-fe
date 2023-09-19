@@ -5,8 +5,16 @@
     <app-title heading="h1" text="Bio"></app-title>
 
     <div class="nosotros__bio">
-      <div v-html="markdown.render(nosotros.bio_es)"></div>
-      <div v-html="markdown.render(nosotros.bio_en)"></div>
+      <div class="grow-1 w-full">
+        <h3 class="text-2xl font-bold mb-5">Español</h3>
+        <div class="" v-html="markdown.render(nosotros.bio_es)"></div>
+      </div>
+      <div
+        class="mt-8 border-t border-t-gray-200 pt-8 lg:(border-none pt-0 mt-0) grow-1 w-full"
+      >
+        <h3 class="text-2xl font-bold mb-5">Inglés</h3>
+        <div v-html="markdown.render(nosotros.bio_en)"></div>
+      </div>
     </div>
     <div class="mt-5">
       <app-message :message="nosotros.message_a" half-mode />
@@ -22,7 +30,7 @@ const markdown = new MarkdownIt();
 
 <style>
 .nosotros__bio {
-  @apply px-7 pt-6 md:px-24 lg:(flex);
+  @apply px-7 pt-6 md:px-24 w-full lg:(flex gap-4);
 }
 
 .nosotros__bio p {
