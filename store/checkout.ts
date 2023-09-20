@@ -134,5 +134,7 @@ export const useCheckout = defineStore('checkout', {
       this.saveInformation = false;
     },
   },
-  persist: true,
+  persist: {
+    storage: sessionStorage,
+  },
 });
