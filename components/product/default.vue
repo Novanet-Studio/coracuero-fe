@@ -3,7 +3,7 @@
     <product-title class="truncate !whitespace-pre" :product="product" />
     <div class="product__thumbnail">
       <product-thumbnail-image
-        class="!h-150px !w-150px rounded-xl shadow shadow-sm p-2"
+        class="!h-150px !w-150px rounded-xl shadow shadow-sm p-2 lg:(!h-250px !w-250px)"
         :product="product"
       />
       <product-actions :product="product" @quick-view="handleQuickView" />
