@@ -35,7 +35,7 @@ const socialNetworks = [
     text: '@coracuero',
   },
   {
-    link: '#',
+    link: 'https://wa.me/584122347585',
     icon: PhWhatsappLogo,
     text: '+58 412-2347585',
   },
