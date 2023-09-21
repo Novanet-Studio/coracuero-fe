@@ -37,12 +37,12 @@ const socialNetworks = [
   {
     link: '#',
     icon: PhWhatsappLogo,
-    text: '+58 412-12345654',
+    text: '+58 412-2347585',
   },
   {
     link: '#',
     icon: PhEnvelope,
-    text: 'cora@cuero.com',
+    text: ' coracuero@gmail.com',
   },
 ];
 </script>
