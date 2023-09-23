@@ -1,16 +1,16 @@
 <template>
   <ul class="actions">
-    <li class="actions__item">
+    <!-- <li class="actions__item">
       <a
         class="actions__link items-center flex gap-2"
         href="#"
         title="Add to cart"
         @click.prevent="handleAddToCart"
       >
-        <!-- <ph-bag weight="light" /> -->
+        <ph-bag weight="light" />
         <span>Comprar</span>
       </a>
-    </li>
+    </li> -->
 
     <!-- <li class="actions__item">
       <a
