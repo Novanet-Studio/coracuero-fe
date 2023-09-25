@@ -1,6 +1,5 @@
 <template>
   <div class="product">
-    <product-title class="truncate !whitespace-pre" :product="product" />
     <div class="product__thumbnail">
       <product-thumbnail-image
         class="!h-150px !w-150px rounded-xl shadow shadow-sm p-2 lg:(!h-250px !w-250px)"
@@ -9,9 +8,10 @@
       <product-actions :product="product" @quick-view="handleQuickView" />
     </div>
     <div class="product__container">
+      <product-title class="truncate !whitespace-pre" :product="product" />
       <div class="product__content">
         <p
-          class="flex bg-color-white rounded-full border border-black text-color-2 text-xs w-15 h-15 font-semibold justify-center items-center shadow-md shadow-gray-200 p-3 mt-6"
+          class="flex bg-color-white rounded-full text-color-2 text-sm font-semibold justify-center items-center p-3"
         >
           $ {{ product.price }}
         </p>
