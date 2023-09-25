@@ -1,5 +1,5 @@
 <template>
-  <section class="container mt-12 px-4">
+  <section class="container mt-12 px-4 md:(flex justify-center mx-auto)">
     <form class="auth-form">
       <div class="auth-form__wrapper">
         <h5 class="auth-form__title font-bold">Reestablece tu contraseña</h5>

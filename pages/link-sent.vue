@@ -1,5 +1,5 @@
 <template>
-  <section class="px-6">
+  <section class="px-6 md:text-center">
     <h6 class="font-bold text-center">Email enviado</h6>
     <p class="text-sm mt-4 text-black/70">
       Enviamos un correo electrónico a
