@@ -58,6 +58,11 @@
         />
       </div>
     </div>
+    <div class="flex mt-10 justify-center">
+      <nuxt-link class="text-xs underline text-color-2" to="/forgot-password"
+        >¿Has olvidado tu contraseña?</nuxt-link
+      >
+    </div>
   </form>
 </template>
 
