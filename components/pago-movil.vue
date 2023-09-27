@@ -265,8 +265,7 @@ const { submit } = submitter(async () => {
 
 async function sendInvoiceEmail(products: CartItem[], payment: any) {
   try {
-    let emailContent = '';
-    // TODO! improve types
+    const productsMail: Record<string, any>[] = [];
     const productItems: any[] = [];
     const created = new Date(payment.date).toLocaleDateString();
     const amountPayed = `$${Number(payment.amount) / amountRate.value} USD`;
@@ -290,7 +289,7 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
           description: productFinded.description,
         });
 
-        emailContent += emailTemplate({
+        productsMail.push({
           name: productFinded.name,
           price: item.price,
           quantity: item.quantity,
@@ -305,20 +304,34 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
       email: auth.user.email,
       phone: checkout.phone,
       shipping: checkout.shippingAddress,
-      nameCustomer: checkout.fullName,
+      customer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: orderId,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsMail,
+      },
+      orderId: orderId,
     };
 
     const receipt = {
       payed: amountPayed,
-      // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+      // email: 'novanet@mailinator.com',
       email: auth.user.email,
-      nameCustomer: checkout.fullName,
+      customer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: orderId,
+      orderId: orderId,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsMail,
+      },
     };
 
     await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);

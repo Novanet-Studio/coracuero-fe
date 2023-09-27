@@ -19,7 +19,8 @@
     "cors": "^2.8.5",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0",
-    "square": "^19.1.0"
+    "square": "^19.1.0",
+    "vue-email": "^0.7.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.12.0",
