@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.8.4",
-    "@nuxt/image-edge": "1.0.0-rc.2-28252196.34e7c67",
+    "@nuxt/image-edge": "1.0.0-rc.2-28263752.92e1787",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@rollup/plugin-graphql": "^2.0.3",
@@ -20,7 +20,7 @@
     "@vueuse/core": "^10.1.2",
     "@vueuse/nuxt": "^10.1.2",
     "graphql": "^16.8.1",
-    "nuxt": "^3.7.3",
+    "nuxt": "^3.7.4",
     "nuxt-lodash": "^2.4.1",
     "rimraf": "^5.0.0"
   },
@@ -35,7 +35,7 @@
     "gitart-vue-dialog": "^3.0.2",
     "markdown-it": "^13.0.1",
     "slimeform": "^0.9.1",
-    "square": "^30.0.0",
+    "square": "^31.0.0",
     "swiper": "^9.3.0",
     "vue3-tabs-component": "^1.2.1",
     "yup": "^1.0.2"
