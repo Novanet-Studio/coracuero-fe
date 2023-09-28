@@ -26,8 +26,6 @@ import {
   createInvoice as CreateInvoice,
   getProductById as GetProductById,
 } from '~/graphql';
-import type { Payment } from 'square';
-// import { AddressType } from '~/types';
 
 interface State {
   card: Square.Card | null;
@@ -42,10 +40,7 @@ interface CheckBillingResponse {
   country: string;
 }
 
-type GeneratePayment = (data: any) => Promise<{ data: Payment }>;
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-
-const { $store, $notify, $httpsCallable } = useNuxtApp();
+const { $store, $notify } = useNuxtApp();
 const { SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID } = useRuntimeConfig().public;
 
 const router = useRouter();
@@ -54,7 +49,6 @@ const auth = $store.auth();
 const cart = $store.cart();
 const product = $store.product();
 const checkout = $store.checkout();
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const state = reactive<State & Record<any, any>>({
   card: null,
@@ -92,17 +86,10 @@ const checkBilling = async (): Promise<CheckBillingResponse> => {
 
 const sendInvoiceEmail = async (products: any[], payment: any) => {
   try {
-    let emailContent = '';
-    // TODO! improve types
+    const productsList: Record<string, any>[] = [];
     const productItems: any[] = [];
     const created = new Date(payment.createdAt).toLocaleDateString();
     const amountPayed = `$${Number(payment.amountMoney.amount) / 100} USD`;
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
 
     products.forEach((item) => {
       const productFinded = state.productMail.find(
@@ -117,25 +104,11 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
           description: productFinded.description,
         });
 
-        emailContent += emailTemplate({
+        productsList.push({
           name: productFinded.name,
           price: item.price,
           quantity: item.quantity,
         });
-
-        // if (emailContent) {
-        //   emailContent = emailTemplate({
-        //     name: productFinded.name,
-        //     price: item.price,
-        //     quantity: item.quantity,
-        //   });
-        // } else {
-        //   emailContent += emailTemplate({
-        //     name: productFinded.name,
-        //     price: item.price,
-        //     quantity: item.quantity,
-        //   });
-        // }
       }
     });
 
@@ -144,23 +117,46 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       email: auth.user.email,
       phone: checkout.phone,
       shipping: checkout.fullAddress,
-      nameCustomer: checkout.fullName,
+      customer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: payment.orderId,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsList,
+      },
+      orderId: payment.orderId,
     };
 
     const receipt = {
       payed: amountPayed,
       // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
       email: payment.buyerEmailAddress,
-      nameCustomer: payment.note,
+      customer: payment.note,
       date: created,
-      content: emailContent,
-      order_id: payment.orderId,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsList,
+      },
+      orderId: payment.orderId,
     };
 
-    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
+    await Promise.all([
+      useFetch('/api/send-receipt-email', {
+        method: 'post',
+        body: receipt,
+      }),
+      useFetch('/api/send-merchant-email', {
+        method: 'post',
+        body: merchant,
+      }),
+    ]);
 
     $notify({
       group: 'all',
@@ -235,10 +231,12 @@ const createInvoice = async (payment: any, products: any[]) => {
 };
 
 const createPayment = async (paymentBody: any) => {
-  const generatePayment = httpsCallable<string, GeneratePayment>('payment');
-  const { data } = await generatePayment(paymentBody);
+  const { data } = await useFetch<any>('/api/payment', {
+    method: 'post',
+    body: paymentBody,
+  });
 
-  if (data.status !== 'COMPLETED') {
+  if (data.value.data.status !== 'COMPLETED') {
     $notify({
       group: 'all',
       title: 'Error',
@@ -255,7 +253,7 @@ const createPayment = async (paymentBody: any) => {
   });
 
   const invoiceItems = cart.cartItems;
-  const response = await createInvoice(data, invoiceItems);
+  const response = await createInvoice(data.value.data, invoiceItems);
 
   if (!response?.data?.createInvoice?.data?.id) {
     $notify({

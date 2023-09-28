@@ -12,8 +12,6 @@ declare module 'vue3-tabs-component' {
   export { Tabs, Tab };
 }
 
-type HttpsCallableHelper = <T, U>(data: T) => U;
-
 interface Pagination {
   total: number;
   pageCount: number;

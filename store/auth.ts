@@ -95,11 +95,6 @@ export const useAuth = defineStore('auth', {
       return true;
     },
     async createCustomer(user: string, email: string) {
-      const { $httpsCallable } = useNuxtApp();
-      const httpsCallable = $httpsCallable as HttpsCallableHelper;
-      const customerId = httpsCallable<HttpsCallable.CreateCustomer, any>(
-        HttpsCallable.CreateCustomer
-      );
       const idempotencyKey = crypto.randomUUID();
       const data = {
         idempotencyKey,
@@ -107,7 +102,12 @@ export const useAuth = defineStore('auth', {
         emailAddress: email,
       };
 
-      return customerId(data);
+      const { data: result } = await useFetch('/api/create-customer', {
+        method: 'post',
+        body: data,
+      });
+
+      return result;
     },
     reset() {
       const { logout } = useStrapiAuth();

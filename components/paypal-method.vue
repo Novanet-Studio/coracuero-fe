@@ -6,47 +6,28 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  loadScript,
-  type OrderResponseBody,
-  // type PayPalNamespace,
-} from '@paypal/paypal-js';
-// import { getProductById as GetProductById } from '~/graphql';
+import { loadScript, type OrderResponseBody } from '@paypal/paypal-js';
 
-// type GeneratePayment = (data: any) => Promise<{ data: any }>;
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-
-const { $store, $notify, $httpsCallable } = useNuxtApp();
-
+const { $store, $notify } = useNuxtApp();
 const { PAYPAL_CLIENT_ID } = useRuntimeConfig().public;
 
 const router = useRouter();
-// const graphql = useStrapiGraphQL();
 const auth = $store.auth();
 const cart = $store.cart();
 const product = $store.product();
 const checkout = $store.checkout();
 const invoice = $store.invoice();
 const paypalRef = ref();
-// const paypal = ref();
 const productsMail = ref<ProductsMapped[]>();
 const isSending = ref(false);
-
-const httpsCallable = $httpsCallable as HttpsCallableHelper;
 
 const sendInvoiceEmail = async (
   order: OrderResponseBody,
   items: CartItem[]
 ) => {
   try {
-    let emailContent = '';
+    const productsList: Record<string, any>[] = [];
     const productItems = [];
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
     const created = new Date(order.create_time).toLocaleDateString();
     const amountPayed = `$${order.purchase_units[0].amount.value.toString()} USD`;
 
@@ -63,7 +44,7 @@ const sendInvoiceEmail = async (
           description: productFound.description,
         });
 
-        emailContent += emailTemplate({
+        productsList.push({
           name: productFound.name,
           price: item.price,
           quantity: item.quantity,
@@ -75,24 +56,47 @@ const sendInvoiceEmail = async (
       payed: amountPayed,
       email: auth.user.email,
       phone: checkout.phone,
-      shipping: checkout.shippingAddress,
-      nameCustomer: checkout.fullName,
+      shipping: checkout.fullAddress,
+      customer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: order.id,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsList,
+      },
+      orderId: order.id,
     };
 
     const receipt = {
       payed: amountPayed,
-      email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
-      // email: order.purchase_units[0],
+      // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+      email: order.purchase_units[0],
       nameCustomer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: order.id,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsList,
+      },
+      orderId: order.id,
     };
 
-    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
+    await Promise.all([
+      useFetch('/api/send-receipt-email', {
+        method: 'post',
+        body: receipt,
+      }),
+      useFetch('/api/send-merchant-email', {
+        method: 'post',
+        body: merchant,
+      }),
+    ]);
 
     $notify({
       group: 'all',
@@ -220,8 +224,9 @@ const loadPaypal = async () => {
 
             const items = cartItems.map((item) => ({
               quantity: item.quantity,
-              product_id:
-                product.cartProducts?.find((prod) => prod.id === item.id)?.id,
+              product_id: product.cartProducts?.find(
+                (prod) => prod.id === item.id
+              )?.id,
               product_name: product.cartProducts?.find(
                 (prod) => prod.id === item.id
               )?.name,

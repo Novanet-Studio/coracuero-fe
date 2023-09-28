@@ -31,7 +31,7 @@ interface BodyTemplate {
   shipping: string;
   table: Table;
   payed: string;
-  date: Date;
+  date: string;
 }
 
 interface FooterTemplate {
@@ -88,7 +88,7 @@ const props = withDefaults(defineProps<Props>(), {
     customer: 'Juan Perez',
     email: 'ccsmultisport@gmail.com',
     phone: '041220240',
-    date: new Date('June 23, 2022 4:06:00 pm UTC'),
+    date: 'June 23, 2022 4:06:00 pm UTC',
     shipping: 'My custom address',
     orderId: '123456',
     payed: '123',
@@ -127,13 +127,6 @@ const props = withDefaults(defineProps<Props>(), {
     },
   }),
 });
-
-const formattedDate = computed(() =>
-  new Intl.DateTimeFormat('en', {
-    dateStyle: 'medium',
-    timeStyle: 'medium',
-  }).format(props.body.date)
-);
 
 const headers = props.body.table.columns.map((col) => col.header);
 const newKeys = props.body.table.columns.map((col) => col.key);
@@ -205,7 +198,7 @@ function getFirstUppercase(str: string) {
               Recibo de compra
             </EText>
             <EText class="font-bold text-[#80817f] text-xs" align="center">
-              {{ formattedDate }}
+              {{ body.date }}
             </EText>
           </ESection>
           <ESection class="max-w-[480px] mx-auto mb-8">

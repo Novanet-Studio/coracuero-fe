@@ -34,7 +34,7 @@ interface BodyTemplate {
   orderId: string;
   table: Table;
   payed: string;
-  date: Date;
+  date: string;
 }
 
 interface FooterTemplate {
@@ -166,12 +166,6 @@ const props = withDefaults(defineProps<Props>(), {
 //   }).format(props.body?.date)
 // );
 
-const getDate = (date?: Date) =>
-  new Intl.DateTimeFormat('en', {
-    dateStyle: 'medium',
-    timeStyle: 'medium',
-  }).format(date ? new Date(date) : new Date());
-
 const headers = props.body?.table.columns.map((col) => col.header);
 const newKeys = props.body?.table.columns.map((col) => col.key);
 const newValues = props.body?.table.data.map((row) => row);
@@ -256,9 +250,9 @@ function getFirstUppercase(str: string) {
             <EText class="font-bold text-[#80817f] text-xs my-1" align="center"
               >Recibo de compra</EText
             >
-            <EText class="font-bold text-[#80817f] text-xs" align="center">{{
-              getDate(body?.date) ?? 'No date'
-            }}</EText>
+            <EText class="font-bold text-[#80817f] text-xs" align="center">
+              {{ body?.date }}
+            </EText>
           </ESection>
           <ESection class="max-w-[480px] mx-auto mb-8">
             <EText class="text-[#80817f] text-sm my-1" align="left"

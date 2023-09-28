@@ -102,7 +102,7 @@ import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { createInvoice as CreateInvoice } from '~/graphql';
 
-const { $store, $notify, $httpsCallable } = useNuxtApp();
+const { $store, $notify } = useNuxtApp();
 const router = useRouter();
 const graphql = useStrapiGraphQL();
 const cart = $store.cart();
@@ -112,9 +112,6 @@ const product = $store.product();
 const sending = ref<boolean>(false);
 const productsCart = ref<ProductsMapped[]>([]);
 const productsMail = ref<ProductsMapped[]>([]);
-
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const {
   form: formData,
@@ -249,17 +246,10 @@ const { submit } = submitter(async () => {
 
 async function sendInvoiceEmail(products: CartItem[], payment: any) {
   try {
-    let emailContent = '';
-    // TODO! improve types
     const productItems: any[] = [];
+    const productsList: Record<string, any>[] = [];
     const created = new Date(payment.date).toLocaleDateString();
     const amountPayed = `$${Number(payment.amount)} USD`;
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
 
     products.forEach((item) => {
       const productFinded = productsMail.value.find(
@@ -274,7 +264,7 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
           description: productFinded.description,
         });
 
-        emailContent += emailTemplate({
+        productsList.push({
           name: productFinded.name,
           price: item.price,
           quantity: item.quantity,
@@ -291,8 +281,15 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
       shipping: checkout.shippingAddress,
       nameCustomer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: orderId,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsList,
+      },
+      orderId: orderId,
     };
 
     const receipt = {
@@ -301,11 +298,27 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
       email: auth.user.email,
       nameCustomer: checkout.fullName,
       date: created,
-      content: emailContent,
-      order_id: orderId,
+      table: {
+        columns: [
+          { header: 'Producto', key: 'name' },
+          { header: 'Precio', key: 'price' },
+          { header: 'Cantidad', key: 'quantity' },
+        ],
+        data: productsList,
+      },
+      orderId: orderId,
     };
 
-    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
+    await Promise.all([
+      useFetch('/api/send-receipt-email', {
+        method: 'post',
+        body: receipt,
+      }),
+      useFetch('/api/send-merchant-email', {
+        method: 'post',
+        body: merchant,
+      }),
+    ]);
 
     $notify({
       group: 'all',
