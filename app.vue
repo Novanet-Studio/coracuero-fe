@@ -5,10 +5,14 @@
 </template>
 
 <script lang="ts" setup>
+import { register } from 'swiper/element/bundle';
+
 const token = useStrapiToken();
 const { setToken, setUser } = useStrapiAuth();
 const { $store } = useNuxtApp();
 const auth = $store.auth();
+
+register();
 
 onMounted(() => {
   if (token.value) return;

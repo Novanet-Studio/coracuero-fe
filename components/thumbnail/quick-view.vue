@@ -2,7 +2,11 @@
   <div class="thumbnail-quick-view">
     <figure class="thumbnail-quick-view__figure">
       <div class="thumbnail-quick-view__content">
-        <swiper :centered-slides="true" navigation :modules="[Navigation]">
+        <swiper-container
+          :centered-slides="true"
+          navigation
+          :modules="[Navigation]"
+        >
           <swiper-slide
             v-for="(image, index) in product.images"
             :key="index"
@@ -10,17 +14,14 @@
           >
             <img :src="image.formats.thumbnail.url" />
           </swiper-slide>
-        </swiper>
+        </swiper-container>
       </div>
     </figure>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 
 defineProps<{ product: ProductsMapped }>();
 </script>

@@ -20,7 +20,7 @@
         </button>
       </div>
 
-      <div class="flex gap-2" v-if="products?.length && !filtered">
+      <div class="flex gap-2 max-w-full" v-if="products?.length && !filtered">
         <button
           class="prev disabled:opacity-60 hidden lg:block"
           :class="`prev-${category.id}`"
@@ -29,7 +29,7 @@
             class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
           />
         </button>
-        <swiper
+        <swiper-container
           :modules="modules"
           :space-between="10"
           :slides-per-view="2"
@@ -56,7 +56,7 @@
               pagination: false,
             },
           }"
-          class="landing__content flex-1"
+          class="landing__content flex-1 max-w-1700px"
         >
           <swiper-slide
             v-for="product in products"
@@ -65,7 +65,7 @@
           >
             <product-default :product="product" />
           </swiper-slide>
-        </swiper>
+        </swiper-container>
         <button
           class="disabled:opacity-60 hidden lg:block"
           :class="`next-${category.id}`"
@@ -91,13 +91,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Autoplay, Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { PhCaretLeft, PhCaretRight } from '@phosphor-icons/vue';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 type Props = {
   category: CategoriesMapped;
@@ -135,14 +130,14 @@ onMounted(() => {
   border-radius: 100%;
 }
 
-:global(.swiper-pagination-bullets .swiper-pagination-bullet-active) {
-  --swiper-pagination-color: rgba(0, 0, 0, 0.7);
-}
-
 :global(.landing .swiper-button-next),
 :global(.landing .swiper-button-prev) {
   --swiper-navigation-size: 1rem;
   padding: 1em;
+}
+
+swiper-container::part(bullet-active) {
+  --swiper-pagination-color: rgba(0, 0, 0, 0.7);
 }
 
 .landing {
@@ -162,10 +157,10 @@ onMounted(() => {
 }
 
 .landing__content {
-  @apply relative pt-6 md:(pt-6 px-8) lg:(pt-14 px-12);
+  @apply relative pt-6 md:(pt-6 px-8) lg:(pt-14 px-6);
 }
 
 .landing__slide {
-  @apply flex justify-center;
+  @apply w-full;
 }
 </style>

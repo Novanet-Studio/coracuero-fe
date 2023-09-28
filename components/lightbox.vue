@@ -1,6 +1,11 @@
 <script lang="ts" setup>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { FreeMode, Navigation, Pagination, Mousewheel, Thumbs } from 'swiper';
+import {
+  FreeMode,
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Thumbs,
+} from 'swiper/modules';
 import { PhX, PhCaretLeft, PhCaretRight } from '@phosphor-icons/vue';
 
 const emit = defineEmits<{
@@ -43,8 +48,8 @@ function close() {
                     class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
                   />
                 </button>
-                <swiper
-                  class="lightbox-swiper"
+                <swiper-container
+                  class="lightbox-swiper w-60 md:w-80"
                   :space-between="10"
                   :navigation="{
                     prevEl: '.prev-lightbox',
@@ -52,7 +57,7 @@ function close() {
                   }"
                   autoplay
                   pagination
-                  :thumbs="{ swiper: '.lightbox-thumbs' }"
+                  thumbs-swiper=".lightbox-thumbs"
                   :modules="[Navigation, Thumbs, Mousewheel, Pagination]"
                 >
                   <swiper-slide v-for="image in images" :key="image.id">
@@ -62,7 +67,7 @@ function close() {
                       :alt="image.alternativeText"
                     />
                   </swiper-slide>
-                </swiper>
+                </swiper-container>
                 <button class="next-lightbox disabled:opacity-60">
                   <PhCaretRight
                     class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
@@ -73,8 +78,8 @@ function close() {
           </div>
         </figure>
         <!-- Thumbnail -->
-        <div class="ps-product__variants max-w-32 mt-5 md:(max-w-32 mt-0)">
-          <swiper
+        <div class="ps-product__variants max-w-32 mt-5 md:(max-w-32 mt-6)">
+          <swiper-container
             class="lightbox-thumbs w-sm"
             @swiper="setLightboxThumbsSwiper"
             :modules="[FreeMode, Navigation]"
@@ -86,14 +91,18 @@ function close() {
             thumbs
             direction="horizontal"
           >
-            <swiper-slide v-for="image in images" :key="image.id">
+            <swiper-slide
+              v-for="image in images"
+              :key="image.id"
+              class="flex justify-center"
+            >
               <img
-                class="object-cover rounded-xl h-80px"
+                class="object-cover rounded-xl w-full h-50px"
                 :src="image.url"
                 :alt="image.alternativeText"
               />
             </swiper-slide>
-          </swiper>
+          </swiper-container>
         </div>
       </div>
     </div>

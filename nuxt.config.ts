@@ -106,6 +106,13 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag: string) =>
+        ['swiper-container', 'swiper-slide'].includes(tag),
+    },
+  },
+
   nitro: {
     preset: 'netlify-edge',
   },

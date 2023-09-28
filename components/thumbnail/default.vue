@@ -6,28 +6,29 @@
           <!-- Gallery-->
           <div
             class="ps-product__gallery max-w-xs max-h-xs md:(max-w-sm max-h-sm) lg:(max-w-md max-h-md) h-full"
-            @click="$emit('show-ligthbox')"
           >
-            <swiper
+            <swiper-container
               class="main-swiper min-h-full"
               :space-between="10"
               :navigation="true"
               :modules="modules"
-              :thumbs="{ swiper: thumbsSwiper }"
+              thumbs-swiper=".swiper-thumbs"
             >
               <swiper-slide
                 class="rounded-2xl"
                 v-for="image in product.images"
                 :key="image.id"
               >
-                <nuxt-img
-                  class="rounded-2xl"
-                  :src="image.url"
-                  :alt="image.alternativeText"
-                  placeholder
-                />
+                <button @click="$emit('show-ligthbox')">
+                  <nuxt-img
+                    class="rounded-2xl"
+                    :src="image.url"
+                    :alt="image.alternativeText"
+                    placeholder
+                  />
+                </button>
               </swiper-slide>
-            </swiper>
+            </swiper-container>
           </div>
         </div>
       </figure>
@@ -60,12 +61,13 @@
 </template>
 
 <script lang="ts" setup>
-import { Autoplay, Navigation, Pagination, Thumbs, FreeMode } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/free-mode';
+import {
+  Autoplay,
+  Navigation,
+  Pagination,
+  Thumbs,
+  FreeMode,
+} from 'swiper/modules';
 
 type Props = {
   product: ProductsMapped;
@@ -126,5 +128,12 @@ const thumbsSwiper = inject('thumbs') as Ref<any>;
 .swiper-slide img {
   display: block;
   width: 100%;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  --swiper-navigation-size: 1rem;
+  --swiper-navigation-color: #000;
+  @apply bg-dark/90 rounded-full w-4 h-4 p-3 text-white;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="ps-product__variants max-w-full md:(max-w-xs)">
-    <swiper
+    <swiper-container
       class="swiper-thumbs w-full"
       @swiper="setThumbsSwiper"
       :space-between="10"
@@ -15,21 +15,17 @@
         :key="image.id"
       >
         <img
-          class="object-fill rounded-2xl h-full w-full"
+          class="object-cover rounded-2xl h-20 w-20"
           :src="image.url"
           :alt="image.alternativeText"
         />
       </swiper-slide>
-    </swiper>
+    </swiper-container>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Autoplay, Navigation, Pagination, Thumbs } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination, Thumbs } from 'swiper/modules';
 
 type Props = {
   product: ProductsMapped;
@@ -59,11 +55,6 @@ const setThumbsSwiper = (swiper: any) => {
 }
 
 .swiper-thumbs .swiper-slide-thumb-active {
-  /* opacity: 1;
-  border: 1px solid #000; */
-  @apply opacity-100 border-2 border-color-1 ring-2 ring-color-1;
-  /* filter: blur(2px);
-  outline-offset: 1px;
-  outline: #000 solid; */
+  @apply opacity-100 border-2 border-color-1;
 }
 </style>

@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.8.4",
-    "@nuxt/image-edge": "1.0.0-rc.2-28263752.92e1787",
+    "@nuxt/image-edge": "1.0.0-rc.2-28264832.2387d47",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@rollup/plugin-graphql": "^2.0.3",
@@ -36,7 +36,7 @@
     "markdown-it": "^13.0.1",
     "slimeform": "^0.9.1",
     "square": "^31.0.0",
-    "swiper": "^9.3.0",
+    "swiper": "^10.3.1",
     "vue-email": "^0.7.2",
     "vue3-tabs-component": "^1.2.1",
     "yup": "^1.0.2"

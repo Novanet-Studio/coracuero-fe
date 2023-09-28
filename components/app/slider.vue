@@ -1,10 +1,11 @@
 <template>
-  <swiper
+  <swiper-container
     :slides-per-view="1"
     :space-between="1"
-    loop
-    navigation
-    :modules="[Navigation]"
+    loop="true"
+    navigation="true"
+    autoplay="true"
+    :modules="[Navigation, Autoplay]"
   >
     <swiper-slide v-for="(image, index) in slider" :key="index">
       <img
@@ -13,14 +14,11 @@
         alt="Products of the brand"
       />
     </swiper-slide>
-  </swiper>
+  </swiper-container>
 </template>
 
 <script lang="ts" setup>
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import { Navigation, Autoplay } from 'swiper/modules';
 
 type Props = {
   slider?: Array<TemplateStringsArray>;
@@ -32,5 +30,12 @@ defineProps<Props>();
 <style scoped>
 .slider__image {
   @apply w-full h-62 object-cover md:h-auto;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  --swiper-navigation-size: 1rem;
+  --swiper-navigation-color: #000;
+  @apply bg-dark/90 rounded-full w-4 h-4 p-3 text-white;
 }
 </style>
