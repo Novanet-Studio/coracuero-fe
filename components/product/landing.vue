@@ -23,7 +23,7 @@
       <div
         class="flex gap-2 max-w-full"
         :class="[
-          products?.length > 6
+          products?.length > 5
             ? 'lg:(max-w-[calc(100%-4rem)])'
             : 'lg:max-w-full',
         ]"
