@@ -65,8 +65,8 @@
               spaceBetween: 40,
             },
             '1024': {
-              slidesPerView: 6,
-              spaceBetween: 60,
+              slidesPerView: 4,
+              spaceBetween: 40,
               pagination: false,
             },
           }"
