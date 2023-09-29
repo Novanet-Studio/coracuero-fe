@@ -20,18 +20,15 @@
         </button>
       </div>
 
-      <div class="flex gap-2 max-w-full" v-if="products?.length && !filtered">
-        <button
-          class="prev disabled:opacity-60 hidden lg:block"
-          :class="`prev-${category.id}`"
-        >
+      <div class="landing__content" v-if="products?.length && !filtered">
+        <button class="landing__button" :class="`prev-${category.id}`">
           <ph-caret-left
             class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
           />
         </button>
         <swiper-container
           :modules="modules"
-          :space-between="10"
+      
           :slides-per-view="2"
           :pagination="true"
           :navigation="{
@@ -51,25 +48,18 @@
             '768': {
               slidesPerView: 4,
             },
-            '1024': {
-              slidesPerView: 6,
-              pagination: false,
-            },
           }"
-          class="landing__content flex-1 max-w-1700px"
+          class="swiper-container"
         >
           <swiper-slide
             v-for="product in products"
             :key="product.id"
-            class="landing__slide pb-10"
+            class="landing__slide"
           >
             <product-default :product="product" />
           </swiper-slide>
         </swiper-container>
-        <button
-          class="disabled:opacity-60 hidden lg:block"
-          :class="`next-${category.id}`"
-        >
+        <button class="landing__button" :class="`next-${category.id}`">
           <ph-caret-right
             class="text-2xl bg-dark/90 rounded-full w-8 h-8 p-1 text-white"
           />
@@ -145,7 +135,7 @@ swiper-container::part(bullet-active) {
 }
 
 .landing__wrapper {
-  @apply mx-auto px-4 lg:px-18;
+  @apply mx-auto px-4;
 }
 
 .landing__header {
@@ -157,10 +147,23 @@ swiper-container::part(bullet-active) {
 }
 
 .landing__content {
-  @apply relative pt-6 md:(pt-6 px-8) lg:(pt-14 px-6);
+  @apply w-full relative;
 }
 
+.landing__button {
+  @apply absolute top-[50%] disabled:opacity-60 z-100;
+}
+
+.landing__button:first-child {
+  @apply left-0
+}
+
+.landing__button:last-child {
+  @apply right-0 
+}
+
+
 .landing__slide {
-  @apply w-full;
+  @apply flex w-full justify-center;
 }
 </style>

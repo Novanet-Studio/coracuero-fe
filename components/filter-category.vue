@@ -3,7 +3,7 @@
     <h3 class="ml-5 text-color-2 font-900 text-2xl">Categorias</h3>
     <transition name="slide-fade">
       <button
-        class="block text-xs border border-color-3 px-2 py-1 rounded-xl text-color-3 md:(px-4 py-2 rounded-full) lg:(transition ease hover:(bg-color-3/10))"
+        class="block text-xs border border-color-3 px-2 py-1 rounded-xl text-color-3 mr-4 md:(px-4 py-2 rounded-full) lg:(transition ease hover:(bg-color-3/10))"
         @click="$emit('removeFilter')"
         v-if="!!categoryActive"
       >
@@ -12,7 +12,7 @@
     </transition>
   </div>
   <div
-    class="grid grid-cols-3 place-items-center content-center mt-4 md:(max-w-3xl mx-auto grid-cols-5) lg:(mx-none grid-cols-6) !ml-24"
+    class="grid grid-cols-3 place-items-center content-center mt-4 md:(max-w-3xl mx-auto grid-cols-5) lg:(mx-none grid-cols-6) !ml-6"
   >
     <div
       v-for="category in categories"

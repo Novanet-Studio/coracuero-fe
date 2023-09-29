@@ -2,7 +2,7 @@
   <div>
     <app-slider :slider="home.slider" />
     <app-title :text="home.message_a" heading="h1" />
-    <div class="px-8 lg:px-18" v-if="isLoading">
+    <div class="px-8" v-if="isLoading">
       <product-loader />
     </div>
     <div id="parent" v-if="!isLoading && categories.length">
