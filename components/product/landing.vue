@@ -20,7 +20,15 @@
         </button>
       </div>
 
-      <div class="flex gap-2 max-w-full" v-if="products?.length && !filtered">
+      <div
+        class="flex gap-2 max-w-full"
+        :class="[
+          products?.length > 6
+            ? 'lg:(max-w-[calc(100%-4rem)])'
+            : 'lg:max-w-full',
+        ]"
+        v-if="products?.length && !filtered"
+      >
         <button
           class="prev disabled:opacity-60 hidden lg:block"
           :class="`prev-${category.id}`"
@@ -31,7 +39,8 @@
         </button>
         <swiper-container
           :modules="modules"
-          :space-between="10"
+          class="w-full h-full lg:(w-[calc(100%-4rem)])"
+          :space-between="20"
           :slides-per-view="2"
           :pagination="true"
           :navigation="{
@@ -41,27 +50,31 @@
           :breakpoints="{
             '375': {
               slidesPerView: 2,
+              spaceBetween: 20,
             },
             '480': {
               slidesPerView: 2,
+              spaceBetween: 20,
             },
             '640': {
               slidesPerView: 2,
+              spaceBetween: 20,
             },
             '768': {
               slidesPerView: 4,
+              spaceBetween: 40,
             },
             '1024': {
               slidesPerView: 6,
+              spaceBetween: 60,
               pagination: false,
             },
           }"
-          class="landing__content flex-1 max-w-1700px"
         >
           <swiper-slide
             v-for="product in products"
             :key="product.id"
-            class="landing__slide pb-10"
+            class="py-10"
           >
             <product-default :product="product" />
           </swiper-slide>
@@ -160,7 +173,11 @@ swiper-container::part(bullet-active) {
   @apply relative pt-6 md:(pt-6 px-8) lg:(pt-14 px-6);
 }
 
-.landing__slide {
-  @apply w-full;
+swiper-container {
+  @apply w-full h-full;
+}
+
+swiper-slide {
+  @apply text-center text-lg flex justify-center items-center;
 }
 </style>
