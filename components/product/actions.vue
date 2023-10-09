@@ -79,7 +79,7 @@ const handleAddToCart = async () => {
 
   $notify({
     group: 'all',
-    title: '¡Éxito!',
+    title: '¡Proceso exitoso!',
     text: `Producto ${newProduct.id} ha sido agregado al carrito!`,
   });
 };
@@ -92,7 +92,7 @@ const handleAddItemToWishlist = () => {
   wishList.addItemToWishlist(item);
   $notify({
     group: 'all',
-    title: '¡Éxito!',
+    title: '¡Proceso exitoso!',
     text: `Producto ${props.product.id} ha sido agregado a la lista de deseos!`,
   });
 };

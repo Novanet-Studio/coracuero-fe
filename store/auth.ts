@@ -60,7 +60,7 @@ export const useAuth = defineStore('auth', {
 
       $notify({
         group: 'all',
-        title: 'Éxito',
+        title: '¡Proceso exitoso!',
         text: `Inicio de sesión con éxito!`,
       });
 

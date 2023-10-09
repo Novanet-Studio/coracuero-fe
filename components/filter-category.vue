@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between mt-8 mx-auto max-w-110rem">
+  <div class="container flex items-center justify-between mt-8 mx-auto md:px-6 lg:px-18">
     <h3 class="ml-5 text-color-2 font-900 text-2xl">Categorias</h3>
     <transition name="slide-fade">
       <button

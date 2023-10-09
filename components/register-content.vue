@@ -59,7 +59,7 @@
         </app-input2>
       </div>
 
-      <app-checkbox label="Show passwords" v-model="showPasswords" />
+      <app-checkbox label="Mostrar contraseña" v-model="showPasswords" />
 
       <div class="auth-form__footer">
         <template v-if="state.isLoading">

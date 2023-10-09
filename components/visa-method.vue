@@ -248,7 +248,7 @@ const createPayment = async (paymentBody: any) => {
 
   $notify({
     group: 'all',
-    title: 'Éxito',
+    title: '¡Proceso exitoso!',
     text: 'El pago se ha realizado con éxito',
   });
 
@@ -267,7 +267,7 @@ const createPayment = async (paymentBody: any) => {
 
   $notify({
     group: 'all',
-    title: 'Éxito',
+    title: '¡Proceso exitoso!',
     text: 'Su recibo fué creado, puede revisarlo en sus ordenes',
   });
 

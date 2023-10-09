@@ -1,61 +1,33 @@
 <template>
   <client-only>
-    <div class="ps-product__thumbnail" data-vertical="true">
-      <figure class="h-full">
-        <div class="h-full">
-          <!-- Gallery-->
-          <div
-            class="ps-product__gallery max-w-xs max-h-xs md:(max-w-sm max-h-sm) lg:(max-w-md max-h-md) h-full"
-          >
-            <swiper-container
-              class="main-swiper min-h-full"
-              :space-between="10"
-              :navigation="true"
-              :modules="modules"
-              thumbs-swiper=".swiper-thumbs"
-            >
-              <swiper-slide
-                class="rounded-2xl"
-                v-for="image in product.images"
-                :key="image.id"
-              >
-                <button @click="$emit('show-ligthbox')">
-                  <nuxt-img
-                    class="rounded-2xl"
-                    :src="image.url"
-                    :alt="image.alternativeText"
-                    placeholder
-                  />
-                </button>
-              </swiper-slide>
-            </swiper-container>
-          </div>
-        </div>
-      </figure>
-      <!-- Thumbnail -->
-      <!-- <div class="ps-product__variants max-w-48">
-        <swiper
-          class="swiper-thumbs"
-          @swiper="setThumbsSwiper"
+    <div data-vertical="true">
+      <!-- Gallery-->
+      <div
+        class="flex max-w-xs max-h-xs md:(max-w-sm max-h-sm) lg:(max-w-md max-h-md) h-full"
+      >
+        <swiper-container
+          class="main-swiper"
           :space-between="10"
-          :slides-per-view="4"
-          free-mode
-          watch-slides-progress
+          :navigation="true"
           :modules="modules"
+          thumbs-swiper=".swiper-thumbs"
         >
           <swiper-slide
-            class="rounded-lg"
-            v-for="image in product.image"
+            class="flex justify-center rounded-2xl"
+            v-for="image in product.images"
             :key="image.id"
           >
-            <img
-              class="object-contain rounded-lg"
-              :src="image.url"
-              :alt="image.alternativeText"
-            />
+            <button @click="$emit('show-ligthbox')">
+              <nuxt-img
+                class="rounded-2xl"
+                :src="image.url"
+                :alt="image.alternativeText"
+                placeholder
+              />
+            </button>
           </swiper-slide>
-        </swiper>
-      </div> -->
+        </swiper-container>
+      </div>
     </div>
   </client-only>
 </template>

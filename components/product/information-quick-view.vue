@@ -75,7 +75,7 @@ const addItemToCart = async (payload: CartItem) => {
   // await getCartProducts(cart.cartItems);
   $notify({
     group: 'all',
-    title: 'Exito!',
+    title: '¡Proceso exitoso!',
     text: `${props.product.name} ha sido agregado al carrito!`,
   });
 };
@@ -91,7 +91,7 @@ const handleAddToCart = () => {
   cart.addProductToCart(productItem);
   $notify({
     group: 'all',
-    title: '¡Éxito!',
+    title: '¡Proceso exitoso!',
     text: `${props.product.name} ha sido agregado al carrito!`,
   });
 };

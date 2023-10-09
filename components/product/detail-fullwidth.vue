@@ -3,13 +3,13 @@
     <div
       class="ps-product__header bg-color-6 shadow-md container rounded-xl relative flex flex-col md:flex-row lg:(mx-auto gap-4)"
     >
-      <div class="flex justify-center p-2 md:(p-4 mb-6) lg:(p-14 pb-18)">
+      <div class="flex justify-center p-2">
         <thumbnail-default
           :product="product"
           @show-ligthbox="showLightbox = true"
         />
       </div>
-      <section class="my-4 ml-2 lg:py-10 lg:pb-12 text-color-1">
+      <section class="mx-4 lg:py-10 lg:pb-12 text-color-1">
         <h4 class="text-lg text-color-1 font-bold lg:text-2xl">
           {{ product.name }}
         </h4>
@@ -35,7 +35,7 @@
             @click.prenvent="colorId = color.id"
           >
             <img
-              class="w-6 mr-3 rounded-full ring-2 transition ring-offset-2 hover:ring-dark"
+              class="w-6 h-6 mr-3 rounded-full ring-2 transition ring-offset-2 hover:ring-dark"
               :class="color.id === colorId ? 'ring-dark' : 'ring-transparent'"
               :src="color.image.url"
               :alt="color.name"
@@ -51,7 +51,7 @@
         class="py-3 mb-4 mt-4 flex justify-center absolute -bottom-4 !w-full"
       >
         <app-button
-          class="absolute -bottom-5 rounded-full !w-[50%] !bg-color-1 text-xs md:!w-[30%] lg:!w-[15%] lg:text-sm"
+          class="absolute -bottom-5 rounded-full !w-[50%] !bg-color-1 text-lg md:!w-[30%] lg:!w-[15%] "
           @click="handleBuy"
           >Comprar</app-button
         >
@@ -135,7 +135,7 @@ async function addItemToCart(payload: any) {
 
   $notify({
     group: 'all',
-    title: 'Exito!',
+    title: '¡Proceso exitoso!',
     text: `${props.product.name} ha sido agregado al carrito!`,
   });
 }

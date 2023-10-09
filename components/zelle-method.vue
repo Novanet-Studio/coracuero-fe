@@ -236,7 +236,7 @@ const { submit } = submitter(async () => {
 
     $notify({
       group: 'all',
-      title: 'Éxito',
+      title: '¡Proceso exitoso!',
       text: 'La orden se ha generado, se encuentra pendiente en aprobación',
     });
 

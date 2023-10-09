@@ -1,20 +1,20 @@
 <template>
   <div class="p-shopping">
     <app-button
-      class="rounded-full !bg-white border !border-black !w-10 text-xs !p-2 flex items-center justify-center shadow-md lg:text-sm lg:!w-14 lg:!h-14"
+      class="rounded-full !bg-white border !border-black !w-15 text-xs !p-2 flex items-center justify-center shadow-md lg:text-sm lg:!w-14 lg:!h-14"
     >
-      <span class="text-color-1 text-base !p-0">$ {{ product?.price }}</span>
+      <span class="text-color-1 text-base leading-4 !p-0">$ {{ product?.price }}</span>
     </app-button>
     <figure>
       <div
-        class="bg-color-2 !shadow-md rounded-full text-white p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
+        class="bg-color-4 !shadow-md rounded-full text-color-2 p-2 w-20 flex justify-between items-center lg:w-28 lg:p-4 lg:px-4"
       >
         <button class="down" @click.prevent="handleDescreaseQuantity">
           <ph-minus class="lg:text-sm" />
         </button>
         <input
           v-model.number="quantity"
-          class="bg-color-2 font-bold w-8 text-center"
+          class="bg-color-4 font-bold w-8 text-center"
           type="text"
           disabled
         />
@@ -76,7 +76,7 @@ const addItemToCart = async (payload: any) => {
 
   $notify({
     group: 'all',
-    title: 'Exito!',
+    title: '¡Proceso exitoso!',
     text: `${props.product.name} ha sido agregado al carrito!`,
   });
 };
@@ -107,7 +107,7 @@ const handleAddItemToWishlist = () => {
 
   $notify({
     group: 'all',
-    title: 'Exito!',
+    title: '¡Proceso exitoso!',
     text: `${props.product.name} ha sido agregado a la lista de deseos!`,
   });
 };

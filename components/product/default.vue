@@ -50,7 +50,7 @@ const handleQuickView = (open: boolean) => (state.quickView = open);
 }
 
 .product__thumbnail {
-  @apply relative p-2;
+  @apply relative flex justify-center p-2;
 }
 
 .product__content {

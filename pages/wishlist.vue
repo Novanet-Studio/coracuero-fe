@@ -142,7 +142,7 @@ const handleAddToCart = async (product: any) => {
 
   $notify({
     group: 'all',
-    title: 'Exito!',
+    title: '¡Proceso exitoso!',
     text: `${product.name} ha sido agregado al carrito!`,
   });
 

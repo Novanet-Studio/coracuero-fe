@@ -83,7 +83,7 @@ export const useCheckout = defineStore('checkout', {
 
       $notify({
         group: 'all',
-        title: 'Éxito',
+        title: '¡Proceso exitoso!',
         text: 'Dirección actualizada con éxito',
       });
 
