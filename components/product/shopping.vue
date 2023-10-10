@@ -46,6 +46,7 @@
 
 <script lang="ts" setup>
 import { PhPlus, PhMinus, PhHeart } from '@phosphor-icons/vue';
+import { getProductById as GetProductById } from '~/graphql';
 
 interface Props {
   product: ProductsMapped;
@@ -53,6 +54,7 @@ interface Props {
 }
 
 const { $notify, $store } = useNuxtApp();
+const graphql = useStrapiGraphQL();
 const cart = $store.cart();
 const productStore = $store.product();
 const wishlist = $store.wishlist();
@@ -66,13 +68,22 @@ const handleDescreaseQuantity = () =>
 
 // TODO: add typings
 const addItemToCart = async (payload: any) => {
+  const temp: ProductsMapped[] = [];
   cart.addProductToCart(payload);
 
   if (!cart.cartItems.length) return;
 
-  // const itemsId = cart.cartItems.map((item) => item.id);
+  const itemsList = cart.cartItems.map((item) =>
+    graphql<ProductRequest>(GetProductById, { id: item.id })
+  );
 
-  // await productStore.getCartProducts(itemsId);
+  const itemsResult = await Promise.all(itemsList);
+
+  mapperData<any[]>(itemsResult).forEach((item) => {
+    temp.push(item.products[0]);
+  });
+
+  productStore.addCartProducts(temp);
 
   $notify({
     group: 'all',
@@ -80,21 +91,6 @@ const addItemToCart = async (payload: any) => {
     text: `${props.product.name} ha sido agregado al carrito!`,
   });
 };
-
-// const getCartProduct = async (products: any[]) => {
-//   const itemsId = products.map((item) => item.id);
-//   await product.getCartProducts(itemsId);
-// }
-
-// const loadCartProducts = async () => {
-//   if (!cart.cartItems.length) {
-//     product.cartProducts = null;
-//     return;
-//   }
-
-//   const itemsId = cart.cartItems.map((item) => item.id);
-//   await product.getCartProducts(itemsId);
-// }
 
 const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
