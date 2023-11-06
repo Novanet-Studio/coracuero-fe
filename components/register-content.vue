@@ -171,7 +171,7 @@ const { submit } = submitter(async () => {
 
     const response = await auth.createCustomer(form.username, form.email);
 
-    if (!response.value?.data?.id) {
+    if (!response.value?.id) {
       $notify({
         group: 'all',
         title: 'Error!',
@@ -181,7 +181,7 @@ const { submit } = submitter(async () => {
       return;
     }
 
-    const customerId = response.value?.data?.id;
+    const customerId = response.value?.id;
 
     const { confirmPassword: _, ...body } = form;
 

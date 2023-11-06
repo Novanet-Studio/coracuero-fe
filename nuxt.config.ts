@@ -31,18 +31,16 @@ export default defineNuxtConfig({
     'vue-email/nuxt',
   ],
 
+  imports: {
+    dirs: ['services'],
+  },
+
   css: ['@unocss/reset/tailwind.css'],
 
   runtimeConfig: {
-    sendgrid: {
-      apiKey: process.env.SENDGRID_API_KEY,
-      senderEmail: process.env.SENDGRID_SENDER_MAIL,
-      receiverEmail: process.env.SENDGRID_RECEIVER_MAIL,
-    },
     public: {
       SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
       SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
-      // SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
       PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     },
   },
@@ -111,9 +109,5 @@ export default defineNuxtConfig({
       isCustomElement: (tag: string) =>
         ['swiper-container', 'swiper-slide'].includes(tag),
     },
-  },
-
-  nitro: {
-    preset: 'netlify-edge',
   },
 });

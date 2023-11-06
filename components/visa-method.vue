@@ -26,6 +26,7 @@ import {
   createInvoice as CreateInvoice,
   getProductById as GetProductById,
 } from '~/graphql';
+import services from '~/services';
 
 interface State {
   card: Square.Card | null;
@@ -148,14 +149,8 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
     };
 
     await Promise.all([
-      useFetch('/api/send-receipt-email', {
-        method: 'post',
-        body: receipt,
-      }),
-      useFetch('/api/send-merchant-email', {
-        method: 'post',
-        body: merchant,
-      }),
+      services.sendReceiptEmail(receipt),
+      services.sendMerchantEmail(merchant),
     ]);
 
     $notify({
@@ -231,12 +226,11 @@ const createInvoice = async (payment: any, products: any[]) => {
 };
 
 const createPayment = async (paymentBody: any) => {
-  const { data } = await useFetch<any>('/api/payment', {
-    method: 'post',
-    body: paymentBody,
-  });
+  const { data } = (await services.generatePayment(paymentBody)) as {
+    data: Ref<Object>;
+  };
 
-  if (data.value.data.status !== 'COMPLETED') {
+  if (data.value.status !== 'COMPLETED') {
     $notify({
       group: 'all',
       title: 'Error',
@@ -253,7 +247,7 @@ const createPayment = async (paymentBody: any) => {
   });
 
   const invoiceItems = cart.cartItems;
-  const response = await createInvoice(data.value.data, invoiceItems);
+  const response = await createInvoice(data.value, invoiceItems);
 
   if (!response?.data?.createInvoice?.data?.id) {
     $notify({

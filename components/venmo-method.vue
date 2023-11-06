@@ -310,14 +310,8 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
     };
 
     await Promise.all([
-      useFetch('/api/send-receipt-email', {
-        method: 'post',
-        body: receipt,
-      }),
-      useFetch('/api/send-merchant-email', {
-        method: 'post',
-        body: merchant,
-      }),
+      services.sendReceiptEmail(receipt),
+      services.sendMerchantEmail(merchant),
     ]);
 
     $notify({

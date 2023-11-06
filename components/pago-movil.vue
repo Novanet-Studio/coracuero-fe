@@ -110,6 +110,7 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { createInvoice as CreateInvoice } from '~/graphql';
+import services from '~/services';
 
 const { $store, $notify } = useNuxtApp();
 const router = useRouter();
@@ -326,14 +327,8 @@ async function sendInvoiceEmail(products: CartItem[], payment: any) {
     };
 
     await Promise.all([
-      useFetch('/api/send-receipt-email', {
-        method: 'post',
-        body: receipt,
-      }),
-      useFetch('/api/send-merchant-email', {
-        method: 'post',
-        body: merchant,
-      }),
+      services.sendReceiptEmail(receipt),
+      services.sendMerchantEmail(merchant),
     ]);
 
     $notify({

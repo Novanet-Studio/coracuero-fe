@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { register as registerQuery } from '~/graphql';
 import { HttpsCallable } from '~/types';
 import { login as loginQuery } from '~/graphql';
+import services from '~/services';
 
 type RegisterPayload = {
   email: string;
@@ -102,10 +103,7 @@ export const useAuth = defineStore('auth', {
         emailAddress: email,
       };
 
-      const { data: result } = await useFetch('/api/create-customer', {
-        method: 'post',
-        body: data,
-      });
+      const { data: result } = await services.createCustomer(data);
 
       return result;
     },
