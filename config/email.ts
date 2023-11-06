@@ -5,9 +5,9 @@ export function receiptTemplateConfig() {
     template: {
       preview: 'Coracuero - Recibo de compra',
       theme: {
-        primary: '#001e61',
-        primaryTop: '#193470',
-        secondary: '#f18a00',
+        primary: '#000000',
+        primaryTop: '#292929',
+        secondary: '#707070',
         secondaryInfo: '#ffffff',
         foreground: '#efeef1',
         info: '#acb5cb',
@@ -59,9 +59,9 @@ export function merchantTemplateConfig() {
     template: {
       preview: 'Caracas Multisport - Nueva orden',
       theme: {
-        primary: '#001e61',
-        primaryTop: '#193470',
-        secondary: '#f18a00',
+        primary: '#000000',
+        primaryTop: '#292929',
+        secondary: '#707070',
         secondaryInfo: '#ffffff',
         foreground: '#efeef1',
         info: '#acb5cb',
