@@ -28,7 +28,6 @@ export default defineNuxtConfig({
     '@nuxt/image-edge',
     '@sidebase/nuxt-pdf',
     'nuxt-lodash',
-    'vue-email/nuxt',
   ],
 
   imports: {
