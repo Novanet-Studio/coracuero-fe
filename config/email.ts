@@ -23,7 +23,6 @@ export function receiptTemplateConfig() {
           phone: '+58 412-2347585',
         },
       },
-      body: {},
       footer: {
         cta: {
           link: 'https://coracuero.netlify.app/',
@@ -72,7 +71,6 @@ export function merchantTemplateConfig() {
           alt: 'Coracuero',
         },
       },
-      body: {},
       footer: {
         cta: {
           link: 'https://coracuero-be.herokuapp.com/',
